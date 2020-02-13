@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from probmods.org/readings/introduction.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:10:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Introduction - readings</title>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Inconsolata" rel="stylesheet">
+    <script src="../assets/js/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+<!--    <script src="/assets/js/underscore-min.js"></script> 
+    <script src="https://probmods.org/bower_components/underscore/underscore.js"></script> -->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+      
+      <link rel="stylesheet" href="../assets/css/katex.min.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/littlefoot.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-viz.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-editor.css" media="screen" type="text/css">
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/katex.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/littlefoot.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/paper-full.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/parse-bibtex.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/chapter.js' type="text/javascript"></script>
+      
+    
+    
+    
+    
+  </head>
+  <body>
+
+    
+
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&#9776;</a>
+          <ul class="dropdown-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li role="separator" class="divider"></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="../chapters/introduction.html">Introduction</a></li>
+            
+            
+            
+            <li><a href="../chapters/generative-models.html">Generative models</a></li>
+            
+            
+            
+            <li><a href="../chapters/conditioning.html">Conditioning</a></li>
+            
+            
+            
+            <li><a href="../chapters/dependence.html">Causal and statistical dependence</a></li>
+            
+            
+            
+            <li><a href="../chapters/conditional-dependence.html">Conditional dependence</a></li>
+            
+            
+            
+            <li><a href="../chapters/bayesian-data-analysis.html">Bayesian data analysis</a></li>
+            
+            
+            
+            <li><a href="../chapters/inference-algorithms.html">Algorithms for inference</a></li>
+            
+            
+            
+            <li><a href="../chapters/process-models.html">Rational process models</a></li>
+            
+            
+            
+            <li><a href="../chapters/learning-as-conditional-inference.html">Learning as conditional inference</a></li>
+            
+            
+            
+            <li><a href="../chapters/lot-learning.html">Learning with a language of thought</a></li>
+            
+            
+            
+            <li><a href="../chapters/hierarchical-models.html">Hierarchical models</a></li>
+            
+            
+            
+            <li><a href="../chapters/occams-razor.html">Occam's Razor</a></li>
+            
+            
+            
+            <li><a href="../chapters/function-learning.html">Learning (deep) continuous functions</a></li>
+            
+            
+            
+            <li><a href="../chapters/mixture-models.html">Mixture models</a></li>
+            
+            
+            
+            <li><a href="../chapters/social-cognition.html">Social cognition</a></li>
+            
+            
+            
+            <li><a href="../chapters/appendix-js-basics.html">Appendix - JavaScript basics</a></li>
+            
+            
+            
+            <li><a href="../chapters/appendix-useful-distributions.html">Appendix - Useful distributions</a></li>
+            
+            
+          </ul>
+        </li>
+      </ul>
+
+      <div class="page-header">
+  <h1>Introduction - readings</h1>
+</div>
+
+<h2 id="1-the-nature-and-scope-of-computational-models">1. The nature and scope of computational models</h2>
+
+<p>Reading Sec. 1.2 of <a href="http://ling.umd.edu/~idsardi/728/Marr/Marr %27Vision%27 Ch 1.pdf">Marr’s classic book <em>Vision</em></a>. Marr points out that when we ask a question about the mind (e.g., “How does language work?”), there are at least three different interrelated levels we can answer that question. Marr’s three levels of analysis have become one of the key insights in the meta-science of the mind (that is, the science of conducting cognitive science), and we will be returning to them throughout the course.</p>
+
+<h4 id="reading-questions">Reading questions:</h4>
+<p>a) Many neuroscientists argue that learning involves changing the structure of the synapses of neurons. <a href="http://psych.rutgers.edu/faculty-profiles-a-contacts/96-charles-randy-gallistel">Randy Gallistel</a> has argued that other mechanisms may be involved as well. At which of Marr’s levels is this discussion happening?</p>
+
+<p>b) Psychologists and artificial intelligence researchers both study the nature of intelligence. At which of Marr’s levels are their interests most likely to interact?</p>
+
+
+
+<!--
+<a href="Further Reading">/readings/introduction.md</a>
+<a href="Exercises">/exercises/introduction.md</a>
+-->
+
+
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+
+<!-- put big scripts at end so we don't block page load -->
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+
+
+    </div>
+
+  </body>
+
+<!-- Mirrored from probmods.org/readings/introduction.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:10:19 GMT -->
+</html>

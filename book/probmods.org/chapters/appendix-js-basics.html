@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from probmods.org/chapters/appendix-js-basics.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:09:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Appendix - JavaScript basics</title>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Inconsolata" rel="stylesheet">
+    <script src="../assets/js/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+<!--    <script src="/assets/js/underscore-min.js"></script> 
+    <script src="https://probmods.org/bower_components/underscore/underscore.js"></script> -->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+      
+      <link rel="stylesheet" href="../assets/css/katex.min.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/littlefoot.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-viz.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-editor.css" media="screen" type="text/css">
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/katex.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/littlefoot.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/paper-full.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/parse-bibtex.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/chapter.js' type="text/javascript"></script>
+      
+    
+    
+    
+    
+  </head>
+  <body>
+
+    
+
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&#9776;</a>
+          <ul class="dropdown-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li role="separator" class="divider"></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="introduction.html">Introduction</a></li>
+            
+            
+            
+            <li><a href="generative-models.html">Generative models</a></li>
+            
+            
+            
+            <li><a href="conditioning.html">Conditioning</a></li>
+            
+            
+            
+            <li><a href="dependence.html">Causal and statistical dependence</a></li>
+            
+            
+            
+            <li><a href="conditional-dependence.html">Conditional dependence</a></li>
+            
+            
+            
+            <li><a href="bayesian-data-analysis.html">Bayesian data analysis</a></li>
+            
+            
+            
+            <li><a href="inference-algorithms.html">Algorithms for inference</a></li>
+            
+            
+            
+            <li><a href="process-models.html">Rational process models</a></li>
+            
+            
+            
+            <li><a href="learning-as-conditional-inference.html">Learning as conditional inference</a></li>
+            
+            
+            
+            <li><a href="lot-learning.html">Learning with a language of thought</a></li>
+            
+            
+            
+            <li><a href="hierarchical-models.html">Hierarchical models</a></li>
+            
+            
+            
+            <li><a href="occams-razor.html">Occam's Razor</a></li>
+            
+            
+            
+            <li><a href="function-learning.html">Learning (deep) continuous functions</a></li>
+            
+            
+            
+            <li><a href="mixture-models.html">Mixture models</a></li>
+            
+            
+            
+            <li><a href="social-cognition.html">Social cognition</a></li>
+            
+            
+            
+            <li><a href="appendix-js-basics.html">Appendix - JavaScript basics</a></li>
+            
+            
+            
+            <li><a href="appendix-useful-distributions.html">Appendix - Useful distributions</a></li>
+            
+            
+          </ul>
+        </li>
+      </ul>
+
+      <div class="page-header">
+  <h1>Appendix - JavaScript basics</h1>
+</div>
+
+<h1 id="introduction-to-javascript">Introduction to JavaScript</h1>
+
+<p>JavaScipt is a high-level, untyped programming language commonly used in web development.
+WebPPL uses a functional subset of JavaScript, and some basic uses will be reviewed below.</p>
+
+<p><a href="http://bdcampbell.net/javascript/book/javascript_the_good_parts.pdf">JavaScript: The Good Parts</a> is an excellent introduction to the language.
+Online tutorials can be found <a href="https://www.w3schools.com/js/">here</a>, <a href="https://www.javascript.com/">there</a>, and <a href="https://www.codeschool.com/learn/javascript">elsewhere</a>.</p>
+
+<p>You can do basic arithmetical operations:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3 + 3
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">+</code> symbol is also used to concatenate strings:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"My favorite food is " + "pizza"
+</code></pre></div></div>
+
+<p>Numeric variables will automatically modified into strings during concatenation:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3 + " is my favorite number"
+</code></pre></div></div>
+
+<p>Boolean variables will be automatically changed into numbers when added (<code class="highlighter-rouge">false</code> becomes 0 and <code class="highlighter-rouge">true</code> becomes 1)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>true + true
+</code></pre></div></div>
+
+<p>Equality can be checked using <code class="highlighter-rouge">==</code> and <code class="highlighter-rouge">===</code>.
+<code class="highlighter-rouge">===</code> is a stricter comparison which cares about the type of variable (e.g., string, numeric, boolean).</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print(3 == 3)
+print("3" == 3)
+print("3" === 3)
+
+print("Booleans can equal numbers when you don't care about type.")
+print(true == 1)
+print(true === 1)
+</code></pre></div></div>
+
+<p>A summary of comparison and logical operators can be found <a href="https://www.w3schools.com/js/js_comparisons.asp">here</a></p>
+
+<h1 id="mathematical-functions-and-constants">Mathematical functions and constants</h1>
+
+<p>JavaScript has a built-in “Math” object with properties and methods for mathematical constants and functions. (“Objects” will be described in more detail below.)</p>
+
+<p>For example, to write: <script type="math/tex">3^2</script></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Math.pow(3,2) // 3^2
+</code></pre></div></div>
+
+<p>The area of a 12 inch pizza.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var radius = 12 / 2
+Math.round(Math.PI*Math.pow(radius, 2)) + " square inches"
+</code></pre></div></div>
+
+<p>A full list of the functions and constants can be found <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">here</a>.</p>
+
+<h1 id="building-more-complex-programs">Building More Complex Programs</h1>
+
+<p>Consider the following complex expression built out of Boolean operators <code class="highlighter-rouge">||</code> (<em>or</em>) and <code class="highlighter-rouge">&amp;&amp;</code> (<em>and</em>):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>true &amp;&amp; (true || false)
+</code></pre></div></div>
+
+<p>This expression has an <em>operator</em>—the function <code class="highlighter-rouge">&amp;&amp;</code>—and <em>arguments</em>—<code class="highlighter-rouge">true</code> on the left and <code class="highlighter-rouge">(true || false)</code> on the right.
+The latter argument itself is a <em>subexpression</em> consisting of a different operator—the function <code class="highlighter-rouge">||</code>—and different arguments—<code class="highlighter-rouge">true</code> and <code class="highlighter-rouge">false</code>.
+When reasoning about the evaluation of a program, it is best to think of evaluating the subexpressions first, then substituting their return value into the larger expression.
+In this example, we first evaluate the expression <code class="highlighter-rouge">true || false</code>, returning true.
+After we substitute this into the larger expression, we have <code class="highlighter-rouge">true &amp;&amp; true</code>, against returning true.</p>
+
+<p>As a slightly more complex example, consider:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// this line is a comment
+if (1 == 2)  {     // the condition of "if"
+  100              // the consequent ("then")
+} else {
+  (true || false)  // the alternative ("else")
+}
+</code></pre></div></div>
+
+<p>This expression is composed of an <code class="highlighter-rouge">if</code> conditional that evaluates the first expression (a test here of whether <code class="highlighter-rouge">1</code> equals <code class="highlighter-rouge">2</code>) then evaluates the second expression if the first is true or otherwise evaluates the third expression.
+The operator <code class="highlighter-rouge">if</code> is strictly not a function, because it does not evaluate all of its arguments, but instead <em>short-circuits</em> evaluating only the second or third. It has a value like any other function.
+(We have also used comments here: anything after a <code class="highlighter-rouge">//</code> is ignored when evaluating.)</p>
+
+<p>JavaScript has a very useful and common shorthand for <code class="highlighter-rouge">if</code> statements: it is called the “ternary” operator, using a question mark <code class="highlighter-rouge">?</code> and colon <code class="highlighter-rouge">:</code> to demarcate the three components.</p>
+
+<p>The syntax is: <code class="highlighter-rouge">condition ? consequent : alternative</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(1 == 2) ?    // the condition of "if"
+  100 :       // the consequent ("then")
+  (true || false)  // the alternative ("else")
+</code></pre></div></div>
+
+<p>Ternary statements can be strung together to create multiple different conditions</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(1 == 2) ? 100 :
+(2 == 3) ? 200 :
+(3 == 4) ? 300 :
+(3 == 3) ? 400 :
+           500
+</code></pre></div></div>
+
+<p>Note the particular indentation style used above (called ‘‘pretty-printing’’).
+To clarify the structure of a function call, the arguments can split up across different lines and can aid readability:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(3 * (
+  (2 * 4) + (3 + 5)
+)) +
+  (
+  (10 - 7) + 6
+)
+</code></pre></div></div>
+
+<p>The online editor will automatically pretty-print for you.
+You can re-indent according to this style by selecting some lines and pressing the TAB key.</p>
+
+<p>We often want to name objects in our programs so that they can be reused.
+This can be done with the <code class="highlighter-rouge">var</code> statement.
+<code class="highlighter-rouge">var</code> looks like this:</p>
+
+<pre><code class="language-norun">var variableName = expression
+</code></pre>
+
+<p><code class="highlighter-rouge">variableName</code> is a <em>symbol</em> that is bound to the value that <code class="highlighter-rouge">expression</code> evaluates to.
+When variables themselves are evaluated they return the value that they have been bound to:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var someVariable = 3 // assign the value 3 to the variable someVariable
+someVariable // when this is evaluated it looks up and returns the value 3
+</code></pre></div></div>
+
+<p>Assignment of variables requires use of <code class="highlighter-rouge">var</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>someVariable = 3
+someVariable
+</code></pre></div></div>
+
+<p>Multiple variable can be assigned in the same line using a <code class="highlighter-rouge">,</code>.
+To declare the end a line in JavaScript, use a <code class="highlighter-rouge">;</code>.
+In WebPPL as in standard JavaScript, the use of <code class="highlighter-rouge">;</code> is optional, but can be useful for readability.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var x = 3, y = 2;
+y
+</code></pre></div></div>
+
+<h1 id="arrays-and-objects">Arrays and objects</h1>
+
+<p>There are several special kinds of values in JavaScript.
+One kind of special value is an <em>array</em>: a sequence of other values.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>["this", "is", "an", "array"]
+</code></pre></div></div>
+
+<p>Arrays can be indexed using <code class="highlighter-rouge">[index]</code> Note: indexing starts at 0).</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var myArray = ["this", "is", "my", "array"]
+myArray[1]
+</code></pre></div></div>
+
+<p>The length can be computed using <code class="highlighter-rouge">.length</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var myArray = ["this", "is", "my", "array"]
+myArray.length
+</code></pre></div></div>
+
+<p>You can grab subsets of the array using <code class="highlighter-rouge">.slice(being, end)</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var myArray = ["this", "is", "my", "array"]
+myArray.slice(1,3)
+</code></pre></div></div>
+
+<p>If you don’t put an <code class="highlighter-rouge">end</code>, it will default to the end.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var myArray = ["this", "is", "my", "array"]
+myArray.slice(1)
+</code></pre></div></div>
+
+<p>Arrays can be concatenated together, forming new arrays.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var myFirstArray = ["this", "is"]
+var mySecondArray = ["my", "array"]
+
+myFirstArray.concat(mySecondArray)
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">.concat</code> can take multiple arguments, concatenating together multiple arrays or values simultaneously.</p>
+
+<p>Other helpful methods:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var myArray = ["this", "is", "my", "array"]
+print( myArray.join(" _ ") )
+print( myArray.toString() )
+print( myArray.indexOf("my") )
+</code></pre></div></div>
+
+<p>A list of all the properties of arrays can be found <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of">here</a>.
+Use caution with these.
+Not all JavaScript methods are supported on arrays in WebPPL.
+Some of these JavaScript methods will have their own WebPPL version.
+A list of the WebPPL functions for arrays can be found <a href="http://docs.webppl.org/en/master/functions/arrays.html">here</a>.</p>
+
+<p>In addition, the WebPPL language has available a JavaScript library useful for dealing with arrays and objects, called Underscore.
+Underscore functions can be accessed using the <code class="highlighter-rouge">_.</code> prefix.
+A full list of functions available from Underscore can be found <a href="http://underscorejs.org/">here</a>.
+Note: underscore functions that take others functions (called predicates in underscore) as arguments are not available in WebPPL (e.g., <code class="highlighter-rouge">_.map</code>, <code class="highlighter-rouge">_.filter</code>, …).</p>
+
+<p>Here is one example, for reshaping arrays:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>_.zip(['frodo', 'gandalf', 'gimli'], ["hobbit", "wizard", "dwarf"], [true, false, false])
+</code></pre></div></div>
+
+<p>In real life, you encounter objects.
+Objects have properties.
+Properties can be accessed using <code class="highlighter-rouge">.property</code> or <code class="highlighter-rouge">["property"]</code> syntax.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var bilbo = { firstName: "Bilbo", lastName: "Baggins" }
+print( bilbo.lastName )
+print( bilbo["lastName"] )
+</code></pre></div></div>
+
+<p>The latter is useful when the property is itself a variable</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var bilbo = { firstName: "Bilbo", lastName: "Baggins"}
+var prop = "lastName"
+bilbo[prop]
+// try: bilbo.prop
+</code></pre></div></div>
+
+<p>Objects in JavaScript are very useful for structured data (like a dictionary in Python, or a dataframe in R).
+Underscore has several helpful functions for interacting with objects</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var bilbo = {
+  firstName: "Bilbo",
+  lastName: "Baggins",
+  race: "hobbit",
+  age: 111,
+  ringbearer: true
+}
+
+_.keys(bilbo)
+</code></pre></div></div>
+
+<h1 id="building-functions-function">Building Functions: <code class="highlighter-rouge">function</code></h1>
+
+<p>The power of programming languages as a model of computation comes from the ability to make new functions.
+To do so, we use the <code class="highlighter-rouge">function</code> primitive.
+For example, we can construct a function that doubles any number it is applied to:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var double = function(x) {
+  return x + x
+}
+
+double(3)
+</code></pre></div></div>
+
+<p>In WebPPL, the use of the <code class="highlighter-rouge">return</code> keyword is optional.
+By default, WebPPL will return the last line of the function.
+We use the <code class="highlighter-rouge">return</code> keyword for explicitness and clarity.</p>
+
+<p>The general form of a function expression is: <code class="highlighter-rouge">function(arguments){ body }</code>.
+The first sub-expression of the function, the arguments, is a list of symbols that tells us what the inputs to the function will be called; the second sub-expression, the body, tells us what to do with these inputs.
+The value which results from a function is called a <em>compound procedure</em>.
+When a compound procedure is applied to input values (e.g. when <code class="highlighter-rouge">double</code> was applied to <code class="highlighter-rouge">3</code>) we imagine identifying (also called <em>binding</em>) the argument variables with these inputs, then evaluating the body.</p>
+
+<p>In functional programming, we can build procedures that manipulate any kind of value—even other procedures.
+Here we define a function <code class="highlighter-rouge">twice</code> which takes a procedure and returns a new procedure that applies the original twice:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var double = function(x) { return x + x }
+
+var twice = function(f) {
+  return function(x) {
+    return f(f(x))
+  }
+}
+
+var twiceDouble = twice(double)
+
+twiceDouble(3)
+
+// same as: twice(double)(3)
+</code></pre></div></div>
+
+<p>When functions take other functions as arguments, that is called a higher-order function</p>
+
+<h1 id="higher-order-functions">Higher-Order Functions</h1>
+
+<p>Higher-order functions can be used to represent common patterns of computation.
+Several such higher-order functions are provided in WebPPL.</p>
+
+<p><code class="highlighter-rouge">map</code> is a higher-order function that takes a procedure and applies it to each element of a list.
+For instance we could use map to test whether each element of a list of numbers is greater than zero:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>map(function(x){
+  return x &gt; 0
+}, [1, -3, 2, 0])
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">map</code> higher-order function can also be used to map a function of more than one argument over multiple lists, element by element.
+For example, here is the MATLAB “dot-star” function (or <code class="highlighter-rouge">.*</code>) written using <code class="highlighter-rouge">map2</code>, which maps over 2 lists at the same time:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var dotStar = function(v1, v2){
+  return map2(
+    function(x,y){ return x * y },
+    v1, v2)
+}
+
+dotStar([1,2,3], [4,5,6])
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">repeat</code> is a built-in function that takes another function as an argument. It repeats it how many ever times you want:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var g = function(){ return 8 }
+repeat(100, g)
+</code></pre></div></div>
+
+<p>Test your knowledge: <a href="../exercises/appendix-js-basics.html">Exercises</a></p>
+
+
+<!--
+<a href="Further Reading">/readings/appendix-js-basics.md</a>
+<a href="Exercises">/exercises/appendix-js-basics.md</a>
+-->
+
+
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+		Next chapter: <a href="appendix-useful-distributions.html">21. Appendix - Useful distributions</a>
+		
+
+<!-- put big scripts at end so we don't block page load -->
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+
+
+    </div>
+
+  </body>
+
+<!-- Mirrored from probmods.org/chapters/appendix-js-basics.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:09:10 GMT -->
+</html>

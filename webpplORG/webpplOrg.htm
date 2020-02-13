@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!-- saved from url=(0018)http://webppl.org/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WebPPL - probabilistic programming for the web</title>
+
+    <link rel="stylesheet" href="./webpplOrg/bootstrap.min.css">
+    <link rel="stylesheet" href="./webpplOrg/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./webpplOrg/homepage.css">
+    <link rel="stylesheet" href="./webpplOrg/webppl-editor.css">
+    <link rel="stylesheet" href="./webpplOrg/webppl-viz.css">
+    <link rel="stylesheet" href="./webpplOrg/katex.min.css">
+
+    <script src="./webpplOrg/box2d.js"></script>
+    <script src="./webpplOrg/physics.js"></script>
+    <script src="./webpplOrg/webppl-v0.9.15.js"></script>
+    <script src="./webpplOrg/homepage.js"></script>
+  
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body data-gr-c-s-loaded="true">
+
+   <div class="container">
+      <div class="header clearfix maximized">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="http://github.com/probmods/webppl">On Github</a></li>
+          </ul>
+        </nav>
+        <h3 class="logo"><a href="http://webppl.org/"><span class="logo-main">Web</span><span class="logo-bold">PPL</span></a> <span class="logo-tagline hidden-xs">probabilistic programming for the web</span></h3>
+      </div>
+
+      <div class="jumbotron main-lead primary" style="display: none;">
+        <p class="lead">
+          WebPPL is a feature-rich probabilistic programming language embedded in Javascript.
+        </p>
+      </div>
+
+      <div class="jumbotron main-lead secondary" style="display: none;">
+        <p class="lead">
+          Check out some <a id="demolink" href="http://webppl.org/#demos">demos</a> or try it yourself in the editor below.
+        </p>
+      </div>
+      
+
+      <div class="panel panel-default maximized">
+        <div class="panel-body editor-panel-body">
+          <div id="reactEditor"><div data-reactroot="" class="literate-editor"><div id="editorControls"><div id="fileSelector"><span>File:</span><select><option value="0">Default</option><option value="1">Linear Regression</option><option value="2">Logistic Regression</option><option value="3">Scalar Implicature</option><option value="4">Hidden Markov Model</option><option value="5">cookie</option><option value="6">Monte Hall</option><option value="7">dice problem</option><option value="new">New file</option></select><div id="file-buttons"><button class="btn btn-default">rename</button><button class="btn btn-default">delete</button></div></div><div id="editorButtons"><button class="btn btn-default">add code</button><button class="btn btn-default hidden-xs">add text</button><button class="btn btn-default hidden-xs">.md</button><button class="btn btn-default hidden-xs maximize">⇙</button></div></div><div id="editorBlocks"><div class="editorBlock codeBlock"><div class="wpedit"><div class="ReactCodeMirror"><textarea autocomplete="off" style="display: none;">// Some Utility Functions
+var repeatItem = function(N, item){mapN(function (){item}, N)}
+var ones = function(N) {repeatItem(N, 1)}
+var range = function(N) {mapN(function(x){x+1}, N)}
+
+var hypos = [4,6,8,12,20]
+var data = [6, 6, 8, 7, 7, 5, 4]
+var prior = Categorical({ps:ones(hypos.length), vs:hypos})
+var makeDice = function(N) {
+  Categorical({ps:ones(N), vs:range(N)})
+}
+
+
+var model = function() {
+  var diceN = sample(prior)
+  var dice = makeDice(diceN)
+  
+  mapN(function(i){condition(data[i]==dice.sample())}, data.length)
+//   condition(dice.sample() == data[0])
+  return diceN
+}
+
+Infer({method:"MCMC", samples:10000}, model)</textarea><div class="CodeMirror cm-s-default"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 277px; left: 13.4375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true" style="width: 18px; pointer-events: none;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true" style="height: 18px; pointer-events: none;"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1" draggable="false"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 399px; min-width: 433.719px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style="visibility: hidden;"><div class="CodeMirror-cursor" style="left: 12.4375px; top: 272px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" style=""><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Some Utility Functions</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">repeatItem</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span>(<span class="cm-def">N</span>, <span class="cm-def">item</span>){<span class="cm-variable">mapN</span>(<span class="cm-keyword">function</span> (){<span class="cm-variable-2">item</span>}, <span class="cm-variable-2">N</span>)}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">ones</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span>(<span class="cm-def">N</span>) {<span class="cm-variable">repeatItem</span>(<span class="cm-variable-2">N</span>, <span class="cm-number">1</span>)}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">range</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span>(<span class="cm-def">N</span>) {<span class="cm-variable">mapN</span>(<span class="cm-keyword">function</span>(<span class="cm-def">x</span>){<span class="cm-variable-2">x</span><span class="cm-operator">+</span><span class="cm-number">1</span>}, <span class="cm-variable-2">N</span>)}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">hypos</span> <span class="cm-operator">=</span> [<span class="cm-number">4</span>,<span class="cm-number">6</span>,<span class="cm-number">8</span>,<span class="cm-number">12</span>,<span class="cm-number">20</span>]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">data</span> <span class="cm-operator">=</span> [<span class="cm-number">6</span>, <span class="cm-number">6</span>, <span class="cm-number">8</span>, <span class="cm-number">7</span>, <span class="cm-number">7</span>, <span class="cm-number">5</span>, <span class="cm-number">4</span>]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">prior</span> <span class="cm-operator">=</span> <span class="cm-variable">Categorical</span>({<span class="cm-property">ps</span>:<span class="cm-variable">ones</span>(<span class="cm-variable">hypos</span>.<span class="cm-property">length</span>), <span class="cm-property">vs</span>:<span class="cm-variable">hypos</span>})</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">makeDice</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span>(<span class="cm-def">N</span>) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-variable">Categorical</span>({<span class="cm-property">ps</span>:<span class="cm-variable">ones</span>(<span class="cm-variable-2">N</span>), <span class="cm-property">vs</span>:<span class="cm-variable">range</span>(<span class="cm-variable-2">N</span>)})</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">model</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span>() {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">var</span> <span class="cm-def">diceN</span> <span class="cm-operator">=</span> <span class="cm-variable">sample</span>(<span class="cm-variable">prior</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">var</span> <span class="cm-def">dice</span> <span class="cm-operator">=</span> <span class="cm-variable">makeDice</span>(<span class="cm-variable-2">diceN</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-variable">mapN</span>(<span class="cm-keyword">function</span>(<span class="cm-def">i</span>){<span class="cm-wppl">condition</span>(<span class="cm-variable">data</span>[<span class="cm-variable-2">i</span>]<span class="cm-operator">==</span><span class="cm-variable-2">dice</span>.<span class="cm-property">sample</span>())}, <span class="cm-variable">data</span>.<span class="cm-property">length</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//   condition(dice.sample() == data[0])</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">return</span> <span class="cm-variable-2">diceN</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Infer</span>({<span class="cm-property">method</span>:<span class="cm-string">"MCMC"</span>, <span class="cm-property">samples</span>:<span class="cm-number">10000</span>}, <span class="cm-variable">model</span>)</span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 399px;"></div><div class="CodeMirror-gutters" style="display: none; height: 429px;"></div></div></div></div><button class="run" type="button">run</button><button class="cancel hide">cancel</button><button class="drawerButton">▼</button><div class="meta hide"><div><b>webppl</b><!-- react-text: 964 -->: <!-- /react-text --><!-- react-text: 965 -->v0.9.15-430b433d<!-- /react-text --></div><div><b>packages</b><!-- react-text: 968 -->: <!-- /react-text --><!-- react-text: 969 --><!-- /react-text --></div><div><b>seed</b><!-- react-text: 972 -->: <!-- /react-text --><!-- react-text: 1080 -->1580820178092<!-- /react-text --></div><div><b>compile</b><!-- react-text: 975 -->: <!-- /react-text --><!-- react-text: 1079 -->1.094s<!-- /react-text --></div><div><b>run</b><!-- react-text: 978 -->: <!-- /react-text --><!-- react-text: 1084 -->33.539s<!-- /react-text --></div></div><div class="result " style="min-height: 303px;"><button class="clearButton idle">X</button><div><span class="icon log"></span><span class="count"></span><pre class="text">Initialization warning [1/4]: Trace not initialized after 1000 attempts.</pre></div><div><span class="icon log"></span><span class="count"></span><pre class="text">Initialization warning [2/4]: Trace not initialized after 10000 attempts.</pre></div><div><span class="icon log"></span><span class="count"></span><pre class="text">Initialization warning [3/4]: Trace not initialized after 100000 attempts.</pre></div><div><span class="icon log"></span><span class="count"></span><pre class="text">[Execution canceled]</pre></div><div><span class="icon log"></span><span class="count"></span><pre class="text"></pre></div></div></div><button class="removeBlock">x</button><button class="moveUp">▲</button><button class="moveDown">▼</button></div><div class="editorBlock codeBlock"><div class="wpedit"><div class="ReactCodeMirror"><textarea autocomplete="off" style="display: none;">var repeatItem = function(N, item){mapN(function (){item}, N)}
+var ones = function(N) {repeatItem(N, 1)}
+var range = function(N) {mapN(function(x){x+1}, N)}
+
+var hypos = [4,6,8,12,20]
+var prior = Categorical({ps:ones(hypos.length), vs:hypos})
+
+var makeDice = function(N) {
+  Categorical({ps:ones(N), vs:range(N)})
+}
+
+var dice = makeDice(8)
+repeat(20, function(){dice.sample()})</textarea><div class="CodeMirror cm-s-default"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 192px; left: 148.719px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true" style="width: 18px; pointer-events: none;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true" style="height: 18px; pointer-events: none;"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1" draggable="false"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 229px; min-width: 405.078px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style=""><div class="CodeMirror-cursor" style="left: 147.719px; top: 187px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" style=""><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">repeatItem</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span>(<span class="cm-def">N</span>, <span class="cm-def">item</span>){<span class="cm-variable">mapN</span>(<span class="cm-keyword">function</span> (){<span class="cm-variable-2">item</span>}, <span class="cm-variable-2">N</span>)}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">ones</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span>(<span class="cm-def">N</span>) {<span class="cm-variable">repeatItem</span>(<span class="cm-variable-2">N</span>, <span class="cm-number">1</span>)}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">range</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span>(<span class="cm-def">N</span>) {<span class="cm-variable">mapN</span>(<span class="cm-keyword">function</span>(<span class="cm-def">x</span>){<span class="cm-variable-2">x</span><span class="cm-operator">+</span><span class="cm-number">1</span>}, <span class="cm-variable-2">N</span>)}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">hypos</span> <span class="cm-operator">=</span> [<span class="cm-number">4</span>,<span class="cm-number">6</span>,<span class="cm-number">8</span>,<span class="cm-number">12</span>,<span class="cm-number">20</span>]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">prior</span> <span class="cm-operator">=</span> <span class="cm-variable">Categorical</span>({<span class="cm-property">ps</span>:<span class="cm-variable">ones</span>(<span class="cm-variable">hypos</span>.<span class="cm-property">length</span>), <span class="cm-property">vs</span>:<span class="cm-variable">hypos</span>})</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">makeDice</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span>(<span class="cm-def">N</span>) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-variable">Categorical</span>({<span class="cm-property">ps</span>:<span class="cm-variable">ones</span>(<span class="cm-variable-2">N</span>), <span class="cm-property">vs</span>:<span class="cm-variable">range</span>(<span class="cm-variable-2">N</span>)})</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">dice</span> <span class="cm-operator">=</span> <span class="cm-variable">makeDice</span>(<span class="cm-number">8</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">repeat</span>(<span class="cm-number">20</span>, <span class="cm-keyword">function</span>(){<span class="cm-variable">dice</span>.<span class="cm-property">sample</span>()})</span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 229px;"></div><div class="CodeMirror-gutters" style="display: none; height: 259px;"></div></div></div></div><button class="run" type="button">run</button><button class="cancel hide">cancel</button><button class="drawerButton">▼</button><div class="meta hide"><div><b>webppl</b><!-- react-text: 994 -->: <!-- /react-text --><!-- react-text: 995 -->v0.9.15-430b433d<!-- /react-text --></div><div><b>packages</b><!-- react-text: 998 -->: <!-- /react-text --><!-- react-text: 999 --><!-- /react-text --></div><div><b>seed</b><!-- react-text: 1002 -->: <!-- /react-text --><!-- react-text: 1015 -->1580819830974<!-- /react-text --></div><div><b>compile</b><!-- react-text: 1005 -->: <!-- /react-text --><!-- react-text: 1014 -->0.532s<!-- /react-text --></div><div><b>run</b><!-- react-text: 1008 -->: <!-- /react-text --><!-- react-text: 1020 -->0.004s<!-- /react-text --></div></div><div class="result " style="min-height: 23px;"><button class="clearButton idle">X</button><div><span class="icon log"></span><span class="count"></span><pre class="text">[1,4,2,8,8,2,4,1,2,5,6,3,2,7,3,3,1,1,3,3]</pre></div></div></div><button class="removeBlock">x</button><button class="moveUp">▲</button><button class="moveDown">▼</button></div></div><div></div></div></div>
+        </div>
+      </div>
+
+      <div class="row marketing" style="display: none;">
+        <div class="col-lg-12">
+          
+          <h4>Features</h4>
+          <p>
+          </p><ul>
+              <li class="feature">Runs on the command line with <a href="http://nodejs.org/">node.js</a> or <a href="http://docs.webppl.org/en/master/development/workflow.html#browser-version">in the browser</a>.</li>
+              <li class="feature">Supports modular and re-usable code using <a href="http://docs.webppl.org/en/master/packages.html">packages</a> built on top of the npm package system, and interoperates with existing Javascript packages in the npm ecosystem.</li>
+              <li class="feature">Includes a large and expanding library of primitive <a href="http://docs.webppl.org/en/master/distributions.html">distributions.</a></li>
+              <li class="feature">Implements a variety of <a href="http://docs.webppl.org/en/master/inference/index.html">inference algorithms</a>, including exact inference via enumeration, rejection sampling, Sequential Monte Carlo, Markov Chain Monte Carlo, Hamiltonian Monte Carlo, and inference-as-optimization (e.g. variational inference).</li>
+              <li class="feature">Provides inference as a first-class operator in the language, allowing for nested inference (‘inference about inference’).</li>
+              <li class="feature">Supports optimizable models with neural network components using <a href="https://www.npmjs.com/package/adnn">adnn</a>.</li>
+          </ul>
+          <p></p>
+
+          <h4 id="demos">Demos</h4>
+          <p>
+            Browser-based applications powered by WebPPL.
+          </p>
+          <p>
+          </p><ul>
+              <li class="demo"><a href="http://webppl.org/demos/vines/index.html">Procedural vines with shape constraints</a></li>
+              <li class="demo"><a href="http://dritchie.github.io/web-procmod/">3D procedural spaceships with shape constraints</a><br>(Note: the code in this demo is written in an older version of WebPPL)</li>
+          </ul>
+          <p></p>
+
+          <h4>Local install</h4>
+          <p>Install WebPPL in two easy steps:</p>
+          <ol>
+            <li>Install <a href="http://nodejs.org/">node.js</a></li>
+            <li>Run <code>npm install -g webppl</code></li>
+          </ol>
+          <p>Now, the <code>webppl</code> command is globally available.</p>
+          <p>To upgrade to the latest version, run <code class="nobreak">npm update -g webppl</code>.</p>
+
+          <h4>Documentation</h4>
+          <p>To learn more about how to set up and use WebPPL, take a look at <a href="http://docs.webppl.org/">our documentation</a> and <a href="https://github.com/probmods/webppl/tree/master/examples">the examples</a>.</p>
+
+          <p>To learn more about how WebPPL works under the hood, check out our web book, <a href="http://dippl.org/">The Design and Implementation of Probabilistic Programming Languages</a>.</p>
+
+          <p>For probabilistic modeling in general, our other web book, <a href="https://probmods.org/">Probabilistic Models of Cognition</a>, might be of interest.</p>
+
+          <h4>License</h4>
+          <p>The WebPPL code base is open source and freely available for commerical and non-commercial use under the <a href="https://github.com/probmods/webppl/blob/master/LICENSE.md">MIT license</a>.</p>
+
+          <h4>Contributions</h4>
+          <p>We encourage you to contribute to WebPPL! Check out our <a href="https://github.com/probmods/webppl/blob/master/CONTRIBUTING.md">guidelines for contributors</a> and join the <a href="https://groups.google.com/forum/#!forum/webppl-dev">webppl-dev</a> mailing list.</p>
+
+          <h4>Pronunciation</h4>
+          <p>Say “web people”.</p>
+
+          <h4>Citing</h4>
+          <p>If you use WebPPL in academic projects and papers, please cite as: </p><div class="citation">N. D. Goodman and A. Stuhlmüller (electronic). The Design and Implementation of Probabilistic Programming Languages. Retrieved <span id="date"></span> from <code>http://dippl.org</code>. <a id="toggle-bibtex" href="http://webppl.org/#">[bibtex]</a></div><p></p>
+
+          <p>
+</p><pre id="bibtex">@misc{dippl,
+  title = {{The Design and Implementation of Probabilistic Programming Languages}},
+  author = {Goodman, Noah D and Stuhlm\"{u}ller, Andreas},
+  year = {2014},
+  howpublished = {\url{http://dippl.org}},
+  note = {Accessed: <span class="date">2020-2-4</span>}
+}
+</pre>
+          <p></p>
+
+          <h4>Publications</h4>
+          <p>
+            If you publish a paper using/extending WebPPL, <a href="https://groups.google.com/forum/#!forum/webppl-dev">let us know</a> and we'll add it to this list:
+          </p>
+
+          <div class="citations">
+            
+            <div class="citation">
+              D. Ritchie, P. Horsfall, and N. D. Goodman. <a href="https://arxiv.org/abs/1610.05735">Deep Amortized Inference for Probabilistic Programs</a>. arXiv:1610.05735.  
+            </div>
+
+            <div class="citation">
+              L. Ouyang, M. H. Tessler, D. Ly, and N. D. Goodman. <a href="https://arxiv.org/abs/1608.05046">Practical optimal experiment design with probabilistic programs</a>. arXiv:1608.05046.  
+            </div>
+
+            <div class="citation">
+              M. H. Tessler and N. D. Goodman. <a href="https://arxiv.org/abs/1608.02926">A Pragmatic Theory of Generic Language</a>. arXiv:1608.02926.  
+            </div>
+
+            <div class="citation">
+              D. Ritchie, A. Thomas, P. Hanrahan, and N. D. Goodman. <a href="https://arxiv.org/abs/1603.06143">Neurally-Guided Procedural Models: Amortized Inference for Procedural Graphics Programs using Neural Networks</a>. NIPS 2016. 
+            </div>
+
+            <div class="citation">
+              D. Ritchie, A. Stuhlmüller, and N. D. Goodman. <a href="https://arxiv.org/abs/1509.02151">C3: Lightweight Incrementalized MCMC for Probabilistic Programs using Continuations and Callsite Caching</a>. AISTATS 2016. 
+            </div>
+
+            <div class="citation">
+              M. H. Tessler and N. D. Goodman. <a href="http://stanford.edu/~mtessler/papers/Tessler2016-cogsci.pdf">Communicating generalizations about events</a>. Proceedings of the Thirty-Eighth Annual Conference of the Cognitive Science Society, 2016.
+            </div>
+
+            <div class="citation">
+              E. J. Yoon, M. H. Tessler, N. D. Goodman, and M. C. Frank. <a href="http://stanford.edu/~mtessler/papers/YoonTessler2016-cogsci.pdf">Talking with tact: Polite language as a balance between kindness and informativity</a>. Proceedings of the Thirty-Eighth Annual Conference of the Cognitive Science Society, 2016.
+            </div>
+
+            <div class="citation">
+              C. Graf, J. Degen, R. X. D. Hawkins, and N. D. Goodman. <a href="https://cocolab.stanford.edu/papers/GrafEtAl2016-Cogsci.pdf">Animal, dog, or dalmatian? Level of abstraction in nominal referring expressions</a>. Proceedings of the Thirty-Eighth Annual Conference of the Cognitive Science Society, 2016.
+            </div>
+
+            <div class="citation">
+              O. Evans, A. Stuhlmüller, and N. D. Goodman. <a href="https://stuhlmueller.org/papers/preferences-aaai2016.pdf">Learning the Preferences of Ignorant, Inconsistent Agents</a>. AAAI 2016.
+            </div>
+
+            <div class="citation">
+              A. Stuhlmüller, R. X. D. Hawkins, N. Siddharth, and N. D. Goodman. <a href="https://arxiv.org/abs/1509.02962">Coarse-to-Fine Sequential Monte Carlo for Probabilistic Programs</a>. arXiv:1509.02962.
+            </div>
+
+            <div class="citation">
+              O. Evans, A. Stuhlmüller, and N. D. Goodman. <a href="https://stuhlmueller.org/papers/preferences-nipsworkshop2015.pdf">Learning the Preferences of Bounded Agents</a>. Workshop on Bounded Optimality, NIPS 2015.
+            </div>
+
+            <div class="citation">
+              R. X. D. Hawkins, A. Stuhlmüller, J. Degen, and N. D. Goodman. <a href="https://stuhlmueller.org/papers/qa-cogsci2015.pdf">Why do you ask? Good questions provoke informative answers</a>. Proceedings of the Thirty-Seventh Annual Conference of the Cognitive Science Society, 2015.
+            </div>
+
+            <div class="citation">
+              G. Scontras and M. H. Tessler (electronic). <a href="http://gscontras.github.io/ESSLLI-2016/">Composition in Probabilistic Language Understanding</a>. Retrieved <span id="date"></span> from <code>http://gscontras.github.io/ESSLLI-2016</code>.
+            </div>
+
+            <div class="citation">
+              O. Evans, A. Stuhlmüller, J. Salvatier, and D. Filan (electronic). <a href="http://agentmodels.org/">Modeling Agents with Probabilistic Programs</a>. Retrieved <span id="date"></span> from <code>http://agentmodels.org</code>.
+            </div>
+
+            <div class="citation">
+              N. D. Goodman and J. B. Tenenbaum (electronic). <a href="http://probmods.org/">Probabilistic Models of Cognition</a>. Retrieved <span id="date"></span> from <code>http://probmods.org</code>.
+            </div>
+
+            <div class="citation">
+              N. D. Goodman and A. Stuhlmüller (electronic). <a href="http://dippl.org/">The Design and Implementation of Probabilistic Programming Languages</a>. Retrieved <span id="date"></span> from <code>http://dippl.org</code>.
+            </div>
+            
+          </div>
+          
+          <h4>Acknowledgments</h4>
+          <p>The WebPPL project is supported by grants from DARPA, under agreement number FA8750-14-2-0009, and the Office of Naval Research, grant number N00014-13-1-0788.</p>          
+
+        </div>
+
+      </div>
+
+      <footer class="footer" style="display: none;">
+        <div class="container text-center">
+          <p>WebPPL is a <a href="http://cocolab.stanford.edu/">Stanford CoCoLab</a> project</p>
+        </div>
+      </footer>
+
+    </div>
+
+  
+
+</body><div style="display: block; opacity: 1;"></div></html>

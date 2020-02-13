@@ -1,0 +1,30 @@
+HTTrack3.49-2 launched on Tue, 04 Feb 2020 22:07:32 at https://probmods.org/ none none
+(winhttrack https://probmods.org/ -O "~/academic/webPPL/book" -P none:8080 -%v none none )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+22:07:59	Error: 	"Unable to get server's address: unknown error" (-5) after 2 retries at link none/robots.txt (from primary/primary)
+22:07:59	Warning: 	Retry after error -5 (Unable to get server's address: nodename nor servname provided, or not known) at link none/ (from primary/primary)
+22:09:10	Warning: 	Retry after error -5 (Unable to get server's address: unknown error) at link none/ (from primary/primary)
+22:09:10	Error: 	"Not Found" (404) at link https://probmods.org/assets/fonts/glyphicons-halflings-regular.eot (from https://probmods.org/assets/css/bootstrap.min.css)
+22:09:10	Error: 	"Not Found" (404) at link https://probmods.org/assets/fonts/glyphicons-halflings-regular.eot? (from https://probmods.org/assets/css/bootstrap.min.css)
+22:09:10	Error: 	"Not Found" (404) at link https://probmods.org/assets/fonts/glyphicons-halflings-regular.woff2 (from https://probmods.org/assets/css/bootstrap.min.css)
+22:09:10	Error: 	"Not Found" (404) at link https://probmods.org/assets/fonts/glyphicons-halflings-regular.woff (from https://probmods.org/assets/css/bootstrap.min.css)
+22:09:10	Error: 	"Not Found" (404) at link https://probmods.org/assets/fonts/glyphicons-halflings-regular.ttf (from https://probmods.org/assets/css/bootstrap.min.css)
+22:09:10	Error: 	"Not Found" (404) at link https://probmods.org/assets/fonts/glyphicons-halflings-regular.svg (from https://probmods.org/assets/css/bootstrap.min.css)
+22:10:22	Error: 	"Not Found" (404) at link https://probmods.org/readings/conditional-dependence.html (from https://probmods.org/chapters/conditional-dependence.html)
+22:10:23	Error: 	"Not Found" (404) at link https://probmods.org/readings/bayesian-data-analysis.html (from https://probmods.org/chapters/bayesian-data-analysis.html)
+22:10:23	Error: 	"Not Found" (404) at link https://probmods.org/readings/process-models.html (from https://probmods.org/chapters/process-models.html)
+22:10:23	Error: 	"Not Found" (404) at link https://probmods.org/readings/lot-learning.html (from https://probmods.org/chapters/lot-learning.html)
+22:10:23	Warning: 	Link https://probmods.org/cdn-cgi/l/email-protection not scanned (follow robots meta tag)
+22:10:24	Error: 	"Not Found" (404) at link https://probmods.org/exercises/function-learning.html (from https://probmods.org/chapters/function-learning.html)
+22:10:24	Error: 	"Unable to get server's address: unknown error" (-5) after 2 retries at link none/ (from primary/primary)
+22:10:24	Error: 	"Not Found" (404) at link https://probmods.org/readings/13-appendix-js-basics.html (from https://probmods.org/readings/generative-models.html)
+22:10:24	Error: 	"Not Found" (404) at link https://probmods.org/chapters/02-generative-models.html (from https://probmods.org/exercises/conditioning.html)
+22:10:24	Error: 	"Not Found" (404) at link https://probmods.org/chapters/14-bayesian-data-analysis.html (from https://probmods.org/exercises/bayesian-data-analysis.html)
+
+HTTrack Website Copier/3.49-2 mirror complete in 2 minutes 52 seconds : 171 links scanned, 152 files written (8702226 bytes overall) [3576171 bytes received at 20791 bytes/sec], 7593117 bytes transferred using HTTP compression in 118 files, ratio 29%, 83.5 requests per connection
+(16 errors, 3 warnings, 0 messages)

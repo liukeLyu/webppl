@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from probmods.org/exercises/lot-learning.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:10:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Learning with a language of thought - exercises</title>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Inconsolata" rel="stylesheet">
+    <script src="../assets/js/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+<!--    <script src="/assets/js/underscore-min.js"></script> 
+    <script src="https://probmods.org/bower_components/underscore/underscore.js"></script> -->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+      
+      <link rel="stylesheet" href="../assets/css/katex.min.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/littlefoot.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-viz.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-editor.css" media="screen" type="text/css">
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/katex.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/littlefoot.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/paper-full.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/parse-bibtex.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/chapter.js' type="text/javascript"></script>
+      
+    
+    
+    
+    
+  </head>
+  <body>
+
+    
+
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&#9776;</a>
+          <ul class="dropdown-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li role="separator" class="divider"></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="../chapters/introduction.html">Introduction</a></li>
+            
+            
+            
+            <li><a href="../chapters/generative-models.html">Generative models</a></li>
+            
+            
+            
+            <li><a href="../chapters/conditioning.html">Conditioning</a></li>
+            
+            
+            
+            <li><a href="../chapters/dependence.html">Causal and statistical dependence</a></li>
+            
+            
+            
+            <li><a href="../chapters/conditional-dependence.html">Conditional dependence</a></li>
+            
+            
+            
+            <li><a href="../chapters/bayesian-data-analysis.html">Bayesian data analysis</a></li>
+            
+            
+            
+            <li><a href="../chapters/inference-algorithms.html">Algorithms for inference</a></li>
+            
+            
+            
+            <li><a href="../chapters/process-models.html">Rational process models</a></li>
+            
+            
+            
+            <li><a href="../chapters/learning-as-conditional-inference.html">Learning as conditional inference</a></li>
+            
+            
+            
+            <li><a href="../chapters/lot-learning.html">Learning with a language of thought</a></li>
+            
+            
+            
+            <li><a href="../chapters/hierarchical-models.html">Hierarchical models</a></li>
+            
+            
+            
+            <li><a href="../chapters/occams-razor.html">Occam's Razor</a></li>
+            
+            
+            
+            <li><a href="../chapters/function-learning.html">Learning (deep) continuous functions</a></li>
+            
+            
+            
+            <li><a href="../chapters/mixture-models.html">Mixture models</a></li>
+            
+            
+            
+            <li><a href="../chapters/social-cognition.html">Social cognition</a></li>
+            
+            
+            
+            <li><a href="../chapters/appendix-js-basics.html">Appendix - JavaScript basics</a></li>
+            
+            
+            
+            <li><a href="../chapters/appendix-useful-distributions.html">Appendix - Useful distributions</a></li>
+            
+            
+          </ul>
+        </li>
+      </ul>
+
+      <div class="page-header">
+  <h1>Learning with a language of thought - exercises</h1>
+</div>
+
+<h2 id="1-inferring-functions">1. Inferring Functions</h2>
+
+<p>Consider our model of function inference from the chapter:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>///fold:
+// make expressions easier to look at
+var prettify = function(e) {
+  if (e == 'x' || _.isNumber(e)) {
+    return e
+  } else {
+    var op = e[0]
+    var arg1 = prettify(e[1])
+    var prettyarg1 = (!_.isArray(e[1]) ? arg1 : '(' + arg1 + ')')
+    var arg2 = prettify(e[2])
+    var prettyarg2 = (!_.isArray(e[2]) ? arg2 : '(' + arg2 + ')')
+    return prettyarg1 + ' ' + op + ' ' + prettyarg2
+  }
+}
+
+var plus = function(a,b) {
+  return a + b;
+}
+
+var multiply = function(a,b) {
+  return Math.round(a * b,0);
+}
+
+var divide = function(a,b) {
+  return Math.round(a/b,0);
+}
+
+var minus = function(a,b) {
+  return a - b;
+}
+
+var power = function(a,b) {
+  return Math.pow(a,b);
+}
+
+// make expressions runnable
+var runify = function(e) {
+  if (e == 'x') {
+    return function(z) { return z }
+  } else if (_.isNumber(e)) {
+    return function(z) { return e }
+  } else {
+    var op = (e[0] == '+') ? plus : 
+             (e[0] == '-') ? minus :
+             (e[0] == '*') ? multiply :
+             (e[0] == '/') ? divide :
+              power;
+    var arg1Fn = runify(e[1])
+    var arg2Fn = runify(e[2])
+    return function(z) {
+      return op(arg1Fn(z),arg2Fn(z))
+    }
+  }
+}
+
+var randomConstantFunction = function() {
+  return uniformDraw(_.range(10))
+}
+
+var randomCombination = function(f,g) {
+  var op = uniformDraw(['+','-','*','/','^']);
+  return [op, f, g];
+}
+
+// sample an arithmetic expression
+var randomArithmeticExpression = function() {
+  if (flip(0.3)) {
+    return randomCombination(randomArithmeticExpression(), randomArithmeticExpression())
+  } else {
+    if (flip()) {
+      return 'x'
+    } else {
+      return randomConstantFunction()
+    }
+  }
+}
+///
+
+viz.table(Infer({method: 'enumerate', maxExecutions: 100}, function() {
+  var e = randomArithmeticExpression();
+  var s = prettify(e);
+  var f = runify(e);
+  
+  condition(f(0) == 0)
+  condition(f(2) == 4)
+  
+  return {s: s};
+}))
+</code></pre></div></div>
+
+<h4 id="a">a)</h4>
+
+<p>Why does this think the probability of <code class="highlighter-rouge">x * 2</code> is so much lower than <code class="highlighter-rouge">x * x</code>?</p>
+
+<p>HINT: Think about the probability assigned to <code class="highlighter-rouge">x ^ 2</code>.</p>
+
+<h4 id="b">b)</h4>
+
+<p>Let’s reconceptualize our program as a sequence-generator by making the input arguments <script type="math/tex">1,2,3,\dots</script>. Suppose that the first number in the sequence (<script type="math/tex">f(1)</script>) is <code class="highlighter-rouge">1</code> and the second number (<script type="math/tex">f(2)</script>) is <code class="highlighter-rouge">4</code>. What number comes next?</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>///fold:
+// make expressions easier to look at
+var prettify = function(e) {
+  if (e == 'x' || _.isNumber(e)) {
+    return e
+  } else {
+    var op = e[0]
+    var arg1 = prettify(e[1])
+    var prettyarg1 = (!_.isArray(e[1]) ? arg1 : '(' + arg1 + ')')
+    var arg2 = prettify(e[2])
+    var prettyarg2 = (!_.isArray(e[2]) ? arg2 : '(' + arg2 + ')')
+    return prettyarg1 + ' ' + op + ' ' + prettyarg2
+  }
+}
+
+var plus = function(a,b) {
+  return a + b;
+}
+
+var multiply = function(a,b) {
+  return Math.round(a * b,0);
+}
+
+var divide = function(a,b) {
+  return Math.round(a/b,0);
+}
+
+var minus = function(a,b) {
+  return a - b;
+}
+
+var power = function(a,b) {
+  return Math.pow(a,b);
+}
+
+// make expressions runnable
+var runify = function(e) {
+  if (e == 'x') {
+    return function(z) { return z }
+  } else if (_.isNumber(e)) {
+    return function(z) { return e }
+  } else {
+    var op = (e[0] == '+') ? plus : 
+             (e[0] == '-') ? minus :
+             (e[0] == '*') ? multiply :
+             (e[0] == '/') ? divide :
+              power;
+    var arg1Fn = runify(e[1])
+    var arg2Fn = runify(e[2])
+    return function(z) {
+      return op(arg1Fn(z),arg2Fn(z))
+    }
+  }
+}
+
+var randomConstantFunction = function() {
+  return uniformDraw(_.range(10))
+}
+
+var randomCombination = function(f,g) {
+  var op = uniformDraw(['+','-','*','/','^']);
+  return [op, f, g];
+}
+
+// sample an arithmetic expression
+var randomArithmeticExpression = function() {
+  if (flip(0.3)) {
+    return randomCombination(randomArithmeticExpression(), randomArithmeticExpression())
+  } else {
+    if (flip()) {
+      return 'x'
+    } else {
+      return randomConstantFunction()
+    }
+  }
+}
+///
+
+viz.table(Infer({method: 'enumerate', maxExecutions: 10000}, function() {
+  var e = randomArithmeticExpression();
+  var s = prettify(e);
+  var f = runify(e);
+  
+  condition(f(1) == 1)
+  condition(f(2) == 4)
+  
+  return {'f(3)':f(3)};
+}))
+</code></pre></div></div>
+
+<p>Not surprisingly, the model predicts <code class="highlighter-rouge">9</code> as the most likely next number. However, it also puts significant probability on <code class="highlighter-rouge">27</code>. Why does this happen?</p>
+
+<h4 id="c">c)</h4>
+
+<p>Many people find the high probability assignmed by our model in (b) to <code class="highlighter-rouge">27</code> to be unintuitive (i.e. if we ran this as an experiment, 27 would be a very infrequent response). This suggests our model is an imperfect model of human intuitions. How could we decrease the probability of inferring <code class="highlighter-rouge">27</code>? (HINT: Consider the priors).</p>
+
+<h2 id="2-role-governed-concepts-challenge">2. Role-governed concepts (challenge!)</h2>
+
+<p>In the Rational Rules model we saw in the chapter, concepts were defined in terms of the features of single objects (e.g. “it’s a raven if it has black wings”). Psychologists have suggested that many concepts are not defined by the features of a single objects, but instead by the relations the object has to other objects. For instance, “a key is something that opens a lock”. These are called <em>role-governed</em> concepts.</p>
+
+<p>Extend the Rational Rules model to capture role-governed concepts.</p>
+
+<p>Hint: You will need primitive relations in your langauge of thought.</p>
+
+<p>Hint: Consider adding quantifiers (e.g. <em>there exists</em>) to your language of thought.</p>
+
+
+
+<!--
+<a href="Further Reading">/readings/lot-learning.md</a>
+<a href="Exercises">/exercises/lot-learning.md</a>
+-->
+
+
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+
+<!-- put big scripts at end so we don't block page load -->
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+
+
+    </div>
+
+  </body>
+
+<!-- Mirrored from probmods.org/exercises/lot-learning.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:10:23 GMT -->
+</html>

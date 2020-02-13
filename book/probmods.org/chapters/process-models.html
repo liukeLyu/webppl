@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from probmods.org/chapters/process-models.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:08:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Rational process models</title>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Inconsolata" rel="stylesheet">
+    <script src="../assets/js/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+<!--    <script src="/assets/js/underscore-min.js"></script> 
+    <script src="https://probmods.org/bower_components/underscore/underscore.js"></script> -->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+      
+      <link rel="stylesheet" href="../assets/css/katex.min.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/littlefoot.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-viz.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-editor.css" media="screen" type="text/css">
+      
+    
+    
+    
+      
+      <link rel="stylesheet" href="http://assets/css/draw.css" media="screen" type="text/css">
+      
+    
+    
+      
+      <script src='../assets/js/katex.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/littlefoot.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/paper-full.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/parse-bibtex.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/chapter.js' type="text/javascript"></script>
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/box2d.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/physics.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/draw.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/custom.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/paper-full.js' type="text/javascript"></script>
+      
+    
+  </head>
+  <body>
+
+    
+
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&#9776;</a>
+          <ul class="dropdown-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li role="separator" class="divider"></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="introduction.html">Introduction</a></li>
+            
+            
+            
+            <li><a href="generative-models.html">Generative models</a></li>
+            
+            
+            
+            <li><a href="conditioning.html">Conditioning</a></li>
+            
+            
+            
+            <li><a href="dependence.html">Causal and statistical dependence</a></li>
+            
+            
+            
+            <li><a href="conditional-dependence.html">Conditional dependence</a></li>
+            
+            
+            
+            <li><a href="bayesian-data-analysis.html">Bayesian data analysis</a></li>
+            
+            
+            
+            <li><a href="inference-algorithms.html">Algorithms for inference</a></li>
+            
+            
+            
+            <li><a href="process-models.html">Rational process models</a></li>
+            
+            
+            
+            <li><a href="learning-as-conditional-inference.html">Learning as conditional inference</a></li>
+            
+            
+            
+            <li><a href="lot-learning.html">Learning with a language of thought</a></li>
+            
+            
+            
+            <li><a href="hierarchical-models.html">Hierarchical models</a></li>
+            
+            
+            
+            <li><a href="occams-razor.html">Occam's Razor</a></li>
+            
+            
+            
+            <li><a href="function-learning.html">Learning (deep) continuous functions</a></li>
+            
+            
+            
+            <li><a href="mixture-models.html">Mixture models</a></li>
+            
+            
+            
+            <li><a href="social-cognition.html">Social cognition</a></li>
+            
+            
+            
+            <li><a href="appendix-js-basics.html">Appendix - JavaScript basics</a></li>
+            
+            
+            
+            <li><a href="appendix-useful-distributions.html">Appendix - Useful distributions</a></li>
+            
+            
+          </ul>
+        </li>
+      </ul>
+
+      <div class="page-header">
+  <h1>Rational process models</h1>
+</div>
+
+<h1 id="process-level-cognitive-modeling">Process-level cognitive modeling</h1>
+
+<p>As we noted in an earlier chapter, there is an interesting parallel between the <code class="highlighter-rouge">Infer</code> abstraction, which separates model specification from inference method, and the idea of levels of analysis in cognitive science @Marr1982.
+For most of this book we are interested in the <em>computational</em> level of describing what people know about the world and what inferences that knowledge licenses.
+That is, we treat the model argument to <code class="highlighter-rouge">infer</code> as the scientific hypothesis, and the options (including ‘method’) argument as a engineering detail needed to derive predictions.
+We can make a great deal of progress with this level of abstraction.</p>
+
+<p>The <em>algorithmic</em> level goes further, attempting to describe the process by which people draw these inferences, and taking the options to <code class="highlighter-rouge">Infer</code> as part of the hypotheses.
+While <code class="highlighter-rouge">Infer</code> specifies an ideal, different methods for inference will approximate this ideal better or worse in different cases; they will also do so with different time and space tradeoffs.
+Is it reasonable to interpret the inference algorithms that we borrow from statistics as psychological hypotheses at the algorithmic level? <em>Which algorithm</em> does the brain use for inference? Could it be MCMC? Enumeration?</p>
+
+<p>If we take the algorithms for inference as psychological hypotheses, then the approximation and resource-usage characteristics of the algorithms will be the signature phenomena of interest.</p>
+
+<!--TODO: describe some of the research in this direction.-->
+
+<!-- TODO: Something on resource-rational analysis. -->
+
+<p>Test your knowledge: <a href="../exercises/process-models.html">Exercises</a></p>
+
+<p>Reading &amp; Discussion: <a href="../readings/process-models.html">Readings</a></p>
+
+
+<!--
+<a href="Further Reading">/readings/process-models.md</a>
+<a href="Exercises">/exercises/process-models.md</a>
+-->
+
+
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+		Next chapter: <a href="learning-as-conditional-inference.html">9. Learning as conditional inference</a>
+		
+
+<!-- put big scripts at end so we don't block page load -->
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+
+
+    </div>
+
+  </body>
+
+<!-- Mirrored from probmods.org/chapters/process-models.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:08:45 GMT -->
+</html>

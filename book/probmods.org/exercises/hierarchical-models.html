@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from probmods.org/exercises/hierarchical-models.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:10:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Hierarchical models</title>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Inconsolata" rel="stylesheet">
+    <script src="../assets/js/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+<!--    <script src="/assets/js/underscore-min.js"></script> 
+    <script src="https://probmods.org/bower_components/underscore/underscore.js"></script> -->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+      
+      <link rel="stylesheet" href="../assets/css/katex.min.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/littlefoot.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-viz.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-editor.css" media="screen" type="text/css">
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/katex.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/littlefoot.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/paper-full.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/parse-bibtex.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/chapter.js' type="text/javascript"></script>
+      
+    
+    
+    
+    
+  </head>
+  <body>
+
+    
+
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&#9776;</a>
+          <ul class="dropdown-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li role="separator" class="divider"></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="../chapters/introduction.html">Introduction</a></li>
+            
+            
+            
+            <li><a href="../chapters/generative-models.html">Generative models</a></li>
+            
+            
+            
+            <li><a href="../chapters/conditioning.html">Conditioning</a></li>
+            
+            
+            
+            <li><a href="../chapters/dependence.html">Causal and statistical dependence</a></li>
+            
+            
+            
+            <li><a href="../chapters/conditional-dependence.html">Conditional dependence</a></li>
+            
+            
+            
+            <li><a href="../chapters/bayesian-data-analysis.html">Bayesian data analysis</a></li>
+            
+            
+            
+            <li><a href="../chapters/inference-algorithms.html">Algorithms for inference</a></li>
+            
+            
+            
+            <li><a href="../chapters/process-models.html">Rational process models</a></li>
+            
+            
+            
+            <li><a href="../chapters/learning-as-conditional-inference.html">Learning as conditional inference</a></li>
+            
+            
+            
+            <li><a href="../chapters/lot-learning.html">Learning with a language of thought</a></li>
+            
+            
+            
+            <li><a href="../chapters/hierarchical-models.html">Hierarchical models</a></li>
+            
+            
+            
+            <li><a href="../chapters/occams-razor.html">Occam's Razor</a></li>
+            
+            
+            
+            <li><a href="../chapters/function-learning.html">Learning (deep) continuous functions</a></li>
+            
+            
+            
+            <li><a href="../chapters/mixture-models.html">Mixture models</a></li>
+            
+            
+            
+            <li><a href="../chapters/social-cognition.html">Social cognition</a></li>
+            
+            
+            
+            <li><a href="../chapters/appendix-js-basics.html">Appendix - JavaScript basics</a></li>
+            
+            
+            
+            <li><a href="../chapters/appendix-useful-distributions.html">Appendix - Useful distributions</a></li>
+            
+            
+          </ul>
+        </li>
+      </ul>
+
+      <div class="page-header">
+  <h1>Hierarchical models</h1>
+</div>
+
+<h2 id="exercise-1-pseudocounts-and-the-dirichlet-distribution">Exercise 1: Pseudocounts and the Dirichlet distribution</h2>
+
+<p>In the Bayesian Data Analysis exercises, we explored the Beta distribution by varying its parameters. The Dirichlet is a generalization of the Beta distribution to more than two categories (see <a href="../chapters/appendix-useful-distributions.html">Appendix</a>). Instead of Beta parameters $(a, b)$ governing the probabilities of two categories <script type="math/tex">(false/true)</script>, the Dirichlet parameter <script type="math/tex">\alpha = [\alpha_1, \alpha_2, ..., \alpha_n]</script> controls the probabilities over categories <script type="math/tex">[A_1, A_2, ..., A_n]</script>. In other words, different choices of <script type="math/tex">\alpha</script> correspond to different ways of distributing the prior probability mass over the <script type="math/tex">N-1</script> simplex.</p>
+
+<p>In this exercise, we will explore a particularly intuitive way of understanding the $alpha$ parameter as pseudocounts, or virtual observations. That is, if <script type="math/tex">\alpha = [2, 2, 1]</script>, that is the equivalent of having already observed the first category and second category twice each, and the third category one time only.</p>
+
+<p>Complete the code below to prove that setting <script type="math/tex">\alpha = [2, 3, 1, 1, 1]</script> is equivalent to setting <script type="math/tex">\alpha = [1, 1, 1, 1, 1]</script> and then observing the first category once and the second category twice:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var colors = ['black', 'blue', 'green', 'orange', 'red'];
+
+var observedData = [
+{bag: 'bag1', draw: 'blue'},
+{bag: 'bag1', draw: 'blue'},
+{bag: 'bag1', draw: 'black'}]
+
+// first model: set alpha = [1, 1, 1, 1, 1] and observe `observedData`
+var observed = Infer({method: 'MCMC', samples: 20000}, function(){
+  var makeBag = mem(function(bag){
+    var colorProbs = dirichlet(ones([colors.length, 1]))
+    return Categorical({vs: colors, ps: colorProbs})
+  })
+
+  var obsFn = function(datum){
+    observe(makeBag(datum.bag), datum.draw)
+  }
+
+  mapData({data: observedData}, obsFn)
+
+  return {bag1: sample(makeBag('bag1'))}
+})
+
+viz.marginals(observed)
+
+// second model. Set alpha = [2, 3, 1, 1, 1]
+var usealpha = Infer(
+
+	// your code here
+
+)
+
+viz.marginals(usealpha) // should roughly match first figure
+</code></pre></div></div>
+
+<!--
+
+~~~~js
+var colors = ['black', 'blue', 'green', 'orange', 'red'];
+
+var observedData = [
+{bag: 'bag1', draw: 'blue'},
+{bag: 'bag1', draw: 'blue'},
+{bag: 'bag1', draw: 'black'}]
+
+var observed = Infer({method: 'MCMC', samples: 20000}, function(){
+  var makeBag = mem(function(bag){
+    var colorProbs = T.toScalars(dirichlet(ones([colors.length, 1])))
+    return Categorical({vs: colors, ps: colorProbs})
+  })
+
+  var obsFn = function(datum){
+    observe(makeBag(datum.bag), datum.draw)
+  }
+
+  mapData({data: observedData}, obsFn)
+
+  return {bag1: sample(makeBag('bag1'))}
+})
+
+viz.marginals(observed)
+
+var usealpha = Infer({method: 'forward', samples: 20000}, function(){
+  var makeBag = mem(function(bag){
+    var colorProbs = T.toScalars(dirichlet(Vector([2,3,1,1,1])))
+    return Categorical({vs: colors, ps: colorProbs})
+  })
+
+  return {bag1: sample(makeBag('bag1'))}
+})
+
+viz.marginals(usealpha)
+~~~~
+
+-->
+
+<h2 id="exercise-2-rotten-apples">Exercise 2: Rotten apples</h2>
+
+<p>On any given day, a given grocery store has some number of apples for sale. Some of these apples may be mushy or even rotten. The probability that each apple is rotten is not independent: a ripening fruit emits chemicals that encourages other fruit to ripen as well. As they say, <a href="https://idiomation.wordpress.com/2013/03/27/one-bad-apple-spoils-the-whole-barrel/">one rotten apple spoils the whole barrel</a>.</p>
+
+<p>For each apple in a barrel, assume the probability that the apple is rotten is <code class="highlighter-rouge">flip(p)</code> where <code class="highlighter-rouge">p</code> is drawn from some prior. An appropriate prior distribution is Beta. Recall that the Beta distribution is just a Dirichlet that returns a vector of length one. So it, too, is defined based on pseudocounts <code class="highlighter-rouge">[a, b]</code>. <code class="highlighter-rouge">Beta({a: 10, b: 2})</code> returns the equivalent of a Beta distribution conditioned on having previously seen 10 heads and 2 tails, while <code class="highlighter-rouge">[a,b]</code> values less than 1 concentrate mass at the endpoints. A <code class="highlighter-rouge">Beta({a: .1, b: .2})</code> prior nicely captures our expectations about rotten apples: most of the time, the probability of a rotten apple is quite low. The rest of the time, the probability is very high. Middling probabilities are rare.</p>
+
+<!-- note that this is redundant with BDA chapter exercise.
+To get a sense of the Beta distribution, run the following code:
+
+~~~~js
+viz(Beta({a: 1, b: 1}))
+viz(Beta({a: 10, b: 1}))
+viz(Beta({a: 1, b: 10}))
+viz(Beta({a: .1, b: .2}))
+~~~~
+
+Note that the final example gives a very nice prior for our apples: most of the time, the probability of a rotten apple is quite low. The rest of the time, the probability is very high. Middling probabilities are rare. 
+-->
+
+<h4 id="a">a)</h4>
+
+<p>Write a function <code class="highlighter-rouge">makeBarrel</code> that returns a function (a ‘barrel’) that takes a single argument <em>N</em> and returns an array representing the rottenness of <em>N</em> apples from that barrel (where <code class="highlighter-rouge">true</code> is rotten and <code class="highlighter-rouge">false</code> is not rotten). That is, the following code:</p>
+
+<pre><code class="language-norun">var abarrel = makeBarrel('b')
+abarrel(5)
+</code></pre>
+
+<p>should return something like <code class="highlighter-rouge">[true, true, true, false, true]</code>.</p>
+
+<p>Complete the following codebox:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+// your code here
+
+// Do not edit this function: it tests your code
+var post = Infer({method: 'forward'}, function(){
+  var abarrel = makeBarrel('b')
+  return Math.sum(abarrel(10))
+})
+viz(post)
+</code></pre></div></div>
+
+<h4 id="b">b)</h4>
+
+<p>Some grocery stores have fresher produce than others. So let’s create a function <code class="highlighter-rouge">makeStore</code> that returns a <code class="highlighter-rouge">makeBarrel</code> function, which works as it did in part (a). Importantly, each store has its own Beta parameters <code class="highlighter-rouge">[a, b]</code> drawn from some prior.</p>
+
+<p>HINT: In order to maintain the likelihood that in a given barrel, either most of the apples are rotten or few are, you need to ensure that <code class="highlighter-rouge">a &lt; 1</code> and <code class="highlighter-rouge">b &lt; 1</code>. However, if <code class="highlighter-rouge">a</code> is much larger than <code class="highlighter-rouge">b</code> (or vice versa), you will get extreme results with <em>every</em> apple being rotten or <em>every</em> apple being good.</p>
+
+<p>NOTE: No need to be overly fancy with this prior. Pick something simple that you know will give you what you want: stores that tend to have bad barrels and stores that tend to have good barrels.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var makeStore = // your code here
+
+// Following code inspects your functions
+viz(Infer({method: 'forward', samples:10000}, function(){
+  var S = makeStore('S')
+  var B1 = S('B1')
+  var B2 = S('B2')
+  return Math.abs(Math.sum(B1(10))-Math.sum(B2(10)))
+})) // should generally be little difference
+
+viz(Infer({method: 'forward', samples:10000}, function(){
+  var S1 = makeStore('S1')
+  var S2 = makeStore('S2')
+  var B1 = S1('B1')
+  var B2 = S2('B2')
+  return Math.abs(Math.sum(B1(10))-Math.sum(B2(10)))
+})) // difference should be larger on average
+</code></pre></div></div>
+
+<h4 id="c">c)</h4>
+
+<p>We can keep going. Some cities are located in apple country and thus have more access to fresh apples. Most stores in those cities are going to mostly have good barrels with good apples. Other cities have less access to fresh apples, and so more of their stores will have bad barrels with rotten apples.</p>
+
+<p>In the code block below, create a <code class="highlighter-rouge">makeCity</code> function, which returns a <code class="highlighter-rouge">makeStore</code> function, which works as in (b). In (b), each store had a prior on <code class="highlighter-rouge">[a, b]</code>. Let’s put a prior on <em>that</em> prior, such that cities either tend to have good stores or tend to have bad stores.</p>
+
+<p>HINT: Again, it is not necesary to have an overly fancy prior here. If you are spending hours trying to find just the right prior distribution, you are over-thinking it.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">makeCity</span> <span class="o">=</span> <span class="c1">// your code here</span>
+
+
+<span class="c1">//Make sure the following code runs:</span>
+<span class="kd">var</span> <span class="nx">C1</span> <span class="o">=</span> <span class="nx">makeCity</span><span class="p">(</span><span class="s2">"C1"</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">S1</span> <span class="o">=</span> <span class="nx">C1</span><span class="p">(</span><span class="s2">"S1"</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">B1</span> <span class="o">=</span> <span class="nx">S1</span><span class="p">(</span><span class="s2">"B1"</span><span class="p">)</span>
+
+<span class="nx">viz</span><span class="p">(</span><span class="nx">Infer</span><span class="p">({</span><span class="na">method</span><span class="p">:</span> <span class="s1">'forward'</span><span class="p">},</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sum</span><span class="p">(</span><span class="nx">B1</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="p">}))</span>
+<span class="c1">//repeat to see different kinds of cities</span>
+</code></pre></div></div>
+
+<h4 id="d">d)</h4>
+
+<p>Suppose you go to a store in a city. The store has a barrel of 10 apples, 7 of which are rotten. You leave and go to another store in the same city. It also has has a barrel with 10 apples. Using your code above, how many of these apples are likely to be rotten?</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// your code here</span>
+
+</code></pre></div></div>
+
+<h2 id="exercise-3-hierarchical-models-for-bda">Exercise 3: Hierarchical models for BDA</h2>
+
+<p>Imagine that you have done an experiment on word reading times to test the hypothesis that words starting with vowels take longer to read. Each data point includes which condition the word is from (“vowel” vs. “consonant”), the word itself, the participant id, and the response time you measured (“rt”). A simple data anlysis model attempts to infer the mean reading time for each word group, and returns the difference between the groups (a sort of Bayesian version of a t-test). Note that there is no cognitive model inside this BDA; it is directly modeling the data.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var data = [{group: "vowel", word: "abacus", id: 1, rt: 210},
+            {group: "vowel", word: "abacus", id: 2, rt: 212},
+            {group: "vowel", word: "abacus", id: 3, rt: 209},
+            {group: "vowel", word: "aardvark", id: 1, rt: 200},
+            {group: "vowel", word: "aardvark", id: 2, rt: 201},
+            {group: "vowel", word: "aardvark", id: 3, rt: 198},
+            {group: "vowel", word: "ellipse", id: 1, rt: 220},
+            {group: "vowel", word: "ellipse", id: 2, rt: 222},
+            {group: "vowel", word: "ellipse", id: 3, rt: 219},
+            
+            {group: "consonant", word: "proton", id: 1, rt: 190},
+            {group: "consonant", word: "proton", id: 2, rt: 191},
+            {group: "consonant", word: "proton", id: 3, rt: 189},
+            {group: "consonant", word: "folder", id: 1, rt: 180},
+            {group: "consonant", word: "folder", id: 2, rt: 182},
+            {group: "consonant", word: "folder", id: 3, rt: 178},
+            {group: "consonant", word: "fedora", id: 1, rt: 230},
+            {group: "consonant", word: "fedora", id: 2, rt: 231},
+            {group: "consonant", word: "fedora", id: 3, rt: 228},
+            {group: "consonant", word: "fedora", id: 1, rt: 231},
+            {group: "consonant", word: "fedora", id: 2, rt: 233},
+            {group: "consonant", word: "fedora", id: 3, rt: 230},
+            {group: "consonant", word: "fedora", id: 1, rt: 230},
+            {group: "consonant", word: "fedora", id: 2, rt: 232},
+            {group: "consonant", word: "fedora", id: 3, rt: 228}]
+
+var post = Infer({method: "MCMC",  kernel: {HMC: {steps: 10, stepSize: 1}}, samples: 1000}, function(){
+  var groupMeans = {vowel: gaussian(200, 100), consonant: gaussian(200, 100)}
+  
+  var obsFn = function(d){
+    //assume response times (rt) depend on group means with a small fixed noise:
+    observe(Gaussian({mu: groupMeans[d.group], sigma: 10}), d.rt)
+  }
+  
+  mapData({data: data}, obsFn)
+  
+  //explore the difference in means:
+  return groupMeans['vowel']-groupMeans['consonant']
+})
+
+print("vowel - consonant reading time:")
+viz(post)
+print(expectation(post))
+</code></pre></div></div>
+
+<p>As you see, this model concludes that consonants actually take significantly longer to read! But if you look at the data carefully you may not trust this conclusion: it seems to be driven by a single outlier, the word “fedora”!</p>
+
+<h4 id="a-1">a)</h4>
+
+<p>Adjust the model to allow each word to have its own mean reading time, that depends on the <code class="highlighter-rouge">groupMean</code> but needn’t be the same. This is called a hierachical data analysis model.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+var data = [{group: "vowel", word: "abacus", id: 1, rt: 210},
+            {group: "vowel", word: "abacus", id: 2, rt: 212},
+            {group: "vowel", word: "abacus", id: 3, rt: 209},
+            {group: "vowel", word: "aardvark", id: 1, rt: 200},
+            {group: "vowel", word: "aardvark", id: 2, rt: 201},
+            {group: "vowel", word: "aardvark", id: 3, rt: 198},
+            {group: "vowel", word: "ellipse", id: 1, rt: 220},
+            {group: "vowel", word: "ellipse", id: 2, rt: 222},
+            {group: "vowel", word: "ellipse", id: 3, rt: 219},
+            
+            {group: "consonant", word: "proton", id: 1, rt: 190},
+            {group: "consonant", word: "proton", id: 2, rt: 191},
+            {group: "consonant", word: "proton", id: 3, rt: 189},
+            {group: "consonant", word: "folder", id: 1, rt: 180},
+            {group: "consonant", word: "folder", id: 2, rt: 182},
+            {group: "consonant", word: "folder", id: 3, rt: 178},
+            {group: "consonant", word: "fedora", id: 1, rt: 230},
+            {group: "consonant", word: "fedora", id: 2, rt: 231},
+            {group: "consonant", word: "fedora", id: 3, rt: 228},
+            {group: "consonant", word: "fedora", id: 1, rt: 231},
+            {group: "consonant", word: "fedora", id: 2, rt: 233},
+            {group: "consonant", word: "fedora", id: 3, rt: 230},
+            {group: "consonant", word: "fedora", id: 1, rt: 230},
+            {group: "consonant", word: "fedora", id: 2, rt: 232},
+            {group: "consonant", word: "fedora", id: 3, rt: 228}]
+
+var post = Infer({method: "MCMC",  kernel: {HMC: {steps: 10, stepSize: 1}}, samples: 1000}, function(){
+  var groupMeans = {vowel: gaussian(200, 100), consonant: gaussian(200, 100)}
+
+  //...your code here
+  
+  var obsFn = function(d){
+    //assume response times (rt) depend on group means with a small fixed noise:
+    observe(Gaussian({mu: //..your code here , 
+      sigma: 10}), d.rt)
+  }
+  
+  mapData({data: data}, obsFn)
+  
+  //explore the difference in means:
+  return groupMeans['vowel']-groupMeans['consonant']
+})
+
+print("vowel - consonant reading time:")
+viz(post)
+print(expectation(post))
+</code></pre></div></div>
+
+<p>What do you conclude about vowel words vs. consonant words now?</p>
+
+<p><em>Hint</em> Consider how the model is sensitive to the different assumed variances (e.g. the fixed noise in the observe function we assume sigma=10). In particular, think about how this should affect how you choose a sigma for your word-level effects.</p>
+
+<p>The individual word means that you have introduced are called <em>random effects</em> – in a BDA they are random variables (usually at the individual item or person level) that are not of interest by themselves.</p>
+
+<!--
+~~~~
+//NDG solution
+var post = Infer({method: "MCMC", samples: 10000}, function(){
+  var groupMeans = {vowel: gaussian(200, 100), consonant: gaussian(200, 100)}
+
+  var wordMean = mem(function(word, group) {return gaussian(groupMeans[group], 20)})
+  
+  var obsFn = function(d){
+    //assume response times (rt) depend on group means with a small fixed noise:
+    observe(Gaussian({mu: wordMean(d.word, d.group),  
+                      sigma: 10}), d.rt)
+  }
+  
+  mapData({data: data}, obsFn)
+  
+  //explore the difference in means:
+  return groupMeans['vowel']-groupMeans['consonant']
+})
+~~~~
+-->
+
+<h4 id="b-1">b)</h4>
+
+<p>If you stare at the data further, you might notice that some of the participants in your experiment read slightly faster overall. Extend your model to include an additional random effect of participant id, that is, an unknown (and not of interest) influence on reading time of the particular person. Does this make your conclusion different? Stronger or weaker?</p>
+
+
+
+<!--
+<a href="Further Reading">/readings/hierarchical-models.md</a>
+<a href="Exercises">/exercises/hierarchical-models.md</a>
+-->
+
+
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+
+<!-- put big scripts at end so we don't block page load -->
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+
+
+    </div>
+
+  </body>
+
+<!-- Mirrored from probmods.org/exercises/hierarchical-models.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:10:23 GMT -->
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from probmods.org/readings/social-cognition.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:10:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Inference about inference - readings</title>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Inconsolata" rel="stylesheet">
+    <script src="../assets/js/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+<!--    <script src="/assets/js/underscore-min.js"></script> 
+    <script src="https://probmods.org/bower_components/underscore/underscore.js"></script> -->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+      
+      <link rel="stylesheet" href="../assets/css/katex.min.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/littlefoot.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-viz.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-editor.css" media="screen" type="text/css">
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/katex.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/littlefoot.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/paper-full.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/parse-bibtex.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/chapter.js' type="text/javascript"></script>
+      
+    
+    
+    
+    
+  </head>
+  <body>
+
+    
+
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&#9776;</a>
+          <ul class="dropdown-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li role="separator" class="divider"></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="../chapters/introduction.html">Introduction</a></li>
+            
+            
+            
+            <li><a href="../chapters/generative-models.html">Generative models</a></li>
+            
+            
+            
+            <li><a href="../chapters/conditioning.html">Conditioning</a></li>
+            
+            
+            
+            <li><a href="../chapters/dependence.html">Causal and statistical dependence</a></li>
+            
+            
+            
+            <li><a href="../chapters/conditional-dependence.html">Conditional dependence</a></li>
+            
+            
+            
+            <li><a href="../chapters/bayesian-data-analysis.html">Bayesian data analysis</a></li>
+            
+            
+            
+            <li><a href="../chapters/inference-algorithms.html">Algorithms for inference</a></li>
+            
+            
+            
+            <li><a href="../chapters/process-models.html">Rational process models</a></li>
+            
+            
+            
+            <li><a href="../chapters/learning-as-conditional-inference.html">Learning as conditional inference</a></li>
+            
+            
+            
+            <li><a href="../chapters/lot-learning.html">Learning with a language of thought</a></li>
+            
+            
+            
+            <li><a href="../chapters/hierarchical-models.html">Hierarchical models</a></li>
+            
+            
+            
+            <li><a href="../chapters/occams-razor.html">Occam's Razor</a></li>
+            
+            
+            
+            <li><a href="../chapters/function-learning.html">Learning (deep) continuous functions</a></li>
+            
+            
+            
+            <li><a href="../chapters/mixture-models.html">Mixture models</a></li>
+            
+            
+            
+            <li><a href="../chapters/social-cognition.html">Social cognition</a></li>
+            
+            
+            
+            <li><a href="../chapters/appendix-js-basics.html">Appendix - JavaScript basics</a></li>
+            
+            
+            
+            <li><a href="../chapters/appendix-useful-distributions.html">Appendix - Useful distributions</a></li>
+            
+            
+          </ul>
+        </li>
+      </ul>
+
+      <div class="page-header">
+  <h1>Inference about inference - readings</h1>
+</div>
+
+<h2 id="1-natural-pedagogy">1. Natural pedagogy</h2>
+
+<p>@Shafto:2012by</p>
+
+<h4 id="reading-questions">Reading questions:</h4>
+
+<p>a) The model in the reading invokes a theory of mind (learners are reasoning about teachers’ mental states) but a relatively simple theory of mind (the kinds of mental states ascribed are not complex). Would this be sufficient for learning more complex ideas (like mathematics or how to tune a bicycle)? If not, what might you want to add to the learner’s theory of mind?</p>
+
+<h2 id="extras">Extras</h2>
+<h3 id="extra-math">Extra math</h3>
+<p><strong>Theory of Mind</strong>. For more on Theory of Mind, see @carlson:2013theory.</p>
+
+
+
+<!--
+<a href="Further Reading">/readings/social-cognition.md</a>
+<a href="Exercises">/exercises/social-cognition.md</a>
+-->
+
+
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+
+<!-- put big scripts at end so we don't block page load -->
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+
+
+    </div>
+
+  </body>
+
+<!-- Mirrored from probmods.org/readings/social-cognition.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:10:24 GMT -->
+</html>

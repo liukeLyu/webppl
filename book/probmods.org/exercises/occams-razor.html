@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from probmods.org/exercises/occams-razor.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:10:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Occam's razor - exercises</title>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Inconsolata" rel="stylesheet">
+    <script src="../assets/js/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+<!--    <script src="/assets/js/underscore-min.js"></script> 
+    <script src="https://probmods.org/bower_components/underscore/underscore.js"></script> -->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+      
+      <link rel="stylesheet" href="../assets/css/katex.min.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/littlefoot.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-viz.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-editor.css" media="screen" type="text/css">
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/katex.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/littlefoot.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/paper-full.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/parse-bibtex.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/chapter.js' type="text/javascript"></script>
+      
+    
+    
+    
+    
+  </head>
+  <body>
+
+    
+
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&#9776;</a>
+          <ul class="dropdown-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li role="separator" class="divider"></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="../chapters/introduction.html">Introduction</a></li>
+            
+            
+            
+            <li><a href="../chapters/generative-models.html">Generative models</a></li>
+            
+            
+            
+            <li><a href="../chapters/conditioning.html">Conditioning</a></li>
+            
+            
+            
+            <li><a href="../chapters/dependence.html">Causal and statistical dependence</a></li>
+            
+            
+            
+            <li><a href="../chapters/conditional-dependence.html">Conditional dependence</a></li>
+            
+            
+            
+            <li><a href="../chapters/bayesian-data-analysis.html">Bayesian data analysis</a></li>
+            
+            
+            
+            <li><a href="../chapters/inference-algorithms.html">Algorithms for inference</a></li>
+            
+            
+            
+            <li><a href="../chapters/process-models.html">Rational process models</a></li>
+            
+            
+            
+            <li><a href="../chapters/learning-as-conditional-inference.html">Learning as conditional inference</a></li>
+            
+            
+            
+            <li><a href="../chapters/lot-learning.html">Learning with a language of thought</a></li>
+            
+            
+            
+            <li><a href="../chapters/hierarchical-models.html">Hierarchical models</a></li>
+            
+            
+            
+            <li><a href="../chapters/occams-razor.html">Occam's Razor</a></li>
+            
+            
+            
+            <li><a href="../chapters/function-learning.html">Learning (deep) continuous functions</a></li>
+            
+            
+            
+            <li><a href="../chapters/mixture-models.html">Mixture models</a></li>
+            
+            
+            
+            <li><a href="../chapters/social-cognition.html">Social cognition</a></li>
+            
+            
+            
+            <li><a href="../chapters/appendix-js-basics.html">Appendix - JavaScript basics</a></li>
+            
+            
+            
+            <li><a href="../chapters/appendix-useful-distributions.html">Appendix - Useful distributions</a></li>
+            
+            
+          </ul>
+        </li>
+      </ul>
+
+      <div class="page-header">
+  <h1>Occam's razor - exercises</h1>
+</div>
+
+<h2 id="exercise-1-the-number-game">Exercise 1. The Number Game</h2>
+
+<p>When we reasoned about continuations of sequences (e.g. <script type="math/tex">1,4,...</script>) in the <a href="occams-razor.html">Occam’s razor exercise</a>, our hypothesis space was defined over <em>rules</em>: abstract arithmetic functions.</p>
+
+<p>In a related task called the <a href="https://web.mit.edu/cocosci/Papers/nips99preprint.ps"><em>number game</em></a>, participants were presented with <em>sets</em> of numbers and asked how well different numbers completed them.  A rule-based generative model accurately captured responses for some stimuli (e.g. for <script type="math/tex">16, 8, 2, 64</script> or <script type="math/tex">60, 80, 10, 30</script>, participants assigned high fit to powers of two and multiples of ten, respectively). But it failed to capture others. For instance, what numbers seem like good completions of the set <script type="math/tex">16, 23, 19, 20</script>? How good is 18, relative to 13, relative to 99?</p>
+
+<h4 id="a">a)</h4>
+
+<p>We’ve implemented a rule-only model of this task for you below. Examine the posterior over rules for the following inputs: <script type="math/tex">[3]</script>, <script type="math/tex">[3, 9]</script>, <script type="math/tex">[3, 5, 9]</script>. For the example of just feeding in <script type="math/tex">3</script>, why are some rules so strongly preferred over others, even though they are assigned equal probability under the prior? (HINT: think about the likelihood; read the section of the linked number game paper on the <em>size principle</em> if you’re stuck).</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>///fold:
+var filterByInRange =  function(set) {
+  var inRange = function(v) {v &lt;= 100 &amp;&amp; v &gt;= 0};
+  return _.uniq(filter(inRange, set))
+}
+
+var genEvens = function() {
+  return filter(function(v) {return v % 2 == 0}, _.range(1, 101))
+}
+
+var genOdds = function() {
+  return filter(function(v) {return (v + 1) % 2 == 0}, _.range(1, 101))
+}
+
+var genMultiples = function(base) {
+  var multiples = map(function(v) {return base * v}, _.range(100))
+  return filterByInRange(multiples)
+}
+
+var genPowers = function(base) {
+  var powers = map(function(v) {return Math.pow(base, v)}, _.range(100))
+  return filterByInRange(powers)
+}
+
+var inSet = function(val, set) {
+  return _.includes(set, val)
+}
+
+var getSetFromHypothesis = function(rule) {
+  var parts = rule.split('_')
+  return (parts[0] == 'multiples' ? genMultiples(parts[2]) : 
+          parts[0] == 'powers' ? genPowers(parts[2]) :
+          parts[0] == 'evens' ? genEvens() :
+          parts[0] == 'odds' ? genOdds() :
+          console.error('unknown rule' + rule))
+};
+///
+
+// Considers 4 kinds of rules: evens, odds, and multiples and powers of small numbers &lt;12
+var makeRuleHypothesisSpace = function() {
+  var multipleRules = map(function(base) {return 'multiples_of_' + base}, _.range(1, 12))
+  var powerRules = map(function(base) {return 'powers_of_' + base}, _.range(1, 12))   
+  return multipleRules.concat(powerRules).concat(['evens', 'odds'])
+} 
+
+// Takes an undordered array of examples of a concept in the number game
+// and also a test query (i.e. a new number that the experimenter is asking about)
+var learnConcept = function(examples, testQuery) {
+ Infer({method: 'enumerate'}, function() {
+   var rules = makeRuleHypothesisSpace()
+   var hypothesis = uniformDraw(rules)
+   var set = getSetFromHypothesis(hypothesis)
+   mapData({data: examples}, function(example) {
+     // note: this likelihood corresponds to size principle
+     observe(Categorical({vs: set}), example)
+   })
+   return {hypothesis, testQueryResponse : inSet(testQuery, set)}
+ }); 
+}
+
+var examples = [3]
+var testQuery = 12
+var posterior = learnConcept(examples, testQuery)
+marginalize(posterior, function(x) {return x.hypothesis})
+</code></pre></div></div>
+
+<h4 id="b">b)</h4>
+
+<p>Now supplement this model to include similarity-based hypotheses (represented most simply as intervals).</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>///fold:
+var filterByInRange =  function(set) {
+  var inRange = function(v) {v &lt;= 100 &amp;&amp; v &gt;= 0};
+  return _.uniq(filter(inRange, set))
+}
+
+var genEvens = function() {
+  return filter(function(v) {return v % 2 == 0}, _.range(1, 101))
+}
+
+var genOdds = function() {
+  return filter(function(v) {return (v + 1) % 2 == 0}, _.range(1, 101))
+}
+
+var genMultiples = function(base) {
+  var multiples = map(function(v) {return base * v}, _.range(100))
+  return filterByInRange(multiples)
+}
+
+var genPowers = function(base) {
+  var powers = map(function(v) {return Math.pow(base, v)}, _.range(100))
+  return filterByInRange(powers)
+}
+
+var inSet = function(val, set) {
+  return _.includes(set, val)
+}
+
+///
+
+// TODO: add a condition to this function that
+// calls genSetFromInterval with the parameters extracted from
+// your hypothesis string.
+// *Hint*: If you're having trouble converting fron strings to integers try the lodash function _.parseInt().
+var getSetFromHypothesis = function(rule) {
+  var parts = rule.split('_')
+  return (parts[0] == 'multiples' ? genMultiples(parts[2]) : 
+          parts[0] == 'powers' ? genPowers(parts[2]) :
+          parts[0] == 'evens' ? genEvens() :
+          parts[0] == 'odds' ? genOdds() :
+          console.error('unknown rule' + rule))
+};
+
+// TODO: this function should construct the interval
+// of integers between the endpoints a and b
+var genSetFromInterval = function(a, b) {
+  // Your code here
+} 
+
+var makeRuleHypothesisSpace = function() {
+  var multipleRules = map(function(base) {return 'multiples_of_' + base}, _.range(1, 12))
+  var powerRules = map(function(base) {return 'powers_of_' + base}, _.range(1, 12))   
+  return multipleRules.concat(powerRules).concat(['evens', 'odds'])
+} 
+
+// TODO: build a list of all possible hypothesis intervals between 1 and 100.
+var makeIntervalHypothesisSpace = function() {
+  // Note: Don't change start and end.
+  var start = 1
+  var end = 100
+
+  // Your code here...
+  
+  // *Hint* Make sure to model this after makeRuleHypothesisSpace, which returns a list of strings that are
+  // parsed in getSetFromHypothesis. E.g. Think of a format like 'between_a_and_b'.
+  return ...
+}
+
+
+// Takes an undordered array of examples of a concept in the number game
+// and also a test query (i.e. a new number that the experimenter is asking about)
+var learnConcept = function(examples, testQuery) {
+ Infer({method: 'enumerate'}, function() {
+   var rules = makeRuleHypothesisSpace()
+   // TODO: build space of intervals
+   var intervals = ...
+   // TODO: implement a hypothesis prior that first assigns probability *lambda* to rules
+   // and (1- lambda) to intervals, then samples uniformly within each class
+   var hypothesis = ...
+   var set = getSetFromHypothesis(hypothesis)
+   mapData({data: examples}, function(example) {
+     // note: this likelihood corresponds to size principle
+     observe(Categorical({vs: set}), example)
+   })
+   return {hypothesis, testQueryResponse : inSet(testQuery, set)}
+ }); 
+}
+
+var examples = [3]
+var testQuery = 12
+var posterior = learnConcept(examples, testQuery)
+marginalize(posterior, function(x) {return x.hypothesis})
+</code></pre></div></div>
+
+<h4 id="c">c)</h4>
+
+<p>Now examine the sets <script type="math/tex">[3]</script>, <script type="math/tex">[3, 6, 9]</script>, and <script type="math/tex">[3, 5,6,7,9]</script>. Sweep across all integers as testQueries to see the ‘hotspots’ of the model predictions. What do you observe?</p>
+
+<h4 id="d">d)</h4>
+
+<p>Look at some of the data in the large-scale replication of the number game <a href="https://openpsychologydata.metajnl.com/articles/10.5334/jopd.19/">here</a>. Can you think of an additional concept people might be using that we did not include in our model?</p>
+
+<h4 id="e-challenge-extra-credit-problem">e) Challenge! [Extra credit problem]</h4>
+
+<p>Can you replicate the results from the paper (reproduced in figure below) by adding in the other hypotheses from the paper?</p>
+
+<p><img src="../assets/img/tenenbaum_number_game.png" width="600" /></p>
+
+<h2 id="exercise-2-causal-induction-revisited">Exercise 2: Causal induction revisited</h2>
+
+<p>In a previous exercise we explore the Causal Power (CP) model of causal learning. Griffiths and Tenenbaum [<a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="9ab7dadde8f3fcfcf3eef2e9a8aaaaaf">[email&#160;protected]</a>], “Structure and strength in causal induction”, hypothesized that when people do causal induction they are not estimating a power parameter (as in CP) but instead they are deciding whether there is a causal relation at all – they called this model Causal Support (CS).</p>
+
+<h4 id="a-1">a)</h4>
+
+<p>Implement the CS model by modifying the CP model:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var observedData = [{C:true, E:false}]
+
+var causalPost = Infer({method: 'MCMC', samples: 10000, lag:2}, function() {
+
+  // Is there a causal relation between C and E?
+  // ...your code here
+
+  // Causal power of C to cause E
+  var cp = uniform(0, 1)
+
+  // Background probability of E
+  var b = uniform(0, 1)
+
+  mapData({data: observedData}, function(datum) {
+    // The noisy causal relation to get E given C
+    var E = // ...your code here
+    condition(E == datum.E)
+  })
+
+  return // ...your code here
+})
+
+viz.marginals(causalPost)
+</code></pre></div></div>
+
+<p>Hint: In the CP model the effect was generated from <code class="highlighter-rouge">var E = (datum.C &amp;&amp; flip(cp)) || flip(b)</code>. You will need to extend this to capture the idea that the cause can only make the effect happen if there is a causal relation at all.</p>
+
+<h4 id="b-1">b)</h4>
+
+<p>Inference with the MCMC method will not be very efficient for the model you wrote above because the MCMC algorithm is using the single-site Metropolis-Hastings procedure, changing only one random choice at a time. (To see why this is a problem, think about what happens when you try to change the choice about whether there is a causal relation.)</p>
+
+<p>To make this more efficient, construct the marginal probability of the effect directly and use it in an <code class="highlighter-rouge">observe</code> statement:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var observedData = [{C:true, E:false}]
+
+var causalPost = Infer({method: 'MCMC', samples: 10000, lag:2}, function() {
+
+  // Is there a causal relation between C and E?
+  // ...your code here
+
+  // Causal power of C to cause E
+  var cp = uniform(0, 1)
+
+  // Background probability of E
+  var b = uniform(0, 1)
+
+  var noisyOrMarginal = //..your code here
+
+  mapData({data: observedData}, function(datum) {
+              observe(noisyOrMarginal(...yourcodehere),datum.effect)
+  })
+
+  return // ...your code here
+})
+
+viz.marginals(causalPost)
+</code></pre></div></div>
+
+<p>Hint: You can do this either by figuring out the noisy-or marginal probabilities using math, or by asking WebPPL to do so using <code class="highlighter-rouge">Infer</code>.</p>
+
+<h4 id="c-1">c)</h4>
+
+<p>Fig. 1 of [<a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="4d600d0a3f242b2b2439253e7f7d7d78">[email&#160;protected]</a>] shows a critical difference in the predictions of CP and CS: when the effect happens just as many times with the cause absent as whith the cause present. Show by running simulations the difference between CP and CS in these cases.</p>
+
+<h4 id="d-1">d)</h4>
+
+<p>Explain why CS shows this effect. You explanation should involve the Bayesian Occam’s razor.</p>
+
+<p>Hint: Recall that CS is selecting between two models (one where there is a causal relation and one where there isn’t).</p>
+
+<!--
+a) Replicate the model predictions from Fig. 1 of GT05.
+
+b) Show samples from the posteriors over the causal strength and background rate
+parameters, as in Fig 4 of GT05.
+
+c) Try using different parameterizations of the function that relates the cause and the background to the effect, as described in a later 2009 paper [@Griffiths2009]: noisy-or for generative causes, noisy-and-not for preventive causes, generic multinomial parameterization for causes that have an unknown effect.  Show their predictions for a few different data sets, including the Delta-P = 0 cases.
+-->
+
+<h2 id="exercise-3-challenge-extra-credit-problem">Exercise 3 (Challenge! [Extra credit problem])</h2>
+
+<p>Try an informal behavioral experiment with several friends as experimental subjects to see whether the Bayesian approach to curve fitting given on the wiki page corresponds with how people actually find functional patterns in sparse noisy data.  Your experiment should consist of showing each of 4-6 people 8-10 data sets (sets of x-y values, illustrated graphically as points on a plane with x and y axes), and asking them to draw a continuous function that interpolates between the data points and extrapolates at least a short distance beyond them (as far as people feel comfortable extrapolating).  Explain to people that the data were produced by measuring y as some function of x, with the possibility of noise in the measurements.</p>
+
+<p>The challenge of this exercise comes in choosing the data sets you will show people, interpreting the results and thinking about how to modify or improve a probabilistic program for curve fitting to better explain what people do. Of the 8-10 data sets you use, devise several (“type A”) for which you believe the WebPPL program for polynomial curve fitting will match the functions people draw, at least qualitatively.  Come up with several other data sets (“type B”) for which you expect people to draw qualitatively different functions than the WebPPL polynomial fitting program does. Does your experiment bear out your guesses about type A and type B?  If yes, why do you think people found different functions to best explain the type B data sets?  If not, why did you think they would?  There are a number of factors to consider, but two important ones are the noise model you use, and the choice of basis functions: not all functions that people can learn or that describe natural processes in the world can be well described in terms of polynomials; other types of functions may need to be considered.</p>
+
+<p>Can you modify the WebPPL program to fit curves of qualitatively different forms besides polynomials, but of roughly equal complexity in terms of numbers of free parameters?  Even if you can’t get inference to work well for these cases, show some samples from the generative model that suggest how the program might capture classes of human-learnable functions other than polynomials.</p>
+
+<p>You should hand in the data sets you used for the informal experiment, discussion of the experimental results, and a modified WebPPL program for fitting qualitatively different forms from polynomials plus samples from running the program forward.</p>
+
+
+
+<!--
+<a href="Further Reading">/readings/occams-razor.md</a>
+<a href="Exercises">/exercises/occams-razor.md</a>
+-->
+
+
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+
+<!-- put big scripts at end so we don't block page load -->
+<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+
+
+    </div>
+
+  </body>
+
+<!-- Mirrored from probmods.org/exercises/occams-razor.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:10:24 GMT -->
+</html>

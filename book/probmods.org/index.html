@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from probmods.org/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:07:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Probabilistic Models of Cognition - 2nd Edition</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="assets/css/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Inconsolata" rel="stylesheet">
+    <script src="assets/js/ga.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+
+<!--    <script src="/assets/js/underscore-min.js"></script> 
+    <script src="https://probmods.org/bower_components/underscore/underscore.js"></script> -->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+    
+    
+      
+      <link rel="stylesheet" href="assets/css/index.css" media="screen" type="text/css">
+      
+    
+    
+    
+    
+    
+      
+      <script src='assets/js/index.js' type="text/javascript"></script>
+      
+    
+  </head>
+  <body>
+
+    
+
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&#9776;</a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html">Home</a></li>
+            <li role="separator" class="divider"></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="chapters/introduction.html">Introduction</a></li>
+            
+            
+            
+            <li><a href="chapters/generative-models.html">Generative models</a></li>
+            
+            
+            
+            <li><a href="chapters/conditioning.html">Conditioning</a></li>
+            
+            
+            
+            <li><a href="chapters/dependence.html">Causal and statistical dependence</a></li>
+            
+            
+            
+            <li><a href="chapters/conditional-dependence.html">Conditional dependence</a></li>
+            
+            
+            
+            <li><a href="chapters/bayesian-data-analysis.html">Bayesian data analysis</a></li>
+            
+            
+            
+            <li><a href="chapters/inference-algorithms.html">Algorithms for inference</a></li>
+            
+            
+            
+            <li><a href="chapters/process-models.html">Rational process models</a></li>
+            
+            
+            
+            <li><a href="chapters/learning-as-conditional-inference.html">Learning as conditional inference</a></li>
+            
+            
+            
+            <li><a href="chapters/lot-learning.html">Learning with a language of thought</a></li>
+            
+            
+            
+            <li><a href="chapters/hierarchical-models.html">Hierarchical models</a></li>
+            
+            
+            
+            <li><a href="chapters/occams-razor.html">Occam's Razor</a></li>
+            
+            
+            
+            <li><a href="chapters/function-learning.html">Learning (deep) continuous functions</a></li>
+            
+            
+            
+            <li><a href="chapters/mixture-models.html">Mixture models</a></li>
+            
+            
+            
+            <li><a href="chapters/social-cognition.html">Social cognition</a></li>
+            
+            
+            
+            <li><a href="chapters/appendix-js-basics.html">Appendix - JavaScript basics</a></li>
+            
+            
+            
+            <li><a href="chapters/appendix-useful-distributions.html">Appendix - Useful distributions</a></li>
+            
+            
+          </ul>
+        </li>
+      </ul>
+
+      <div id="header">
+  <h1 id="title">Probabilistic Models of Cognition</h1>
+  <hr class="edition" />
+  <span class="authors">by Noah D. Goodman, Joshua B. Tenenbaum <span class="ampersand">&amp;</span> The ProbMods Contributors</span>
+</div>
+
+<p><br />
+This book explores the probabilistic approach to cognitive science, which models learning and reasoning as inference in complex probabilistic models.
+We examine how a broad range of empirical phenomena, including intuitive physics, concept learning, causal reasoning, social cognition, and language understanding, can be modeled using probabilistic programs (using the <a href="http://webppl.org/">WebPPL</a> language).</p>
+
+<div id="left">
+
+<h3>Contributors</h3>
+<p>This book is an open source project. We welcome content contributions (<a href="https://github.com/probmods/probmods2">via GitHub</a>)!</p>
+<p>The ProbMods Contibutors are:<br />
+Noah D. Goodman (editor)<br />
+Joshua B. Tenenbaum<br />
+Daphna Buchsbaum<br />
+Joshua Hartshorne<br />
+Robert Hawkins<br />
+Timothy J. O’Donnell<br />
+Michael Henry Tessler<br />
+</p>
+
+<h3>Citation</h3>
+N. D. Goodman, J. B. Tenenbaum, and The ProbMods Contributors (2016). <i>Probabilistic Models of Cognition</i> (2nd ed.). Retrieved <span class="date">YYYY-MM-DD</span> from <code>https://probmods.org/</code><br /><a id="toggle-bibtex" href="#">[bibtex]</a>
+
+<pre id="bibtex">@misc{probmods2,
+  title = {{Probabilistic Models of Cognition}},
+  edition = {Second},
+  author = {Goodman, Noah D and Tenenbaum, Joshua B. and The ProbMods Contributors},
+  year = {2016},
+  howpublished = {\url{http://probmods.org/v2}},
+  note = {Accessed: <span class="date"></span>}
+}
+</pre>
+
+<h3>Acknowledgments</h3>
+
+<p>We are grateful for crucial technical assitance from: Andreas Stuhlm&uuml;ller, Tomer Ullman, John McCoy, Long Ouyang, Julius Cheng.</p>
+
+<p>The construction and ongoing support of this tutorial are made possible by grants from the Office of Naval Research, the James S. McDonnell Foundation, the Stanford VPOL, and the Center for Brains, Minds, and Machines (funded by NSF STC award CCF-1231216).</p>
+
+<h3>Previous edition</h3>
+
+The first edition of this book used the probabilistic programming language Church and can be found <a href="http://v1.probmods.org/">here</a>.
+
+</div>
+
+<div id="right">
+
+<h3>Chapters</h3>
+ 
+<ol>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li><a href="chapters/introduction.html">Introduction</a><br />
+        <em>A brief introduction to the philosophy.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/generative-models.html">Generative models</a><br />
+        <em>Representing working models with probabilistic programs.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/conditioning.html">Conditioning</a><br />
+        <em>Asking questions of models by conditional inference.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/dependence.html">Causal and statistical dependence</a><br />
+        <em>Causal and statistical dependence.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/conditional-dependence.html">Conditional dependence</a><br />
+        <em>Patterns of inference as evidence changes.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/bayesian-data-analysis.html">Bayesian data analysis</a><br />
+        <em>Making scientific inferences from data.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/inference-algorithms.html">Algorithms for inference</a><br />
+        <em>The many ways to approximate inference. Efficiency tradeoffs of different algorithms.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/process-models.html">Rational process models</a><br />
+        <em>The psychological reality of inference algorithms.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/learning-as-conditional-inference.html">Learning as conditional inference</a><br />
+        <em>How inferences change as data accumulate.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/lot-learning.html">Learning with a language of thought</a><br />
+        <em>Compositional hypothesis spaces.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/hierarchical-models.html">Hierarchical models</a><br />
+        <em>The power of statistical abstraction.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/occams-razor.html">Occam's Razor</a><br />
+        <em>How inference penalizes extra model flexibility.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/function-learning.html">Learning (deep) continuous functions</a><br />
+        <em>Functional hypothesis spaces and deep probabilistic models</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/mixture-models.html">Mixture models</a><br />
+        <em>Models for inferring the kinds of things.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/social-cognition.html">Social cognition</a><br />
+        <em>Inference about inference</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/appendix-js-basics.html">Appendix - JavaScript basics</a><br />
+        <em>A very brief primer on JavaScript.</em>
+        </li>
+      
+
+      
+        <li><a href="chapters/appendix-useful-distributions.html">Appendix - Useful distributions</a><br />
+        <em>A very brief sumary of some important distributions.</em>
+        </li>
+      
+
+</ol>
+
+
+</div>
+
+
+    </div>
+
+  </body>
+
+<!-- Mirrored from probmods.org/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:07:59 GMT -->
+</html>

@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from probmods.org/chapters/generative-models.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:08:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Generative models</title>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Inconsolata" rel="stylesheet">
+    <script src="../assets/js/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+<!--    <script src="/assets/js/underscore-min.js"></script> 
+    <script src="https://probmods.org/bower_components/underscore/underscore.js"></script> -->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+      
+      <link rel="stylesheet" href="../assets/css/katex.min.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/littlefoot.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-viz.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-editor.css" media="screen" type="text/css">
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/katex.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/littlefoot.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/paper-full.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/parse-bibtex.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/chapter.js' type="text/javascript"></script>
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/box2d.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/physics.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/plinko.js' type="text/javascript"></script>
+      
+    
+  </head>
+  <body>
+
+    
+
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&#9776;</a>
+          <ul class="dropdown-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li role="separator" class="divider"></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="introduction.html">Introduction</a></li>
+            
+            
+            
+            <li><a href="generative-models.html">Generative models</a></li>
+            
+            
+            
+            <li><a href="conditioning.html">Conditioning</a></li>
+            
+            
+            
+            <li><a href="dependence.html">Causal and statistical dependence</a></li>
+            
+            
+            
+            <li><a href="conditional-dependence.html">Conditional dependence</a></li>
+            
+            
+            
+            <li><a href="bayesian-data-analysis.html">Bayesian data analysis</a></li>
+            
+            
+            
+            <li><a href="inference-algorithms.html">Algorithms for inference</a></li>
+            
+            
+            
+            <li><a href="process-models.html">Rational process models</a></li>
+            
+            
+            
+            <li><a href="learning-as-conditional-inference.html">Learning as conditional inference</a></li>
+            
+            
+            
+            <li><a href="lot-learning.html">Learning with a language of thought</a></li>
+            
+            
+            
+            <li><a href="hierarchical-models.html">Hierarchical models</a></li>
+            
+            
+            
+            <li><a href="occams-razor.html">Occam's Razor</a></li>
+            
+            
+            
+            <li><a href="function-learning.html">Learning (deep) continuous functions</a></li>
+            
+            
+            
+            <li><a href="mixture-models.html">Mixture models</a></li>
+            
+            
+            
+            <li><a href="social-cognition.html">Social cognition</a></li>
+            
+            
+            
+            <li><a href="appendix-js-basics.html">Appendix - JavaScript basics</a></li>
+            
+            
+            
+            <li><a href="appendix-useful-distributions.html">Appendix - Useful distributions</a></li>
+            
+            
+          </ul>
+        </li>
+      </ul>
+
+      <div class="page-header">
+  <h1>Generative models</h1>
+</div>
+
+<!--
+robert_hawkins [11:49 AM]  
+a couple issues with the chapter:
+1. the heading structure is a bit confusing — the “Building Generative Models” section starts with some info on webppl, has a subsection “example: flipping coins”, and then pops out to the outer level for “example: medical diagnosis”. Maybe we could signpost that better, like create a subsection where we explicitly describe webppl, a subsection about sampling, and indent the medical diagnosis example one level?
+2. the “prediction, simulation, and probabilities” section uses both bayesian and frequentist notions of probability without labeling them or distinguishing them (e.g. “A probability is… a degree of belief”, but “We may define the probability … to be the fraction of times (in the long run) that this value is returned”). It’d be nice to say that these are alternate ways of formalizing probability?
+3. I like the new "constructing marginal distributions with `Infer`" section… Should we rewrite other models in future chapters that use `repeat` to use `forward` instead?
+-->
+
+<h1 id="models-simulation-and-degrees-of-belief">Models, simulation, and degrees of belief</h1>
+
+<p>One view of knowledge is that the mind maintains working models of parts of the world.
+‘Model’ in the sense that it captures some of the structure in the world, but not all (and what it captures need not be exactly what is in the world—just what is useful).
+‘Working’ in the sense that it can be used to simulate this part of the world, imagining what will follow from different initial conditions.
+As an example take the Plinko machine: a box with uniformly spaced pegs, with bins at the bottom.
+Into this box we can drop marbles:</p>
+
+<div id="plinko-wrapper" style="position: relative; width: 400px; height: 400px; background-color: #333333; color: white;">
+<div style="position: absolute; top: 50%; width: 100%; text-align: center">Loading...</div>
+</div>
+
+<canvas id="plinkocanvas" width="400" height="400" style="display: none; background-color:#333333;"></canvas>
+
+<p>The plinko machine is a ‘working model’ for many physical processes in which many small perturbations accumulate—for instance a leaf falling from a tree.
+It is an approximation to these systems because we use a discrete grid (the pegs) and discrete bins.
+Yet it is useful as a model: for instance, we can ask where we expect a marble to end up depending on where we drop it in, by running the machine several times—simulating the outcome.</p>
+
+<p>Imagine that someone has dropped a marble into the plinko machine; before looking at the outcome, you can probably report how much you believe that the ball has landed in each possible bin.
+Indeed, if you run the plinko machine many times, you will see a shape emerge in the bins.
+The number of balls in a bin gives you some idea how much you should expect a new marble to end up there.
+This ‘shape of expected outcomes’ can be formalized as a probability distribution (described below).
+Indeed, there is an intimate connection between simulation, expectation or belief, and probability, which we explore in the rest of this section.</p>
+
+<p>There is one more thing to note about our Plinko machine above: we are using a computer program to <em>simulate</em> the simulation.
+Computers can be seen as universal simulators.
+How can we, clearly and precisely, describe the simulation we want a computer to do?</p>
+
+<h1 id="building-generative-models">Building Generative Models</h1>
+
+<p>We wish to describe in formal terms how to generate states of the world.
+That is, we wish to describe the causal process, or steps that unfold, leading to some potentially observable states.
+The key idea of this section is that these generative processes can be described as <em>computations</em>—computations that involve random choices to capture uncertainty about the process.</p>
+
+<p>Programming languages are formal systems for describing what (deterministic) computation a computer should do. Modern programming languages offer a wide variety of different ways to describe computation; each makes some processes simple to describe and others more complex. However, a key tenet of computer science is that all of these languages have the same fundamental power: any computation that can be described with one programming language can described by another. (More technically this Church-Turing thesis posits that many specific computational systems capture the set of all effectively computable procedure. These are called <em>universal</em> systems.)</p>
+
+<!--
+As our formal model of computation we start with the $$\lambda$$-calculus, and its embodiment in the LISP family of programming languages.
+The $$\lambda$$-calculus is a formal system which was invented by Alonzo Church in 1936 as a way of formalizing the notion of an effectively computable function [@Church1936].
+The $$\lambda$$-calculus has only two basic operations for computing: creating and applying functions.
+Despite this simplicity, it is a *universal* model of computation---it is (conjectured to be) equivalent to all other notions of classical computation.
+(The $$\lambda$$-calculus was shown to have the same computational power as the Turing machine, and vice versa, by Alan Turing in his famous paper which introduced the Turing machine [@Turing1937]).
+-->
+
+<!--
+In 1958 John McCarthy introduced LISP (**LIS**t **P**rocessing), a programming language based on the $$\lambda$$-calculus.
+Scheme is a variant of LISP developed by Guy L.
+Steele and Gerald Jay Sussman with particularly simple syntax and semantics.
+We will use Scheme-style notation for the $$\lambda$$-calculus in this tutorial.
+For a quick introduction to programming in Scheme see [the appendix on Scheme basics](appendix-scheme.html).
+The Church programming language [@Goodman2008], named in honor of Alonzo Church, is a generalization of Scheme which introduces the notion of probabilistic computation to the language.
+This addition results in a powerful language for describing generative models.
+-->
+
+<p>In this book we will build on the JavaScript language, which is a portable and flexible modern programming language.
+The <a href="http://webppl.org/">WebPPL language</a> takes a subset of JavaScript and extends it with pieces needed to describe <em>probabilistic</em> computation.
+The key idea is that we have primitive operations that describe not only deterministic functions (like <code class="highlighter-rouge">and</code>) but stochastic operations.
+<!--
+In WebPPL, in addition to deterministic functions, we have a set of random functions implementing *random choices.*  These random primitive functions are called *Exchangeable Random Primitives* (XRPs).
+Application of an XRP results in a *sample* from the probability distribution defined by that XRP.
+-->
+For example, the <code class="highlighter-rouge">flip</code> function can be thought of as simulating a (possibly biased) coin toss (technically <code class="highlighter-rouge">flip</code> samples from a Bernoulli distribution, which we’ll return to shortly):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flip()
+</code></pre></div></div>
+
+<p>Run this program a few times.
+You will get back a different sample on each execution.
+Also, notice the parentheses after <code class="highlighter-rouge">flip</code>.
+These are meaningful; they tell WebPPL that you are calling the <code class="highlighter-rouge">flip</code> function—resulting in a sample.
+Without parentheses <code class="highlighter-rouge">flip</code> is a <em>function</em> object—a representation of the simulator itself, which can be used to get samples.</p>
+
+<p>In WebPPL, each time you run a program you get a <em>sample</em> by simulating the computations and random choices that the program specifies.
+If you run the program many times, and collect the values in a histogram, you can see what a typical sample looks like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>viz(repeat(1000,flip))
+</code></pre></div></div>
+
+<p>Here we have used the <code class="highlighter-rouge">repeat</code> procedure which takes a number of repetitions, <script type="math/tex">K</script>, and a function (in this case <code class="highlighter-rouge">flip</code>) and returns a list of <script type="math/tex">K</script> samples from that function.
+We have used the <code class="highlighter-rouge">viz</code> function to visualize the results of calling the <code class="highlighter-rouge">flip</code> function 1000 times.
+As you can see, the result is an approximately uniform distribution over <code class="highlighter-rouge">true</code> and <code class="highlighter-rouge">false</code>.</p>
+
+<p>Using <code class="highlighter-rouge">flip</code> we can construct more complex expressions that describe more complicated sampling processes. For instance here we describe a process that samples a number adding up several flips (note that in JavaScript a boolean will be turned into a number, <script type="math/tex">0</script> or <script type="math/tex">1</script>, by the plus operator <code class="highlighter-rouge">+</code>):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flip() + flip() + flip()
+</code></pre></div></div>
+
+<p>What if we want to invoke this sampling process multiple times? We would like to construct a stochastic function that adds three random numbers each time it is called.
+We can use <code class="highlighter-rouge">function</code> to construct such complex stochastic functions from the primitive ones.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var sumFlips = function() { return flip() + flip() + flip() }
+viz(repeat(100, sumFlips))
+</code></pre></div></div>
+
+<p>A function expression with an empty argument list, <code class="highlighter-rouge">function () {...}</code>, is called a <em>thunk</em>: this is a function that takes no input arguments. If we apply a thunk (to no arguments!) we get a return value back, for example <code class="highlighter-rouge">flip()</code>.
+<!--A thunk is an object that represents a whole *probability distribution*.-->
+Complex functions can also have arguments. Here is a stochastic function that will only sometimes double its input:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var noisyDouble = function(x) { flip() ? x+x : x }
+noisyDouble(3)
+</code></pre></div></div>
+
+<p>By using higher-order functions we can construct and manipulate complex sampling processes.
+A good example comes from coin flipping…</p>
+
+<h2 id="example-flipping-coins">Example: Flipping Coins</h2>
+
+<p>The following program defines a fair coin, and flips it 20 times:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var fairCoin = function() { flip(0.5) ? 'h' : 't' };
+viz(repeat(20, fairCoin))
+</code></pre></div></div>
+
+<p>This program defines a “trick” coin that comes up heads most of the time (95%), and flips it 20 times:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var trickCoin = function() { flip(0.95) ? 'h' : 't' };
+viz(repeat(20, trickCoin))
+</code></pre></div></div>
+
+<p>The higher-order function <code class="highlighter-rouge">make-coin</code> takes in a weight and outputs a function (a thunk) describing a coin with that weight.  Then we can use <code class="highlighter-rouge">make-coin</code> to make the coins above, or others.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var makeCoin = function(weight) { return function() { flip(weight) ? 'h' : 't' } };
+var fairCoin = makeCoin(0.5);
+var trickCoin = makeCoin(0.95);
+var bentCoin = makeCoin(0.25);
+
+viz(repeat(20,fairCoin))
+viz(repeat(20,trickCoin))
+viz(repeat(20,bentCoin))
+</code></pre></div></div>
+
+<p>We can also define a higher-order function that takes a “coin” and “bends it”:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var makeCoin = function(weight) { return function() { flip(weight) ? 'h' : 't' } };
+var bend = function(coin) {
+  return function() {
+    (coin() == 'h') ? makeCoin(0.7)() : makeCoin(0.1)()
+  }
+}
+var fairCoin = makeCoin(0.5)
+var bentCoin = bend(fairCoin)
+viz(repeat(100,bentCoin))
+</code></pre></div></div>
+
+<p>Make sure you understand how the <code class="highlighter-rouge">bend</code> function works! Why are there an “extra” pair of parentheses after each <code class="highlighter-rouge">make-coin</code> statement?</p>
+
+<p>Higher-order functions like <code class="highlighter-rouge">repeat</code>, <code class="highlighter-rouge">map</code>, and <code class="highlighter-rouge">apply</code> can be quite useful.
+Here we use them to visualize the number of heads we expect to see if we flip a weighted coin (weight = 0.8) 10 times.
+We’ll repeat this experiment 1000 times and then use <code class="highlighter-rouge">viz</code> to visualize the results.
+Try varying the coin weight or the number of repetitions to see how the expected distribution changes.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var makeCoin = function(weight) { return function() { return flip(weight) } }
+var coin = makeCoin(0.8)
+
+var data = repeat(1000, function() { sum(repeat(10, coin)) })
+viz(data, {xLabel: '# heads'})
+</code></pre></div></div>
+
+<h2 id="example-causal-models-in-medical-diagnosis">Example: Causal Models in Medical Diagnosis</h2>
+
+<p>Generative knowledge is often <em>causal</em> knowledge that describes how events or states of the world are related to each other.
+As an example of how causal knowledge can be encoded in WebPPL expressions, consider a simplified medical scenario:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var lungCancer = flip(0.01);
+var cold = flip(0.2);
+var cough = cold || lungCancer;
+cough;
+</code></pre></div></div>
+
+<p>This program models the diseases and symptoms of a patient in a doctor’s office.
+It first specifies the base rates of two diseases the patient could have: lung cancer is rare while a cold is common, and there is an independent chance of having each disease.
+The program then specifies a process for generating a common symptom of these diseases – an effect with two possible causes: The patient coughs if they have a cold or lung cancer (or both).</p>
+
+<p>Here is a more complex version of this causal model:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var lungCancer = flip(0.01);
+var TB = flip(0.005);
+var stomachFlu = flip(0.1);
+var cold = flip(0.2);
+var other = flip(0.1);
+
+var cough = (
+    (cold &amp;&amp; flip(0.5)) ||
+    (lungCancer &amp;&amp; flip(0.3)) ||
+    (TB &amp;&amp; flip(0.7)) ||
+    (other &amp;&amp; flip(0.01)))
+
+var fever = (
+    (cold &amp;&amp; flip(0.3)) ||
+    (stomachFlu &amp;&amp; flip(0.5)) ||
+    (TB &amp;&amp; flip(0.1)) ||
+    (other &amp;&amp; flip(0.01)))
+
+var chestPain = (
+    (lungCancer &amp;&amp; flip(0.5)) ||
+    (TB &amp;&amp; flip(0.5)) ||
+    (other &amp;&amp; flip(0.01)))
+
+var shortnessOfBreath = (
+    (lungCancer &amp;&amp; flip(0.5)) ||
+    (TB &amp;&amp; flip(0.2)) ||
+    (other &amp;&amp; flip(0.01)))
+
+var symptoms = {
+  cough: cough,
+  fever: fever,
+  chestPain: chestPain,
+  shortnessOfBreath: shortnessOfBreath
+};
+
+symptoms
+</code></pre></div></div>
+
+<p>Now there are four possible diseases and four symptoms.
+Each disease causes a different pattern of symptoms.
+The causal relations are now probabilistic: Only some patients with a cold have a cough (50%), or a fever (30%).
+There is also a catch-all disease category “other”, which has a low probability of causing any symptom.
+<em>Noisy logical</em> functions—functions built from <strong>and</strong> (<code class="highlighter-rouge">&amp;&amp;</code>), <strong>or</strong> (<code class="highlighter-rouge">||</code>), and <code class="highlighter-rouge">flip</code>—provide a simple but expressive way to describe probabilistic causal dependencies between Boolean (true-false valued) variables.</p>
+
+<p>When you run the above code, the program generates a list of symptoms for a hypothetical patient.
+Most likely all the symptoms will be false, as (thankfully) each of these diseases is rare.
+Experiment with running the program multiple times.
+Now try modifying the <code class="highlighter-rouge">var</code> statement for one of the diseases, setting it to be true, to simulate only patients known to have that disease.
+For example, replace <code class="highlighter-rouge">var lungCancer = flip(0.01)</code> with <code class="highlighter-rouge">var lungCancer = true</code>.
+Run the program several times to observe the characteristic patterns of symptoms for that disease.</p>
+
+<h1 id="prediction-simulation-and-probabilities">Prediction, Simulation, and Probabilities</h1>
+
+<p>Suppose that we flip two fair coins, and return the list of their values:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[flip(), flip()]
+</code></pre></div></div>
+
+<p>How can we predict the return value of this program?
+For instance, how likely is it that we will see <code class="highlighter-rouge">[true, false]</code>?
+A <strong>probability</strong> is a number between 0 and 1 that expresses the answer to such a question: it is a degree of belief that we will see a given outcome, such as <code class="highlighter-rouge">[true, false]</code>.
+The probability of an event <script type="math/tex">A</script> (such as the above program returning <code class="highlighter-rouge">[true, false]</code>) is usually written as: <script type="math/tex">P(A)</script>.</p>
+
+<p>A <strong>probability distribution</strong> is the probability of each possible outcome of an event. For instance, we can examine the probability distribution on values that can be returned by the above program by sampling many times and examining the histogram of return values:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var randomPair = function () { return [flip(), flip()]; };
+viz.hist(repeat(1000, randomPair), 'return values');
+</code></pre></div></div>
+
+<p>We see by examining this histogram that <code class="highlighter-rouge">[true, false]</code> comes out about 25% of the time.
+We may define the probability of a return value to be the fraction of times (in the long run) that this value is returned from evaluating the program – then the probability of <code class="highlighter-rouge">[true, false]</code> from the above program is 0.25.</p>
+
+<h2 id="distributions-in-webppl">Distributions in WebPPL</h2>
+
+<p>An important idea is that <code class="highlighter-rouge">flip</code> can be thought of in two different ways.
+From one perspective, <code class="highlighter-rouge">flip</code> is a procedure which returns a sample from a fair coin.
+That is, it’s a <em>sampler</em> or <em>simulator</em>. As we saw above we can build more complex samplers by building more complex functions.
+From another perspective, <code class="highlighter-rouge">flip</code> is <em>itself</em> a characterization of the probability distribution over <code class="highlighter-rouge">true</code> and <code class="highlighter-rouge">false</code>.
+In order to make this view explicit, WebPPL has a special type of <strong>distribution</strong> objects. These are objects that can be sampled from using the <code class="highlighter-rouge">sample</code> operator, and that can explicitly return the probability of a return value using the <code class="highlighter-rouge">score</code> method. Distributions are made by a family of distribution constructors:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//make a distribution using the Bernoulli constructor:
+var b = Bernoulli({p: 0.5})
+
+//sample from it with the sample operator:
+print( sample(b) )
+
+//compute the log-probability of sampling true:
+print( b.score(true) )
+
+//visualize the distribution:
+viz(b)
+</code></pre></div></div>
+
+<p>In fact <code class="highlighter-rouge">flip(x)</code> is just a helper function that constructs a Bernoulli distribution and samples from it. The function <code class="highlighter-rouge">bernoulli(x)</code> is an alias for <code class="highlighter-rouge">flip</code>.
+There are many other distribution constructors built into WebPPL listed <a href="http://docs.webppl.org/en/master/distributions.html">here</a> (and each has a sampling helper, named in lower case). For instance the Gaussian (also called Normal) distribution is a very common distribution over real numbers:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//create a gaussian distribution:
+var g = Gaussian({mu: 0, sigma: 1})
+
+//sample from it:
+print( sample(g) )
+
+//can also use the sampling helper (note lower-case name):
+print( gaussian(0,1) )
+
+//and build more complex processes!
+var foo = function(){return gaussian(0,1)*gaussian(0,1)}
+foo()
+</code></pre></div></div>
+
+<!-- describe Distribution generators, distirbutions, and sample here. -->
+
+<h2 id="constructing-marginal-distributions-infer">Constructing marginal distributions: <code class="highlighter-rouge">Infer</code></h2>
+
+<p>Above we described how complex sampling processes can be built as complex functions, and how these sampling processes implicitly specify a distribution on return values (which we examined by sampling many times and building a histogram). This distribution on return values is called the <strong>marginal distribution</strong>, and the WebPPL <code class="highlighter-rouge">Infer</code> operator gives us a way to make this implicit distribution into an explicit distribution object:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//a complex function, that specifies a complex sampling process:
+var foo = function(){gaussian(0,1)*gaussian(0,1)}
+
+//make the marginal distributions on return values explicit:
+var d = Infer({method: 'forward', samples: 1000}, foo)
+
+//now we can use d as we would any other distribution:
+print( sample(d) )
+viz(d)
+</code></pre></div></div>
+
+<p>Note that <code class="highlighter-rouge">Infer</code> took an object describing <em>how</em> to construct the marginal distribution (which we will describe more later) and a thunk describing the sampling process, or <em>model</em>, of interest. For more details see the <a href="http://docs.webppl.org/en/master/inference/index.html">Infer documentation</a>.</p>
+
+<p>Thus <code class="highlighter-rouge">sample</code> lets us sample from a distribution, and build complex sampling processes by using sampling in a program; conversely, <code class="highlighter-rouge">Infer</code> lets us reify the distribution implicitly described by a sampling process.
+When we think about probabilistic programs we will often move back and forth between these two views, emphasizing either the sampling perspective or the distributional perspective.
+With suitable restrictions this duality is complete: any WebPPL program implicitly represents a distribution and any distribution can be represented by a WebPPL program; see e.g., @Ackerman2011 for more details on this duality.</p>
+
+<h1 id="the-rules-of-probability">The rules of probability</h1>
+
+<p>While <code class="highlighter-rouge">Infer</code> lets us build the marginal distribution for even very complicated programs, we can also derive these marginal distributions with the “rules of probability”. This is intractable for complex processes, but can help us build intuition for how distributions work.</p>
+
+<h2 id="product-rule">Product Rule</h2>
+
+<p>In the above example we take three steps to compute the output value: we sample from the first <code class="highlighter-rouge">flip()</code>, then from the second, then we make a list from these values.
+To make this more clear let us re-write the program as:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var A = flip();
+var B = flip();
+var C = [A, B];
+C;
+</code></pre></div></div>
+
+<p>We can directly observe (as we did above) that the probability of <code class="highlighter-rouge">true</code> for <code class="highlighter-rouge">A</code> is 0.5, and the probability of <code class="highlighter-rouge">false</code> from <code class="highlighter-rouge">B</code> is 0.5. Can we use these two probabilities to arrive at the probability of 0.25 for the overall outcome <code class="highlighter-rouge">C</code> = <code class="highlighter-rouge">[true, false]</code>? Yes, using the <em>product rule</em> of probabilities:
+The probability of two random choices is the product of their individual probabilities.
+The probability of several random choices together is often called the <em>joint probability</em> and written as <script type="math/tex">P(A,B)</script>.
+Since the first and second random choices must each have their specified values in order to get <code class="highlighter-rouge">[true, false]</code> in the example, the joint probability is their product: 0.25.</p>
+
+<p>We must be careful when applying this rule, since the probability of a choice can depend on the probabilities of previous choices. For instance, compute the probability of <code class="highlighter-rouge">[true, false]</code> resulting from this program:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var A = flip();
+var B = flip(A ? 0.3 : 0.7);
+[A, B];
+</code></pre></div></div>
+
+<p>In general, the joint probability of two random choices <script type="math/tex">A</script> and <script type="math/tex">B</script> made sequentially, in that order, can be written as <script type="math/tex">P(A,B) = P(A) P(B \vert A)</script>.
+This is read as the product of the probability of <script type="math/tex">A</script> and the probability of “<script type="math/tex">B</script> given <script type="math/tex">A</script>”, or “<script type="math/tex">B</script> conditioned on <script type="math/tex">A</script>”.
+That is, the probability of making choice <script type="math/tex">B</script> given that choice <script type="math/tex">A</script> has been made in a certain way.
+Only when the second choice does not depend on (or “look at”) the first choice does this expression reduce to a simple product of the probabilities of each choice individually: <script type="math/tex">P(A,B) = P(A) P(B)</script>.</p>
+
+<p>What is the relation between <script type="math/tex">P(A,B)</script> and <script type="math/tex">P(B,A)</script>, the joint probability of the same choices written in the opposite order?  The only logically consistent definitions of probability require that these two probabilities be equal, so <script type="math/tex">P(A) P(B \vert A) = P(B) P(A \vert B)</script>.  This is the basis of <em>Bayes’ theorem</em>, which we will encounter later.</p>
+
+<h2 id="sum-rule">Sum Rule</h2>
+
+<p>Now let’s consider an example where we can’t determine from the overall return value the sequence of random choices that were made:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flip() || flip()
+</code></pre></div></div>
+<p>We can sample from this program and determine that the probability of returning <code class="highlighter-rouge">true</code> is about 0.75.</p>
+
+<p>We cannot simply use the product rule to determine this probability because we don’t know the sequence of random choices that led to this return value.
+However we can notice that the program will return true if the two component choices are <code class="highlighter-rouge">[true,true]</code>, or <code class="highlighter-rouge">[true,false]</code>, or <code class="highlighter-rouge">[false,true]</code>. To combine these possibilities we use another rule for probabilities:
+If there are two alternative sequences of choices that lead to the same return value, the probability of this return value is the sum of the probabilities of the sequences.
+We can write this using probability notation as: <script type="math/tex">P(A) = \sum_{B} P(A,B)</script>, where we view <script type="math/tex">A</script> as the final value and <script type="math/tex">B</script> as a random choice on the way to that value.
+Using the product rule we can determine that the probability in the example above is 0.25 for each sequence that leads to return value <code class="highlighter-rouge">true</code>, then, by the sum rule, the probability of <code class="highlighter-rouge">true</code> is 0.25+0.25+0.25=0.75.</p>
+
+<p>Using the sum rule to compute the probability of a final value is called is sometimes called <em>marginalization</em>, because the final distribution is the marginal distribution on final values.
+From the point of view of sampling processes marginalization is simply ignoring (or not looking at) intermediate random values that are created on the way to a final return value.
+From the point of view of directly computing probabilities, marginalization is summing over all the possible “histories” that could lead to a return value.
+Putting the product and sum rules together, the marginal probability of return values from a program that we have explored above is the sum over sampling histories of the product over choice probabilities—a computation that can quickly grow unmanageable, but can be approximated by <code class="highlighter-rouge">Infer</code>.</p>
+
+<h1 id="stochastic-recursion">Stochastic recursion</h1>
+
+<p><a href="https://en.wikipedia.org/wiki/Recursion_(computer_science)">Recursive functions</a> are a powerful way to structure computation in deterministic systems.
+In WebPPL it is possible to have a <em>stochastic</em> recursion that randomly decides whether to stop.
+For example, the <em>geometric distribution</em> is a probability distribution over the non-negative integers.
+We imagine flipping a (weighted) coin, returning <script type="math/tex">N-1</script> if the first <code class="highlighter-rouge">true</code> is on the Nth flip (that is, we return the number of times we get <code class="highlighter-rouge">false</code> before our first <code class="highlighter-rouge">true</code>):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var geometric = function (p) {
+    flip(p) ? 0 : 1 + geometric(p);
+};
+var g = Infer({method: 'forward', samples: 1000},
+              function(){return geometric(0.6)})
+viz(g)
+</code></pre></div></div>
+
+<p>There is no upper bound on how long the computation can go on, although the probability of reaching some number declines quickly as we go.
+Indeed, stochastic recursions must be constructed to halt eventually (with probability 1).</p>
+
+<h1 id="persistent-randomness-mem">Persistent Randomness: <code class="highlighter-rouge">mem</code></h1>
+
+<p>It is often useful to model a set of objects that each have a randomly chosen property. For instance, describing the eye colors of a set of people:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var eyeColor = function (person) {
+    return uniformDraw(['blue', 'green', 'brown']);
+};
+[eyeColor('bob'), eyeColor('alice'), eyeColor('bob')];
+</code></pre></div></div>
+
+<p>The results of this generative process are clearly wrong: Bob’s eye color can change each time we ask about it! What we want is a model in which eye color is random, but <em>persistent.</em> We can do this using a WebPPL built-in: <code class="highlighter-rouge">mem</code>. <code class="highlighter-rouge">mem</code> is a higher order function that takes a procedure and produces a <em>memoized</em> version of the procedure.
+When a stochastic procedure is memoized, it will sample a random value the <em>first</em> time it is used with some arguments, but return that same value when called with those arguments thereafter.
+The resulting memoized procedure has a persistent value within each “run” of the generative model (or simulated world). For instance consider the equality of two flips, and the equality of two memoized flips:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flip() == flip()
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var memFlip = mem(flip);
+memFlip() == memFlip()
+</code></pre></div></div>
+
+<p>Now returning to the eye color example, we can represent the notion that eye color is random, but each person has a fixed eye color.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var eyeColor = mem(function (person) {
+    return uniformDraw(['blue', 'green', 'brown']);
+});
+[eyeColor('bob'), eyeColor('alice'), eyeColor('bob')];
+</code></pre></div></div>
+
+<p>This type of modeling is called <em>random world</em> style [@Mcallester2008].
+Note that we don’t have to specify ahead of time the people whose eye color we will ask about: the distribution on eye colors is implicitly defined over the infinite set of possible people, but only constructed “lazily” when needed.
+Memoizing stochastic functions thus provides a powerful toolkit to represent and reason about an unbounded set of properties of an unbounded set of objects.
+For instance, here we define a function <code class="highlighter-rouge">flipAlot</code> that maps from an integer (or any other value) to a coin flip. We could use it to implicitly represent the <script type="math/tex">n</script>th flip of a particular coin, without having to actually flip the coin <script type="math/tex">n</script> times.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var flipAlot = mem(function (n) {
+    return flip()
+});
+[
+    [flipAlot(1), flipAlot(12), flipAlot(47), flipAlot(1548)],
+    [flipAlot(1), flipAlot(12), flipAlot(47), flipAlot(1548)]
+];
+</code></pre></div></div>
+
+<p>There are a countably infinite number of such flips, each independent
+of all the others. The outcome of each, once determined, will always have the same value.</p>
+
+<p>In computer science memoization is an important technique for optimizing programs by avoiding repeated work.
+In the probabilistic setting, such as in WebPPL, memoization actually affects the meaning of the memoized function.</p>
+
+<h1 id="example-intuitive-physics">Example: Intuitive physics</h1>
+
+<p>Humans have a deep intuitive understanding of everyday physics—this allows us to make furniture, appreciate sculpture, and play baseball.
+How can we describe this intuitive physics? One approach is to posit that humans have a generative model that captures key aspects of real physics, though perhaps with approximations and noise.
+This mental physics simulator could for instance approximate Newtonian mechanics, allowing us to imagine the future state of a collection of (rigid) bodies.
+We have included such a 2-dimensional physics simulator, the function <code class="highlighter-rouge">runPhysics</code>, that takes a collection of physical objects and runs physics ‘forward’ by some amount of time.
+(We also have <code class="highlighter-rouge">animatePhysics</code>, which does the same, but gives us an animation to see what is happening.)
+We can use this to imagine the outcome of various initial states, as in the Plinko machine example above:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var dim = function () { uniform(5, 20) }
+var staticDim = function () { uniform(10, 50) }
+var shape = function () { flip() ? 'circle' : 'rect' }
+var xpos = function () { uniform(100, worldWidth - 100) }
+var ypos = function () { uniform(100, worldHeight - 100) }
+
+var ground = {shape: 'rect',
+              static: true,
+              dims: [worldWidth, 10],
+              x: worldWidth/2,
+              y: worldHeight}
+
+var falling = function () {
+  return {shape: shape(), static: false, dims: [dim(), dim()], x: xpos(), y: 0}
+};
+
+var fixed = function () {
+  return {shape: shape(), static: true, dims: [staticDim(), staticDim()], x: xpos(), y: ypos()}
+}
+
+var fallingWorld = [ground, falling(), falling(), falling(), fixed(), fixed()]
+physics.animate(1000, fallingWorld);
+</code></pre></div></div>
+
+<p>There are many judgments that you could imagine making with such a physics simulator.
+@Hamrick2011 have explored human intuitions about the stability of block towers.
+Look at several different random block towers; first judge whether you think the tower is stable, then simulate to find out if it is:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var xCenter = worldWidth / 2
+var ground = {shape: 'rect', static: true, dims: [worldWidth, 10], x: worldWidth/2, y: worldHeight}
+var dim = function() { uniform(10, 50) };
+var xpos = function(prevBlock) {
+  var prevW = prevBlock.dims[0]
+  var prevX = prevBlock.x
+  uniform(prevX - prevW, prevX + prevW)
+};
+
+var ypos = function(prevBlock, h) {
+  var prevY = prevBlock.y
+  var prevH = prevBlock.dims[1]
+  prevY - (prevH + h)
+};
+
+var addBlock = function(prevBlock, isFirst) {
+  var w = dim()
+  var h = dim()
+  return {shape: 'rect',
+          static: false,
+          dims: [w, h],
+          x: isFirst ? xCenter : xpos(prevBlock),
+          y: ypos(prevBlock, h)}
+};
+
+var makeTowerWorld = function () {
+  var block1 = addBlock(ground, true);
+  var block2 = addBlock(block1, false);
+  var block3 = addBlock(block2, false);
+  var block4 = addBlock(block3, false);
+  var block5 = addBlock(block4, false);
+  return [ground, block1, block2, block3, block4, block5]
+};
+
+physics.animate(1000, makeTowerWorld())
+</code></pre></div></div>
+
+<p>Were you often right?
+Were there some cases of ‘surprisingly stable’ towers?  @Hamrick2011 account for these cases by positing that people are not entirely sure where the blocks are initially (perhaps due to noise in visual perception).
+Thus our intuitions of stability are really stability given noise (or the expected stability marginalizing over slightly different initial configurations).
+We can realize this measure of stability as:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var listMin = function(xs) {
+  if (xs.length == 1) {
+    return xs[0]
+  } else {
+    return Math.min(xs[0], listMin(rest(xs)))
+  }
+}
+
+var ground = {shape: 'rect', static: true, dims: [worldWidth, 10],
+              x: worldWidth/2, y: worldHeight+6};
+
+var stableWorld = [
+  ground,
+  {shape: 'rect', static: false, dims: [60, 22], x: 175, y: 473},
+  {shape: 'rect', static: false, dims: [50, 38], x: 159.97995044874122, y: 413},
+  {shape: 'rect', static: false, dims: [40, 35], x: 166.91912737427202, y: 340},
+  {shape: 'rect', static: false, dims: [30, 29], x: 177.26195677111082, y: 276},
+  {shape: 'rect', static: false, dims: [11, 17], x: 168.51354470809122, y: 230}
+]
+
+var almostUnstableWorld = [
+  ground,
+  {shape: 'rect', static: false, dims: [24, 22], x: 175, y: 473},
+  {shape: 'rect', static: false, dims: [15, 38], x: 159.97995044874122, y: 413},
+  {shape: 'rect', static: false, dims: [11, 35], x: 166.91912737427202, y: 340},
+  {shape: 'rect', static: false, dims: [11, 29], x: 177.26195677111082, y: 276},
+  {shape: 'rect', static: false, dims: [11, 17], x: 168.51354470809122, y: 230}
+]
+
+var unstableWorld = [
+  ground,
+  {shape: 'rect', static: false, dims: [60, 22], x: 175, y: 473},
+  {shape: 'rect', static: false, dims: [50, 38], x: 90, y: 413},
+  {shape: 'rect', static: false, dims: [40, 35], x: 140, y: 340},
+  {shape: 'rect', static: false, dims: [10, 29], x: 177.26195677111082, y: 276},
+  {shape: 'rect', static: false, dims: [50, 17], x: 140, y: 230}
+]
+
+var doesTowerFall = function (initialW, finalW) {
+  var highestY = function (w) { listMin(map(function(obj) { return obj.y }, w)) }
+  var approxEqual = function (a, b) { Math.abs(a - b) &lt; 1.0 }
+  !approxEqual(highestY(initialW), highestY(finalW))
+}
+
+var noisify = function (world) {
+  var perturbX = function (obj) {
+    var noiseWidth = 10
+    obj.static ? obj : _.extend({}, obj, {x: uniform(obj.x - noiseWidth, obj.x + noiseWidth) })
+  }
+  map(perturbX, world)
+}
+
+var run = function(world) {
+  var initialWorld = noisify(world)
+  var finalWorld = physics.run(1000, initialWorld)
+  doesTowerFall(initialWorld, finalWorld)
+}
+
+viz(
+  Infer({method: 'forward', samples: 100},
+        function() { run(stableWorld) }))
+viz(
+  Infer({method: 'forward', samples: 100},
+        function() { run(almostUnstableWorld) }))
+viz(
+  Infer({method: 'forward', samples: 100},
+        function() { run(unstableWorld) }))
+
+// uncomment any of these that you'd like to see for yourself
+// physics.animate(1000, stableWorld)
+// physics.animate(1000, almostUnstableWorld)
+// physics.animate(1000, unstableWorld)
+</code></pre></div></div>
+
+<p>Reading &amp; Discussion: <a href="../readings/generative-models.html">Readings</a></p>
+
+<p>Test your knowledge: <a href="../exercises/generative-models.html">Exercises</a></p>
+
+
+
+<!--
+<a href="Further Reading">/readings/generative-models.md</a>
+<a href="Exercises">/exercises/generative-models.md</a>
+-->
+
+
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+		Next chapter: <a href="conditioning.html">3. Conditioning</a>
+		
+
+<!-- put big scripts at end so we don't block page load -->
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+
+
+    </div>
+
+  </body>
+
+<!-- Mirrored from probmods.org/chapters/generative-models.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:08:24 GMT -->
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from probmods.org/chapters/introduction.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:08:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Introduction</title>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Inconsolata" rel="stylesheet">
+    <script src="../assets/js/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+<!--    <script src="/assets/js/underscore-min.js"></script> 
+    <script src="https://probmods.org/bower_components/underscore/underscore.js"></script> -->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+      
+      <link rel="stylesheet" href="../assets/css/katex.min.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/littlefoot.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-viz.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-editor.css" media="screen" type="text/css">
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/katex.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/littlefoot.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/paper-full.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/parse-bibtex.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/chapter.js' type="text/javascript"></script>
+      
+    
+    
+    
+    
+  </head>
+  <body>
+
+    
+
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&#9776;</a>
+          <ul class="dropdown-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li role="separator" class="divider"></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="introduction.html">Introduction</a></li>
+            
+            
+            
+            <li><a href="generative-models.html">Generative models</a></li>
+            
+            
+            
+            <li><a href="conditioning.html">Conditioning</a></li>
+            
+            
+            
+            <li><a href="dependence.html">Causal and statistical dependence</a></li>
+            
+            
+            
+            <li><a href="conditional-dependence.html">Conditional dependence</a></li>
+            
+            
+            
+            <li><a href="bayesian-data-analysis.html">Bayesian data analysis</a></li>
+            
+            
+            
+            <li><a href="inference-algorithms.html">Algorithms for inference</a></li>
+            
+            
+            
+            <li><a href="process-models.html">Rational process models</a></li>
+            
+            
+            
+            <li><a href="learning-as-conditional-inference.html">Learning as conditional inference</a></li>
+            
+            
+            
+            <li><a href="lot-learning.html">Learning with a language of thought</a></li>
+            
+            
+            
+            <li><a href="hierarchical-models.html">Hierarchical models</a></li>
+            
+            
+            
+            <li><a href="occams-razor.html">Occam's Razor</a></li>
+            
+            
+            
+            <li><a href="function-learning.html">Learning (deep) continuous functions</a></li>
+            
+            
+            
+            <li><a href="mixture-models.html">Mixture models</a></li>
+            
+            
+            
+            <li><a href="social-cognition.html">Social cognition</a></li>
+            
+            
+            
+            <li><a href="appendix-js-basics.html">Appendix - JavaScript basics</a></li>
+            
+            
+            
+            <li><a href="appendix-useful-distributions.html">Appendix - Useful distributions</a></li>
+            
+            
+          </ul>
+        </li>
+      </ul>
+
+      <div class="page-header">
+  <h1>Introduction</h1>
+</div>
+
+<p>What is thought?
+How can we describe the intelligent inferences made in everyday human reasoning and learning?
+How can we engineer intelligent machines?
+The computational theory of mind aims to answer these questions starting from the hypothesis that the mind is a computer, mental representations are computer programs, and thinking is a computational process – running a computer program.</p>
+
+<p>But what kind of program?
+A natural assumption is that these programs take the inputs – percepts from the senses, facts from memory, etc – and compute the outputs – the intelligent behaviors.
+Thus the mental representations that lead to thinking are functions from inputs to outputs.
+However, this input-output view suffers from a combinatorial explosion: we must posit an input-output program for each task in which humans draw intelligent inferences.</p>
+
+<p>A different approach is to assume that mental representations are more like theories in science: pieces of knowledge that can support many inferences in many different situations.
+For instance, Newton’s theory of motion makes predictions about infinitely many different configurations of objects and can be used to reason both forward in time and backward, from final state of a physical system to the initial state.
+The <em>generative</em> approach to cognition posits that some mental representations are more like theories in this way: they capture general descriptions of how the world <em>works</em>.
+A generative model describes a process, usually one by which observable data is generated, that represents knowledge about the causal structure of the world.
+These generative processes are simplified “working models” of a domain.
+Other mental computations operate over these generative models to draw inferences: many different questions can be answered by interrogating the mental model.
+This contrasts to a more procedural or mechanistic approach in which knowledge represents the input-output mapping for a particular question directly.</p>
+
+<p>It is possible to use deterministic generative models to describe possible ways a process could unfold, but due to sparsity of observations or actual randomness there will often be many ways that our observations could have been generated.
+How can we choose amongst them? Probability theory provides a system for reasoning under exactly this kind of uncertainty.
+Probabilistic generative models describe processes which unfold with some amount of randomness, and probabilistic inference describes ways to ask questions of such processes.
+This book is concerned with the knowledge that can be represented by probabilistic generative models and the inferences that can be drawn from them.</p>
+
+<p>In order to make the idea of generative models precise we want a formal language that is designed to express the kinds of knowledge individuals have about the world.
+This language should be universal in the sense that it should be able to express any (computable) process.
+We build on the representational power of programming languages because they describe computational processes and capture the idea that what is important is causal dependence—in particular programs do not focus on the sequence of time, but rather on which events influence which other events (the “flow of data”).
+We introduce randomness into this language to construct a <em>probabilistic</em> programming language (PPL), and describe conditional inferences in this language.
+By using a PPL we are able to parsimoniously describe rich generative model structures and explore the inference patterns that emerge from the interaction of model and data.</p>
+
+<!-- TODO: add some examples of cognitive capacities and the 'world models' they depend on...
+
+Talk about the default library: objects, agents, events...
+
+While such generative models often describe how we think the "actual world" works, there are many cases where it is useful to have a generative model even if there is no "fact of the matter". A prime example of the latter is in linguistics, where generative models of grammar can usefully describe the possible sentences in a language by describing a process for constructing sentences.
+-->
+
+<p>Reading &amp; Discussion: <a href="../readings/introduction.html">Readings</a></p>
+
+
+<!--
+<a href="Further Reading">/readings/introduction.md</a>
+<a href="Exercises">/exercises/introduction.md</a>
+-->
+
+
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+		Next chapter: <a href="generative-models.html">2. Generative models</a>
+		
+
+<!-- put big scripts at end so we don't block page load -->
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+
+
+    </div>
+
+  </body>
+
+<!-- Mirrored from probmods.org/chapters/introduction.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:08:19 GMT -->
+</html>

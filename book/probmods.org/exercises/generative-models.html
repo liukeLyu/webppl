@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from probmods.org/exercises/generative-models.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:10:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Generative models - exercises</title>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Inconsolata" rel="stylesheet">
+    <script src="../assets/js/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+<!--    <script src="/assets/js/underscore-min.js"></script> 
+    <script src="https://probmods.org/bower_components/underscore/underscore.js"></script> -->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+      
+      <link rel="stylesheet" href="../assets/css/katex.min.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/littlefoot.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-viz.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-editor.css" media="screen" type="text/css">
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/katex.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/littlefoot.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/paper-full.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/parse-bibtex.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/chapter.js' type="text/javascript"></script>
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/box2d.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/physics.js' type="text/javascript"></script>
+      
+    
+  </head>
+  <body>
+
+    
+
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&#9776;</a>
+          <ul class="dropdown-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li role="separator" class="divider"></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="../chapters/introduction.html">Introduction</a></li>
+            
+            
+            
+            <li><a href="../chapters/generative-models.html">Generative models</a></li>
+            
+            
+            
+            <li><a href="../chapters/conditioning.html">Conditioning</a></li>
+            
+            
+            
+            <li><a href="../chapters/dependence.html">Causal and statistical dependence</a></li>
+            
+            
+            
+            <li><a href="../chapters/conditional-dependence.html">Conditional dependence</a></li>
+            
+            
+            
+            <li><a href="../chapters/bayesian-data-analysis.html">Bayesian data analysis</a></li>
+            
+            
+            
+            <li><a href="../chapters/inference-algorithms.html">Algorithms for inference</a></li>
+            
+            
+            
+            <li><a href="../chapters/process-models.html">Rational process models</a></li>
+            
+            
+            
+            <li><a href="../chapters/learning-as-conditional-inference.html">Learning as conditional inference</a></li>
+            
+            
+            
+            <li><a href="../chapters/lot-learning.html">Learning with a language of thought</a></li>
+            
+            
+            
+            <li><a href="../chapters/hierarchical-models.html">Hierarchical models</a></li>
+            
+            
+            
+            <li><a href="../chapters/occams-razor.html">Occam's Razor</a></li>
+            
+            
+            
+            <li><a href="../chapters/function-learning.html">Learning (deep) continuous functions</a></li>
+            
+            
+            
+            <li><a href="../chapters/mixture-models.html">Mixture models</a></li>
+            
+            
+            
+            <li><a href="../chapters/social-cognition.html">Social cognition</a></li>
+            
+            
+            
+            <li><a href="../chapters/appendix-js-basics.html">Appendix - JavaScript basics</a></li>
+            
+            
+            
+            <li><a href="../chapters/appendix-useful-distributions.html">Appendix - Useful distributions</a></li>
+            
+            
+          </ul>
+        </li>
+      </ul>
+
+      <div class="page-header">
+  <h1>Generative models - exercises</h1>
+</div>
+
+<p>Please complete the exercises on this page and submit them in PDF form.
+You can (and should!!) write your code here and click “Run” to test out your answers.
+However, you will need to transfer your code to your own document in order to turn in your answers and get feedback.
+THESE CODE BOXES WILL NOT SAVE YOUR WORK.
+So copy your answers over to your own document frequently.</p>
+
+<h2 id="exercise-1">Exercise 1</h2>
+
+<h3 id="a">a)</h3>
+
+<p>Show that the marginal distribution on return values for these three programs is the same by directly computing the probability using the rules of probability <em>Hint:</em> write down each possible history of random choices for each program.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flip() ? flip(.7) : flip(.1)
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flip(flip() ? .7 : .1)
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flip(.4)
+</code></pre></div></div>
+
+<h3 id="b">b)</h3>
+
+<p>Check your answers by sampling from the programs, 1000 times each, and plotting the results.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<h3 id="c">c)</h3>
+
+<p>Write another new program with the same marginal distribution on return values that looks different from all of the above programs.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<h2 id="exercise-2">Exercise 2</h2>
+
+<h3 id="a-1">a)</h3>
+
+<p>Explain why (in terms of the evaluation process) these two programs give different answers (i.e. have different distributions on return values).</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var foo = flip();
+display([foo, foo, foo]);
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var foo = function() {return flip()};
+display([foo(), foo(), foo()]);
+</code></pre></div></div>
+
+<h3 id="b-1">b)</h3>
+
+<p>How could you use <code class="highlighter-rouge">mem</code> to make the second program have the same distribution as the first?</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<h3 id="c-1">c)</h3>
+
+<p>Change the program in Part B so that the first two elements in the list are always the same as each other but the third element can be different. <em>Optional challenge:</em> try to do this by adding only these 4 characters: <code class="highlighter-rouge">x</code>, <code class="highlighter-rouge">0</code>, <code class="highlighter-rouge">0</code>, and <code class="highlighter-rouge">1</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<h2 id="exercise-3">Exercise 3</h2>
+
+<h3 id="a-2">a)</h3>
+
+<p>Which of these programs would be more likely to generate the following proportions for 100 values of C? Justify your response.</p>
+
+<center><img src="../assets/img/flip0.7.svg" /></center>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Program "A"
+var A = flip();
+var B = flip(0.9);
+var C = flip() ? A &amp;&amp; B : A || B;
+display([A, B, C])
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Program "B"
+var A = flip(0.9);
+var B = A &amp;&amp; flip(0.9)
+var C = B &amp;&amp; flip(0.9)
+display([A, B, C])
+</code></pre></div></div>
+
+<h3 id="b-2">b)</h3>
+
+<p>Could the program you did <em>not</em> choose in Part A have <em>also</em> generated those return values? Explain.</p>
+
+<h2 id="exercise-4">Exercise 4</h2>
+
+<p>In the simple medical diagnosis example, we imagined a generative process for diseases and symptoms of a single patient.
+In this exercise, we’ll write a version of that model that represents the diseases and symptoms of many patients.</p>
+
+<h3 id="a-3">a)</h3>
+
+<p>Let’s look at just two common conditions (a cold and allergies) and just two symptoms (sneeze and fever), and let’s assume that symptoms are deterministic.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var allergies = flip(0.3);
+var cold = flip(0.2);
+
+var sneeze = cold || allergies;
+var fever = cold;
+
+display([sneeze, fever])
+</code></pre></div></div>
+
+<p>Under this model, what is the probability that the patient is sneezing? What is the probability that the patient is sneezing <em>and</em> has a fever?</p>
+
+<h3 id="b-3">b)</h3>
+
+<p>Inspect the joint probability distributions of <code class="highlighter-rouge">sneeze</code> and <code class="highlighter-rouge">fever</code> using <code class="highlighter-rouge">Infer</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Infer({method: "forward", samples: 1000}, function() {
+  ...
+  return [ ... ];
+})
+</code></pre></div></div>
+
+<h3 id="c-2">c)</h3>
+
+<p>If we wanted to represent the diseases of many patients we might have tried to make each disease and symptom into a function from a person to whether they have that disease, like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var allergies = function(person) {return flip(.3)};
+var cold = function(person) {return flip(.2)}
+
+var sneeze = function(person) {return cold(person) || allergies(person)}
+
+display([sneeze('bob'), sneeze('alice')])
+</code></pre></div></div>
+
+<p>Add <code class="highlighter-rouge">fever</code> to the program above, and use <code class="highlighter-rouge">Infer</code> to inspect the probability distribution over Bob’s symptoms.</p>
+
+<p>Is this the same probability distribution that you computed for the single patient in Part A? 
+If not, what can you do to fix this program to capture our intuitions correctly?</p>
+
+<h2 id="exercise-5">Exercise 5</h2>
+
+<p>Work through the evaluation process for the <code class="highlighter-rouge">bend</code> higher-order function in this example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var makeCoin = function(weight) {
+  return function() {
+    return flip(weight) ? 'h' : 't'
+  }
+}
+var bend = function(coin) {
+  return function() {
+    return coin() == 'h' ? makeCoin(.7)() : makeCoin(.1)()
+  }
+}
+
+var fairCoin = makeCoin(.5)
+var bentCoin = bend(fairCoin)
+</code></pre></div></div>
+
+<h3 id="a-4">a)</h3>
+
+<p>Directly compute the probability distribution of the bent coin in the example.</p>
+
+<h3 id="b-4">b)</h3>
+
+<p>Check your answer by using <code class="highlighter-rouge">Infer</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!-- ToW was moved to next chapter....
+## Exercise 5
+
+Here is a modified version of the tug of war game. Instead of drawing strength from the continuous Gaussian distribution, strength is either 5 or 10 with equal probability. Also the probability of laziness is changed from 1/4 to 1/3. Here are four expressions you could evaluate using this modified model:
+
+~~~~
+var strength = mem(function(person) {
+  return flip() ? 5 : 10;
+});
+
+var lazy = function(person) {return flip(1/3)}
+var totalPulling = function(team) {
+  return sum(map(function(person) {
+    return lazy(person) ? strength(person) / 2 : strength(person);
+  }, team))
+}
+
+var winner = function(team1, team2) {
+  return totalPulling(team1) < totalPulling(team2) : team2 : team1;
+}
+
+// expression 1
+winner(['alice'], ['bob'])
+
+// expression 2
+_.isEqual(['alice'], winner(['alice'], ['bob']))
+
+// expression 3
+(_.isEqual(['alice'], winner(['alice'], ['bob'])) &&
+ _.isEqual(['alice'], winner(['alice'], ['fred'])))
+
+// expression 4
+(_.isEqual(['alice'], winner(['alice'], ['bob'])) &&
+ _.isEqual(['jane'], winner(['jane'], ['fred'])))
+~~~~
+
+a) Write down the sequence of expression evaluations and random choices that will be made in evaluating each expression.
+
+b) Directly compute the probability for each possible return value from each expression.
+
+c) Why are the probabilities different for the last two? Explain both in terms of the probability calculations you did and in terms of the "causal" process of evaluating and making random choices.
+
+-->
+
+<h2 id="exercise-6">Exercise 6</h2>
+
+<h3 id="a-5">a)</h3>
+
+<p>Use the rules of probability to compute the probability that the geometric distribution defined by the following stochastic recursion returns the number 5. <em>Hint:</em> What is the default parameter for <code class="highlighter-rouge">flip()</code>?</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var geometric = function(p) {
+  return flip(p) ? 0 : 1 + geometric(p)
+};
+</code></pre></div></div>
+
+<h3 id="b-5">b)</h3>
+
+<p>Check your answer by using <code class="highlighter-rouge">Infer</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<h2 id="exercise-7">Exercise 7</h2>
+
+<h3 id="a-6">a)</h3>
+
+<p>Convert the following probability table to a compact WebPPL program:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>P(A,B)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>F</td>
+      <td>F</td>
+      <td>0.14</td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td>T</td>
+      <td>0.06</td>
+    </tr>
+    <tr>
+      <td>T</td>
+      <td>F</td>
+      <td>0.4</td>
+    </tr>
+    <tr>
+      <td>T</td>
+      <td>T</td>
+      <td>0.4</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Requirement:</strong> fix the probability of A first and then define the probability of B to <em>depend</em> on whether A is true or not.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var a = ...
+var b = ...
+display([a, b])
+</code></pre></div></div>
+
+<h3 id="b-6">b)</h3>
+
+<p>Run your WebPPL program and use <code class="highlighter-rouge">Infer</code> to check that you get the correct distribution.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<h2 id="exercise-8">Exercise 8</h2>
+
+<p>Below we’ve defined a higher-order function <code class="highlighter-rouge">flipSequence</code> that takes a coin flipping function (e.g. <code class="highlighter-rouge">trickCoin</code>, below) and flips that coin until it gets a <em>sequence</em> of two heads in a row (in which case it returns heads <code class="highlighter-rouge">'h'</code>) or two tails in a row (in which case it returns tails <code class="highlighter-rouge">'t'</code>.
+Try out different weights for the <code class="highlighter-rouge">trickCoin</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var makeCoin = function(weight) {
+  return function() {
+    return flip(weight) ? 'h' : 't'
+  }
+}
+var flipSequence = function(coin) {
+  return function() {
+    var flip1 = coin();
+    var flip2 = coin();
+    if (flip1 == flip2) {
+      return flip1;
+    } else {
+      return flipSequence(coin)();
+    }
+  }
+}
+
+var trickCoin = makeCoin(.6)
+
+var n_samples = 10000;
+viz(Infer({method: "forward", samples: n_samples}, trickCoin))
+viz(Infer({method: "forward", samples: n_samples}, flipSequence(trickCoin)))
+</code></pre></div></div>
+
+<h3 id="a-7">a)</h3>
+
+<p>How does <code class="highlighter-rouge">flipSequence</code> change the distribution over return values (qualitatively)? Explain why requiring two flips in a row to be the same has this effect.</p>
+
+<h3 id="b-7">b)</h3>
+
+<p>What would happen if a fair coin (with weight 0.5) were input to <code class="highlighter-rouge">flipSequence</code>? Explain.</p>
+
+<!-- ### c)
+
+What weight would you need to give the trick coin in order for `flipSequence(trickCoin)` to return heads `'h`' X% of the time? -->
+
+<h2 id="exercise-9">Exercise 9</h2>
+
+<p>Box2D is a two dimensional simulation engine for simulating rigid bodies (those with constant shape). It allows for the construction of arbitray worlds and models important physical concepts including collisions, friction, gravity, momentum, and more.</p>
+
+<p>We have provided a wrapper around Box2D that allows for the easy construction of worlds. A world consists of list of shapes.
+Shapes are created by JavaScript objects with the following properties:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">shape</code></td>
+      <td>“circle” or “rect”</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">dims</code></td>
+      <td>[width, height] for rect or [radius] for circle</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">x</code></td>
+      <td>x_position_as_number (distance from left)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">y</code></td>
+      <td>y_position_as_number (distance from top)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">static</code></td>
+      <td>boolean (does the object move or stay still?)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">velocity</code></td>
+      <td>[x_velocity, y_velocity]</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The variables <code class="highlighter-rouge">worldWidth</code> and <code class="highlighter-rouge">worldHeight</code> are constants representing the visible size of the simulation window.</p>
+
+<p>Here’s an example with a ground and a single rectangle. Add another object to <code class="highlighter-rouge">bowlingWorld</code> and give it an initial velocity so that it knocks the original rectangle down.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var ground = {shape: 'rect',
+  static: true,
+  dims: [worldWidth, 10],
+  x: worldWidth/2,
+  y: worldHeight}
+
+var rect = {shape: 'rect',
+  static: false,
+  dims: [10, 100],
+  x: worldWidth/2,
+  y: 390}
+
+var bowlingWorld = [ground, rect]
+physics.animate(1000, bowlingWorld);
+</code></pre></div></div>
+
+<h2 id="exercise-10">Exercise 10</h2>
+
+<p>In <strong>Example: Intuitive physics</strong> we modeled instability of a tower as the probability that the tower falls when perturbed, and we modeled “falling” as getting shorter. It would be reasonable to instead measure <em>how much shorter</em> the tower gets.</p>
+
+<h3 id="a-8">a)</h3>
+
+<p>Below, modify the stability/instability model by writing a continuous measure, <code class="highlighter-rouge">towerFallDegree</code>. Let this measure take different values between 0 and 1.
+That way, your continuous measure will be numerically comparable to the discrete measure, <code class="highlighter-rouge">doesTowerFall</code> (defined here as either 0 or 1).
+Explain what your continuous measure represents and why it might be a good continuous measure of instability.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>///fold:
+var listMin = function(xs) {
+  if (xs.length == 1) {
+    return xs[0]
+  } else {
+    return Math.min(xs[0], listMin(rest(xs)))
+  }
+}
+
+var highestY = function (w) { listMin(map(function(obj) { return obj.y }, w)) }
+var ground = {shape: 'rect', static: true, dims: [worldWidth, 10],
+              x: worldWidth/2, y: worldHeight+6};
+
+var almostUnstableWorld = [
+  ground,
+  {shape: 'rect', static: false, dims: [24, 22], x: 175, y: 473},
+  {shape: 'rect', static: false, dims: [15, 38], x: 159.97995044874122, y: 413},
+  {shape: 'rect', static: false, dims: [11, 35], x: 166.91912737427202, y: 340},
+  {shape: 'rect', static: false, dims: [11, 29], x: 177.26195677111082, y: 276},
+  {shape: 'rect', static: false, dims: [11, 17], x: 168.51354470809122, y: 230}
+]
+
+var noisify = function (world) {
+  var perturbX = function (obj) {
+    var noiseWidth = 10
+    return obj.static ? obj : _.extend({}, obj, {x: uniform(obj.x - noiseWidth, obj.x + noiseWidth) })
+  }
+  map(perturbX, world)
+}
+
+///
+
+// Returns height of tower
+var getTowerHeight = function(world) {
+  return worldHeight - highestY(world);
+};
+
+var doesTowerFall = function (initialW, finalW) {
+  var approxEqual = function (a, b) { Math.abs(a - b) &lt; 1.0 }
+  return 1 - approxEqual(highestY(initialW), highestY(finalW));
+}
+
+var towerFallDegree = function(initialW, finalW) {
+  // FILL THIS PART IN
+  return -999;
+};
+
+var visualizeInstabilityMeasure = function(measureFunction) {
+  var initialWorld = noisify(almostUnstableWorld);
+  var finalWorld = physics.run(1000, initialWorld);
+  var measureValue = measureFunction(initialWorld, finalWorld);
+  print("Instability measure: " + measureValue);
+  print("Initial height: " + getTowerHeight(initialWorld));
+  print("Final height: " + getTowerHeight(finalWorld));
+  physics.animate(1000, initialWorld);
+};
+
+// Test binary doesTowerFall measure
+// visualizeInstabilityMeasure(doesTowerFall);
+
+// Test custom towerFallDegree measure
+visualizeInstabilityMeasure(towerFallDegree);
+</code></pre></div></div>
+
+<h3 id="b-8">b)</h3>
+
+<p>Are there worlds where your new model makes very different predictions about instability from the original model? Which best captures the meaning of “unstable”? (it might be useful to actually code up your worlds and test them).</p>
+
+
+
+<!--
+<a href="Further Reading">/readings/generative-models.md</a>
+<a href="Exercises">/exercises/generative-models.md</a>
+-->
+
+
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+
+<!-- put big scripts at end so we don't block page load -->
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+
+
+    </div>
+
+  </body>
+
+<!-- Mirrored from probmods.org/exercises/generative-models.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:10:21 GMT -->
+</html>

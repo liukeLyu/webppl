@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from probmods.org/chapters/conditioning.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:08:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Conditioning</title>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Inconsolata" rel="stylesheet">
+    <script src="../assets/js/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+<!--    <script src="/assets/js/underscore-min.js"></script> 
+    <script src="https://probmods.org/bower_components/underscore/underscore.js"></script> -->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+      
+      <link rel="stylesheet" href="../assets/css/katex.min.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/littlefoot.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-viz.css" media="screen" type="text/css">
+      
+      <link rel="stylesheet" href="../assets/css/webppl-editor.css" media="screen" type="text/css">
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/katex.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/littlefoot.min.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/paper-full.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/parse-bibtex.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/chapter.js' type="text/javascript"></script>
+      
+    
+    
+    
+    
+      
+      <script src='../assets/js/box2d.js' type="text/javascript"></script>
+      
+      <script src='../assets/js/physics.js' type="text/javascript"></script>
+      
+    
+  </head>
+  <body>
+
+    
+
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&#9776;</a>
+          <ul class="dropdown-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li role="separator" class="divider"></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="introduction.html">Introduction</a></li>
+            
+            
+            
+            <li><a href="generative-models.html">Generative models</a></li>
+            
+            
+            
+            <li><a href="conditioning.html">Conditioning</a></li>
+            
+            
+            
+            <li><a href="dependence.html">Causal and statistical dependence</a></li>
+            
+            
+            
+            <li><a href="conditional-dependence.html">Conditional dependence</a></li>
+            
+            
+            
+            <li><a href="bayesian-data-analysis.html">Bayesian data analysis</a></li>
+            
+            
+            
+            <li><a href="inference-algorithms.html">Algorithms for inference</a></li>
+            
+            
+            
+            <li><a href="process-models.html">Rational process models</a></li>
+            
+            
+            
+            <li><a href="learning-as-conditional-inference.html">Learning as conditional inference</a></li>
+            
+            
+            
+            <li><a href="lot-learning.html">Learning with a language of thought</a></li>
+            
+            
+            
+            <li><a href="hierarchical-models.html">Hierarchical models</a></li>
+            
+            
+            
+            <li><a href="occams-razor.html">Occam's Razor</a></li>
+            
+            
+            
+            <li><a href="function-learning.html">Learning (deep) continuous functions</a></li>
+            
+            
+            
+            <li><a href="mixture-models.html">Mixture models</a></li>
+            
+            
+            
+            <li><a href="social-cognition.html">Social cognition</a></li>
+            
+            
+            
+            <li><a href="appendix-js-basics.html">Appendix - JavaScript basics</a></li>
+            
+            
+            
+            <li><a href="appendix-useful-distributions.html">Appendix - Useful distributions</a></li>
+            
+            
+          </ul>
+        </li>
+      </ul>
+
+      <div class="page-header">
+  <h1>Conditioning</h1>
+</div>
+
+<h1 id="cognition-and-conditioning">Cognition and conditioning</h1>
+
+<p>We have built up a tool set for constructing probabilistic generative models. These can represent knowledge about causal processes in the world: running one of these programs generates a particular outcome by sampling a “history” for that outcome. However, the power of a causal model lies in the flexible ways it can be used to reason about the world. In the
+<a href="generative-models.html">last chapter</a> we ran generative models <em>forward</em> to reason about outcomes from initial conditions. Generative models also enable reasoning in other ways.
+For instance, if we have a generative model in which X is the output of a process that depends on Y (say <code class="highlighter-rouge">var X = coolFunction(Y)</code>) we may ask: “assuming I have observed a certain X, what must Y have been?” That is we can reason <em>backward</em> from outcomes to initial conditions.
+More generally, we can make hypothetical assumptions and reason about the generative history: “assuming <em>something</em>, how did
+the generative model run?”
+In this section we describe how a wide variety of such hypothetical inferences can be made from a single generative model by <em>conditioning</em> the model on an assumed or observed fact.</p>
+
+<p>Much of cognition can be understood in terms of conditional inference.  In its most basic form, <em>causal attribution</em> is conditional inference: given some observed effects, what were the likely causes?  <em>Predictions</em> are conditional inferences in the opposite direction: given that I have observed some cause, what are its likely effects?  These inferences can be described by conditioning a probabilistic program that expresses a causal model.  The acquisition of that causal model, or <em>learning</em>, is also conditional inference at a higher level of abstraction: given our general knowledge of how causal relations operate in the world, and some observed events in which candidate causes and effects co-occur in various ways, what specific causal relations are likely to hold between these observed variables?</p>
+
+<p>To see how the same concepts apply in a domain that is not usually thought of as causal, consider language.  The core questions of interest in the study of natural language are all at heart conditional inference problems.  Given beliefs about the  structure of my language, and an observed sentence, what should I believe about the syntactic structure of that sentence? This is the <em>parsing</em> problem. The complementary problem of <em>speech production</em> is related: given the structure of my language (and beliefs about others’ beliefs about that), and a particular thought I want to express, how should I encode the thought? Finally, the <em>acquisition</em> problem: given some data from a particular language, and perhaps general knowledge about universals of grammar, what should we believe about that language’s structure? This problem is simultaneously the problem facing the linguist and the child trying to learn a language.</p>
+
+<p>Parallel problems of conditional inference arise in visual perception, social cognition, and virtually every other domain of cognition.  In visual perception, we observe an image or image sequence that is the result of rendering a three-dimensional physical scene onto our two-dimensional retinas.  A probabilistic program can model both the physical processes at work in the world that produce natural scenes, and the imaging processes (the “graphics”) that generate images from scenes.  <em>Perception</em> can then be seen as conditioning this program on some observed output image and inferring the scenes most likely to have given rise to it.</p>
+
+<p>When interacting with other people, we observe their actions, which result from a planning process, and often want to guess their desires, beliefs, emotions, or future actions. Planning can be modeled as a program that takes as input an agent’s mental states (beliefs, desires, etc.) and produces action sequences—for a rational agent, these will be actions that are likely to produce the agent’s desired states reliably and efficiently.  A rational agent can <em>plan</em> their actions by conditional inference to infer what steps would be most likely to achieve their desired state.  <em>Action understanding</em>, or interpreting an agent’s observed behavior, can be expressed as conditioning a planning program (a “theory of mind”) on observed actions to infer the mental states that most likely gave rise to those actions, and to predict how the agent is likely to act in the future.</p>
+
+<h1 id="hypothetical-reasoning-with-infer">Hypothetical Reasoning with <code class="highlighter-rouge">Infer</code></h1>
+
+<p>Suppose that we know some fixed fact, and we wish to consider hypotheses about how a generative model could have given rise to that fact. In the <a href="generative-models.html">last chapter</a> we met the <code class="highlighter-rouge">Infer</code> operator for constructing the marginal distribution on return values of a function; with the help of the <code class="highlighter-rouge">condition</code> operator <code class="highlighter-rouge">Infer</code> is also able to describe marginal distributions <em>under some assumption</em> or condition.</p>
+
+<p>Consider the following simple generative model:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var model = function() {
+  var A = flip()
+  var B = flip()
+  var C = flip()
+  var D = A + B + C
+  return {'D': D}
+}
+var dist = Infer(model)
+viz(dist)
+</code></pre></div></div>
+
+<p>The process described in <code class="highlighter-rouge">model</code> samples three numbers and adds them (recall JavaScript converts booleans to <script type="math/tex">0</script> or <script type="math/tex">1</script> when they enter arithmetic). The value of the final expression here is 0, 1, 2 or 3. A priori, each of the variables <code class="highlighter-rouge">A</code>, <code class="highlighter-rouge">B</code>, <code class="highlighter-rouge">C</code> has .5 probability of being <code class="highlighter-rouge">1</code> or <code class="highlighter-rouge">0</code>.  However, suppose that we know that the sum <code class="highlighter-rouge">D</code> is equal to 3. How does this change the space of possible values that variable <code class="highlighter-rouge">A</code> could have taken?  <code class="highlighter-rouge">A</code> (and <code class="highlighter-rouge">B</code> and <code class="highlighter-rouge">C</code>) must be equal to 1 for this result to happen. We can see this in the following WebPPL inference, where we use <code class="highlighter-rouge">condition</code> to express the desired assumption:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var model = function () {
+  var A = flip()
+  var B = flip()
+  var C = flip()
+  var D = A + B + C
+  condition(D == 3)
+  return {'A': A}
+};
+var dist = Infer(model)
+viz(dist)
+</code></pre></div></div>
+
+<p>The output of <code class="highlighter-rouge">Infer</code> describes appropriate beliefs about the likely value of <code class="highlighter-rouge">A</code>, conditioned on <code class="highlighter-rouge">D</code> being equal to 3.</p>
+
+<p>Now suppose that we condition on <code class="highlighter-rouge">D</code> being greater than or equal to 2.  Then <code class="highlighter-rouge">A</code> need not be 1, but it is more likely than not to be. (Why?) The corresponding plot shows the appropriate distribution of beliefs for <code class="highlighter-rouge">A</code> conditioned on this new fact:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var model = function () {
+  var A = flip()
+  var B = flip()
+  var C = flip()
+  var D = A + B + C
+  //add the desired assumption:
+  condition(D &gt;= 2)
+  return {'A': A}
+};
+var dist = Infer(model)
+viz(dist)
+</code></pre></div></div>
+
+<p>Going beyond the basic intuition of “hypothetical reasoning”, the <code class="highlighter-rouge">Infer</code> operation in the presence of <code class="highlighter-rouge">condition</code> can be understood in several, equivalent, ways. We focus on two: the process of <em>rejection sampling</em>, and the the mathematical formulation of a <em>conditional distribution</em>.</p>
+
+<h2 id="rejection-sampling">Rejection Sampling</h2>
+
+<p>How can we imagine answering a hypothetical such as those above? We have already seen how to get a sample from a generative model, without constraint, by simply running the evaluation process “forward”  (i.e. simulating the process). We can get conditional samples by forward sampling the entire model, but only keeping the sample if the value passed to <code class="highlighter-rouge">condition</code> is <em>true</em>. For instance, to sample from the above model “A given that D is greater than 2” we could:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var takeSample = function () {
+    var A = flip()
+    var B = flip()
+    var C = flip()
+    var D = A + B + C
+    return D &gt;= 2 ? A : takeSample()
+}
+viz(repeat(100, takeSample))
+</code></pre></div></div>
+
+<p>Notice that we have used a stochastic recursion to sample the model repeatedly until <code class="highlighter-rouge">D &gt;= 2</code> is <code class="highlighter-rouge">true</code>, and we then return <code class="highlighter-rouge">A</code>: we generate and test until the condition is satisfied.
+This process is known as <em>rejection sampling</em>; we can use this technique to make a more general function that implements <code class="highlighter-rouge">Infer</code>, which we access in WebPPL with the <code class="highlighter-rouge">'rejection'</code> method:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var model = function () {
+    var A = flip()
+    var B = flip()
+    var C = flip()
+    var D = A + B + C
+    condition(D &gt;= 2)
+    return A
+}
+var dist = Infer({method: 'rejection', samples: 100}, model)
+viz(dist)
+</code></pre></div></div>
+
+<h2 id="conditional-distributions">Conditional Distributions</h2>
+
+<p>The formal definition of <em>conditional probability</em> in probability theory is</p>
+
+<script type="math/tex; mode=display">P(A=a \mid B=b)=\frac{ P(A=a,B=b)}{P(B=b)}</script>
+
+<p>Here <script type="math/tex">P(A=a \mid B=b)</script> is the probability that “event” <script type="math/tex">A</script> has value <script type="math/tex">a</script> given that <script type="math/tex">B</script> has value <script type="math/tex">b</script>. (The meaning of events <script type="math/tex">A</script> and <script type="math/tex">B</script> must be given elsewhere in this notation, unlike a WebPPL program, which contains the full model specification within the <code class="highlighter-rouge">Infer</code> call.)
+The <em>joint probability</em>, <script type="math/tex">P(A=a,B=b)</script>,  is the probability that <script type="math/tex">A</script> has value <script type="math/tex">a</script> and <script type="math/tex">B</script> has value <script type="math/tex">b</script>.
+So the conditional probability is simply the ratio of the joint probability to the probability of the condition.</p>
+
+<p>In the case of a WebPPL <code class="highlighter-rouge">Infer</code> statement with a <code class="highlighter-rouge">condition</code>, <script type="math/tex">A=a</script> will be the “event” that the return value is <script type="math/tex">a</script>, while <script type="math/tex">B=b</script> will be the event that the value passed to condition is <code class="highlighter-rouge">true</code> (so <script type="math/tex">b</script> is <em>True</em>). Because each of these is a regular (unconditional) probability, they and their ratio can often be computed exactly using the rules of probability. In WebPPL the inference method <code class="highlighter-rouge">'enumerate'</code> attempts to do this calculation (by first enumerating all the possible executions of the model):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var model = function () {
+    var A = flip()
+    var B = flip()
+    var C = flip()
+    var D = A + B + C
+    condition(D &gt;= 2)
+    return A
+}
+var dist = Infer({method: 'enumerate'}, model)
+viz(dist)
+</code></pre></div></div>
+
+<h3 id="connection-to-rejection-sampling">Connection to rejection sampling</h3>
+
+<p>The above notion of conditional distribution in terms of rejection sampling is equivalent to the mathematical definition, when both are well-defined. (There are special cases when only one definition makes sense. For instance, when continuous random choices are used it is possible to find situations where rejection sampling almost never returns a sample but the conditional distribution is still well defined. Why?)</p>
+
+<p>Indeed, we can use the process of rejection sampling to understand this alternative definition of the conditional probability <script type="math/tex">P(A=a \mid B=b)</script>. 
+Imagine that we have sampled <script type="math/tex">N_{total}</script> times.
+We only keep those samples in which the condition is true, say there are <script type="math/tex">N_{B=True}</script> of them.
+Of these some number <script type="math/tex">N_{A=a, B=True}</script> have the returned value <script type="math/tex">a</script>.
+The ratio</p>
+
+<script type="math/tex; mode=display">\frac{N_{A=a, B=True}}{N_{B=True}} = \frac{\frac{N_{A=a, B=True}}{N_{total}}}{\frac{N_{B=True}}{N_{total}}}</script>
+
+<p>is the fraction of times that <script type="math/tex">A=a</script> when <script type="math/tex">B=True</script>. When the number of samples is very large this converges to <script type="math/tex">\frac{P(A=a, B=True)}{P(B=True)}</script>. Thus the rejection sampling definition of conditional probability implies the above (probability ratio) definition.</p>
+
+<!-- FIXME: add a figure with imagined samples to illustrate. -->
+
+<p>Try using the formula for conditional probability to compute the probability of the different return values in the above examples. Check that you get the same probability that you observe when using rejection sampling.</p>
+
+<h3 id="bayes-rule">Bayes Rule</h3>
+
+<p>One of the most famous rules of probability is <em>Bayes’ rule</em>, which states:</p>
+
+<script type="math/tex; mode=display">P(h \mid d) = \frac{P(d \mid h)P(h)}{P(d)}</script>
+
+<p>It is first worth noting that this follows immediately from the definition of conditional probability:</p>
+
+<script type="math/tex; mode=display">P(h \mid d) = \frac{P(d,h)}{P(d)} = \frac{ P(d, h)P(h) }{ P(d)P(h)} = \frac{P(d \mid h)P(h)}{P(d)}</script>
+
+<p>Next we can ask what this rule means in terms of sampling processes. Consider the program:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var observedData = true;
+var prior = function () { flip() }
+var likelihood = function (h) { h ? flip(0.9) : flip(0.1) }
+
+var posterior = Infer(
+  function () {
+    var hypothesis = prior()
+    var data = likelihood(hypothesis)
+    condition(data == observedData)
+    return {hypothesis: hypothesis}
+})
+
+viz(posterior)
+</code></pre></div></div>
+
+<p>We have generated a value, the <em>hypothesis</em>, from some distribution called the <em>prior</em>, then used an observation function <code class="highlighter-rouge">likelihood</code> which generates data given this hypothesis, the probability of such an observation function is usually called the <em>likelihood</em>. Finally we have returned the hypothesis, conditioned on the observation being equal to some observed data—this conditional distribution is called the <em>posterior</em>. This is a typical setup in which Bayes’ rule is used.</p>
+
+<p>Bayes’ rule simply says that, in special situations where the model decomposes nicely into a part “before” the value to be returned (hypothesis) and a part “after” the value to be returned, then the conditional probability can be expressed simply in terms of the prior and likelihood components of the model. This is often a useful way to think about conditional inference in simple settings. However, we will see examples as we go along where Bayes’ rule doesn’t apply in a simple way, but the conditional distribution is equally well understood in other terms.</p>
+
+<h2 id="other-implementations-of-infer">Other implementations of <code class="highlighter-rouge">Infer</code></h2>
+
+<p>Much of the difficulty of implementing the WebPPL language (or probabilistic models in general) is in finding useful ways to do conditional inference—to implement <code class="highlighter-rouge">Infer</code>.
+We have already seen rejection sampling and enumeration, but the AI literature is replete with other algorithms and techniques for dealing with conditional probabilistic inference.
+Many of these have been adapted into WebPPL to give implementations of <code class="highlighter-rouge">Infer</code> that may be more efficient in various cases.
+Switching from one method to another is as simple as changing the options passed to <code class="highlighter-rouge">Infer</code>. We have already seen two methods: <code class="highlighter-rouge">{method: 'enumerate'}</code> and <code class="highlighter-rouge">{method: 'rejection', samples: X}</code>; other methods include <code class="highlighter-rouge">'MCMC'</code>, <code class="highlighter-rouge">'SMC'</code>, and <code class="highlighter-rouge">'variational'</code>.
+Sometimes we even drop the method argument, asking WebPPL to guess the best inference method (which is can often do).
+The <a href="http://docs.webppl.org/en/master/inference/index.html">Infer documentation</a> provides many more usage details.</p>
+
+<p>There is an interesting parallel between the <code class="highlighter-rouge">Infer</code> abstraction, wrapping up the engineering challenge of different inference methods, and the idea of levels of analysis in cognitive science @Marr1982. At the top, or computational level, of analysis we are concerned more with the world knowledge people have and the inferences they license; at the next, algorithmic, level of analysis we are concerned with the details on <em>how</em> these inferences are done.
+In parallel, WebPPL allows us to specify generative knowledge and inference questions, largely abstracting away the methods of inference (they show up only in the options argument to <code class="highlighter-rouge">Infer</code>, when provided).
+We will further explore some of the algorithms used in these implementations in <a href="inference-algorithms.html">Algorithms for inference</a>, and ask whether they may be useful algorithmic levels models for human thinking in <a href="process-models.html">Rational process models</a>. For most of this book, however, we work at the computational level, abstracting away from algorithmic details.</p>
+
+<!--TODO: add more on the levels of analysis analogy. perhaps in the process models section?-->
+
+<h1 id="conditions-and-observations">Conditions and observations</h1>
+
+<p>A very common pattern is to condition directly on the value of a sample from some distribution. For instance here we try to recover a true number from a noisy observation of it:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var model = function(){
+  var trueX = sample(Gaussian({mu: 0, sigma: 1}))
+  var obsX = sample(Gaussian({mu: trueX, sigma: 0.1}))
+  condition(obsX == 0.2)
+  return trueX
+}
+viz(Infer({method: 'rejection', samples:1000}, model))
+</code></pre></div></div>
+
+<p>You will note that this never finishes. (Why? Think about what rejection sampling tries to do here….)
+In WebPPL we have a special operator, <code class="highlighter-rouge">observe</code>, to express the pattern of conditioning on a value sampled directly from a distribution. In addition to being clearer, it also gives the implementation some hints about how to do inference.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var model = function(){
+  var trueX = sample(Gaussian({mu: 0, sigma: 1}))
+  observe(Gaussian({mu: trueX, sigma: 0.1}), 0.2)
+  return trueX
+}
+viz(Infer({method: 'rejection', samples:1000, maxScore: 2}, model))
+</code></pre></div></div>
+
+<p>It is natural and common to condition a generative model on a value for one of the variables declared in this model (i.e. to <code class="highlighter-rouge">observe</code> its value). However, there are many situations in which we desire the greater expressivity of <code class="highlighter-rouge">condition</code>; one may wish to ask for more complex hypotheticals: “what if P,” where P is a complex proposition composed out of variables declared in the model.
+Consider the following WebPPL inference:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var dist = Infer(
+  function () {
+    var A = flip()
+    var B = flip()
+    var C = flip()
+    condition(A + B + C &gt;= 2)
+    return A
+});
+viz(dist)
+</code></pre></div></div>
+
+<p>This inference has the same meaning as the earlier example, but the formulation is importantly different. We have directly conditioned on the complex assumption that the sum of these random variables is greater than or equal to 2. This involves a new value or “random variable”, <code class="highlighter-rouge">A + B + C &gt;= 2</code> that <em>did not appear</em> anywhere in the generative model (the var definitions).
+We could have instead added a definition <code class="highlighter-rouge">var D = (A + B + C &gt;= 2)</code> to the generative model and conditioned (or observed) its value.
+However this intertwines the hypothetical assumption (condition) with the generative model knowledge (definitions), and this is not what we want: we want a simple model which supports many queries, rather than a complex model in which only a prescribed set of queries is allowed.
+Using <code class="highlighter-rouge">condition</code> allows the flexibility to build complex random expressions like this as needed, making assumptions that are phrased as complex propositions, rather than simple observations.  Hence the effective number of queries we can construct for most programs will not merely be a large number but countably infinite, much like the sentences in a natural language.  The <code class="highlighter-rouge">Infer</code> function (in principle, though with variable efficiency) supports correct conditional inference for this infinite array of situations.</p>
+
+<h1 id="factors">Factors</h1>
+
+<p>In WebPPL, <code class="highlighter-rouge">condition</code> and <code class="highlighter-rouge">observe</code> are actually special cases of a more general operator: <code class="highlighter-rouge">factor</code>. Whereas <code class="highlighter-rouge">condition</code> is like making an assumption that must be true, then <code class="highlighter-rouge">factor</code> is like making a <em>soft</em> assumption that is merely preferred to be true. For instance, suppose we flip a single coin. If we condition on the outcome being heads, then the outcome must be heads:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var dist = Infer(
+  function () {
+    var A = flip()
+    condition(A)
+    return A
+});
+viz(dist)
+</code></pre></div></div>
+
+<p>However, if we swap <code class="highlighter-rouge">condition</code> for <code class="highlighter-rouge">factor</code>, we simply make heads more likely:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var dist = Infer(
+  function () {
+    var A = flip()
+    factor(A?1:0)
+    return A
+});
+viz(dist)
+</code></pre></div></div>
+
+<p>Technically, <code class="highlighter-rouge">factor(x)</code> adds <code class="highlighter-rouge">x</code> to the unnormalized log-probability of the program execution within which it occurs. Thus, to get the new probabilities induced by the <code class="highlighter-rouge">factor</code> statement we compute the normalizing constant given these log-scores. The resulting probability <script type="math/tex">P(A=true)</script> is:</p>
+
+<script type="math/tex; mode=display">P(A=true) = \frac {e^{1}} { (e^{0} + e^{1}) }</script>
+
+<p>Play with this example. Can you revise the example to increase the probability of heads?</p>
+
+<p>The <code class="highlighter-rouge">factor</code> construct is very general. Both <code class="highlighter-rouge">condition</code> and <code class="highlighter-rouge">observe</code> can be written easily in terms of <code class="highlighter-rouge">factor</code>. However models are often clearer when written with the more specialized forms. In machine learning it is common to talk of <em>directed</em> and <em>undirected</em> generative models; directed models can be thought of as those made from only <code class="highlighter-rouge">sample</code> and <code class="highlighter-rouge">observe</code>, while undirected models include <code class="highlighter-rouge">factor</code> (and often have only factors).</p>
+
+<h1 id="example-reasoning-about-tug-of-war">Example: Reasoning about Tug of War</h1>
+
+<p>Imagine a game of tug of war, where each person may be strong or weak, and may be lazy or not on each match.
+If a person is lazy they only pull with half their strength.
+The team that pulls hardest will win.
+We assume that strength is a continuous property of an individual, and that on any match, each person has a 1 in 3 chance of being lazy.
+This WebPPL program runs a tournament between several teams, mixing up players across teams.
+Can you guess who is strong or weak, looking at the tournament results?</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var strength = mem(function (person) {return Math.abs(gaussian(1, 1), 0.01)})
+var lazy = function(person) {return flip(1/3) }
+var pulling = function(person) {
+  return lazy(person) ? strength(person) / 2 : strength(person) }
+var totalPulling = function (team) {return sum(map(pulling, team))}
+var winner = function (team1, team2) {
+  totalPulling(team1) &gt; totalPulling(team2) ? team1 : team2 }
+
+print([
+    winner(['alice', 'bob'], ['sue', 'tom']),
+    winner(['alice', 'bob'], ['sue', 'tom']),
+    winner(['alice', 'sue'], ['bob', 'tom']),
+    winner(['alice', 'sue'], ['bob', 'tom']),
+    winner(['alice', 'tom'], ['bob', 'sue']),
+    winner(['alice', 'tom'], ['bob', 'sue'])
+])
+</code></pre></div></div>
+
+<p>Notice that <code class="highlighter-rouge">strength</code> is memoized because this is a property of a person true across many matches, while <code class="highlighter-rouge">lazy</code> isn’t.
+Each time you run this program, however, a new “random world” will be created: people’s strengths will be randomly re-generated, then used in all the matches.</p>
+
+<p>We can use <code class="highlighter-rouge">Infer</code> to ask a variety of different questions. For instance, how likely is it that Bob is strong, given that he’s been on a series of winning teams? (Note that we have added the helper function <code class="highlighter-rouge">beat</code> as in “team1 beat team2”; this just makes for more compact conditioning statements.)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var model = function() {
+  var strength = mem(function (person) {return Math.abs(gaussian(1, 1), 0.01)})
+  var lazy = function(person) {return flip(1/3) }
+  var pulling = function(person) {
+    return lazy(person) ? strength(person) / 2 : strength(person) }
+  var totalPulling = function (team) {return sum(map(pulling, team))}
+  var winner = function (team1, team2) {
+    totalPulling(team1) &gt; totalPulling(team2) ? team1 : team2 }
+  var beat = function(team1,team2){winner(team1,team2) == team1}
+
+  condition(beat(['bob', 'mary'], ['tom', 'sue']))
+  condition(beat(['bob', 'sue'],  ['tom', 'jim']))
+
+  return strength('bob')
+}
+
+var dist = Infer({method: 'MCMC', kernel: 'MH', samples: 25000},
+                 model)
+
+print('Expected strength: ' + expectation(dist))
+viz(dist)
+</code></pre></div></div>
+
+<p>Try varying the number of different teams and teammates that Bob plays with. How does this change the estimate of Bob’s strength?
+Do these changes agree with your intuitions? Can you modify this example to make laziness a continuous quantity? Can you add a person-specific tendency toward laziness?</p>
+
+<p>A model very similar to this was used in @Gerstenberg2012 to predict human judgements about the strength of players in ping-pong tournaments. It achieved very accurate quantitative predictions without many free parameters.</p>
+
+<!--TODO: add actual conditions from expt. add actual data here and/or in bda chapter.-->
+
+<p>We can form many complex queries from this simple model. We could ask how likely a team of Bob and Mary is to beat a team of Jim and Sue, given that Mary is at least as strong as sue, and Bob beat Jim in a previous direct match up:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var model = function() {
+var strength = mem(function (person) {return Math.abs(gaussian(1, 1), 0.01)})
+  var lazy = function(person) {return flip(1/3) }
+  var pulling = function(person) {
+    return lazy(person) ? strength(person) / 2 : strength(person) }
+  var totalPulling = function (team) {return sum(map(pulling, team))}
+  var winner = function (team1, team2) {
+    totalPulling(team1) &gt; totalPulling(team2) ? team1 : team2 }
+  var beat = function(team1,team2){winner(team1,team2) == team1}
+
+  condition(strength('mary') &gt;= strength('sue'))
+  condition(beat(['bob'], ['jim']))
+
+  return beat(['bob','mary'], ['jim','sue'])
+}
+
+var dist = Infer({method: 'MCMC', kernel: 'MH', samples: 25000},
+                 model)
+viz(dist)
+</code></pre></div></div>
+
+<h1 id="example-inverse-intuitive-physics">Example: Inverse intuitive physics</h1>
+
+<p>We previously saw how a generative model of physics—a noisy, intuitive version of Newtonian mechanics—could be used to make judgements about the final state of physical worlds from initial conditions. We showed how this forward simulation could be used to model judgements about stability. We can also use a physics model to reason backward: from final to initial states.</p>
+
+<p>Imagine that we drop a block from a random position at the top of a world with two fixed obstacles:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// makes a floor with evenly spaced buckets
+var bins = function (xmin, xmax, width) {
+  return ((xmax &lt; xmin + width)
+          // floor
+          ? {shape: 'rect', static: true, dims: [400, 10], x: 175, y: 500}
+          // bins
+          : [{shape: 'rect', static: true, dims: [1, 10], x: xmin, y: 490}].concat(bins(xmin + width, xmax, width))
+         )
+}
+
+// add two fixed circles
+var world = [{shape: 'circle', static: true, dims: [60], x: 60, y: 200},
+             {shape: 'circle', static: true, dims: [30], x: 300, y: 300}].concat(bins(-1000, 1000, 25))
+
+var randomBlock = function () {
+  return {shape: 'circle', static: false, dims: [10], x: uniform(0, worldWidth), y: 0}
+}
+
+physics.animate(1000, [randomBlock()].concat(world))
+</code></pre></div></div>
+
+<p>Assuming that the block comes to rest in the middle of the floor, where did it come from?</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// makes a floor with evenly spaced buckets
+var bins = function (xmin, xmax, width) {
+  return ((xmax &lt; xmin + width)
+          // floor
+          ? {shape: 'rect', static: true, dims: [400, 10], x: 175, y: 500}
+          // bins
+          : [{shape: 'rect', static: true, dims: [1, 10], x: xmin, y: 490}].concat(bins(xmin + width, xmax, width))
+         )
+}
+
+// add two fixed circles
+var world = [{shape: 'circle', static: true, dims: [60], x: 60, y: 200},
+             {shape: 'circle', static: true, dims: [30], x: 300, y: 300}].concat(bins(-1000, 1000, 25))
+
+var randomBlock = function () {
+  return {shape: 'circle', static: false, dims: [10], x: uniform(0, worldWidth), y: 0}
+}
+
+var getBallX = function(world) {
+  var ball = filter(function(obj) { return !obj.static }, world)[0];
+  return ball.x;
+}
+
+var observedX = 160;
+
+var model = function() {
+  var initState = world.concat([randomBlock()])
+  var initX = getBallX(initState);
+  var finalState = physics.run(1000, initState);
+  var finalX = getBallX(finalState);
+  observe(Gaussian({mu: finalX, sigma: 10}), observedX)
+  return {initX: initX}
+}
+
+var initialXDist = Infer(
+  {method: 'MCMC',
+   samples: 100,
+   lag: 10,
+   callbacks: [editor.MCMCProgress()]
+  },
+  model);
+
+viz.density(initialXDist, {bounds: [0,350]})
+</code></pre></div></div>
+
+<p>What if the ball comes to rest at the left side, under the large circle (x about 60)? The right side?</p>
+
+<p>Notice that the model described above has preternatural knowledge of physics. For instance, it knows exactly how the ball will bounce of the pegs, even if there are many bounces. Do you think this is a good model of human intuition? If not, how could you change the model to capture human reasoning better?</p>
+
+<h1 id="example-causal-inference-in-medical-diagnosis">Example: Causal Inference in Medical Diagnosis</h1>
+
+<p>This classic Bayesian inference task is a special case of conditioning. Kahneman and Tversky, and Gigerenzer and colleagues, have studied how people make simple judgments like the following:</p>
+
+<blockquote>
+  <p>The probability of breast cancer is 1% for a woman at 40 who participates in a routine screening. If a woman has breast cancer, the probability is 80% that she will have a positive mammography. If a woman does not have breast cancer, the probability is 9.6% that she will also have a positive mammography. A woman in this age group had a positive mammography in a routine screening. What is the probability that she actually has breast cancer?</p>
+</blockquote>
+
+<p>What is your intuition? Many people without training in statistical inference judge the probability to be rather high, typically between 0.7 and 0.9. The correct answer is much lower, less than 0.1, as we can see by running this WebPPL inference:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var cancerDist = Infer({method: 'enumerate'},
+  function () {
+    var breastCancer = flip(0.01)
+    var positiveMammogram = breastCancer ? flip(0.8) : flip(0.096)
+    condition(positiveMammogram)
+    return {breastCancer: breastCancer}
+})
+viz(cancerDist)
+</code></pre></div></div>
+
+<p>@Tversky1974 named this kind of judgment error <em>base rate neglect</em>, because in order to make the correct judgment, one must realize that the key contrast is between the <em>base rate</em> of the disease, 0.01 in this case, and the <em>false alarm rate</em> or probability of a positive mammogram given no breast cancer, 0.096.  The false alarm rate (or <em>FAR</em> for short) seems low compared to the probability of a positive mammogram given breast cancer (the <em>likelihood</em>), but what matters is that it is almost ten times higher than the base rate of the disease.  All three of these quantities are needed to compute the probability of having breast cancer given a positive mammogram using Bayes’ rule for posterior conditional probability:</p>
+
+<script type="math/tex; mode=display">P(\text{cancer} \mid \text{positive mammogram}) = \frac{P(\text{positive mammogram} \mid \text{cancer} ) \times P(\text{cancer})}{P(\text{ positive mammogram})}</script>
+
+<script type="math/tex; mode=display">= \frac{0.8 \times 0.01}{0.8 \times 0.01 + 0.096 \times 0.99} = 0.078</script>
+
+<p>@Gigerenzer1995 showed that this kind of judgment can be made much more intuitive to untrained reasoners if the relevant probabilities are presented as “natural frequencies”, or the sizes of subsets of relevant possible outcomes:</p>
+
+<blockquote>
+  <p>On average, ten out of every 1000 women at age 40 who come in for a routine screen have breast cancer.  Eight out of those ten women will get a positive mammography.  Of the 990 women without breast cancer, 95 will also get a positive mammography. We assembled a sample of 1000 women at age 40 who participated in a routine screening.  How many of those who got a positive mammography do you expect to actually have breast cancer?</p>
+</blockquote>
+
+<p>Now one can practically read off the answer from the problem formulation: 8 out of 103 (95+8) women in this situation will have breast cancer.</p>
+
+<p>Gigerenzer (along with Cosmides, Tooby and other colleagues) has argued that this formulation is easier because of evolutionary and computational considerations: human minds have evolved to count and compare natural frequencies of discrete events in the world, not to add, multiply and divide decimal probabilities.  But this argument alone cannot account for the very broad human capacity for causal reasoning.  We routinely make inferences for which we haven’t stored up sufficient frequencies of events observed <em>in the world.</em> (And often for which no one has told us the relevant frequencies, although perhaps we have been told about degrees of causal strength or base rates in the form of probabilities or other linguistic encoding).</p>
+
+<p>However, the basic idea that the mind is good at manipulating frequencies of situations, but bad at arithmetic on continuous probability values, can be extended to cope with novel situations if the frequencies that are manipulated can be frequencies of <em>imagined</em> situations. Recall that probabilistic programs explicitly give instructions for sampling imagined situations, and only implicitly specify probability distributions. If human inference is similar to a WebPPL inference then it would readily create and manipulate imagined situations, and this could explain both why the frequency framing of Bayesian probability judgment is natural to people and how people cope with rarer and more novel situations.  The numbers given in the frequency formulation (or close approximations thereof) can be read off a tree of evaluation histories for 1000 calls of the WebPPL program that specifies the causal model for this problem:</p>
+
+<center><img src="../assets/img/Cancer-world-tree.png" width="40%" height="40%" /></center>
+
+<p>Each path from root to leaf of this tree represents a sequence of random choices made in evaluating the above program (the first flip for breast-cancer, the second for positive-mammogram), with the number of traversals and the sampled value labeling each edge. (Because this is 1000 <em>random</em> samples, the number are close (but not exactly) those in the Gigerenzer, et al, story.) Selecting just the 106 hypothetical cases of women with a positive mammogram, and computing the fraction of those who also have breast cancer (7/106), corresponds exactly to <code class="highlighter-rouge">Infer({method: 'rejection'})</code>. Thus, we have used the causal representation in the above program to manufacture frequencies which can be used to arrive at the inference that relatively few women with positive mammograms actually have breast cancer.</p>
+
+<p>Yet unlike the rejection sampler people are quite bad at reasoning in this scenario. Why? One answer is that people don’t represent their knowledge in quite the form of this simple program.
+Indeed, @Krynski2007 have argued that human statistical judgment is fundamentally based on conditioning more explicit causal models:  they suggested that “base rate neglect” and other judgment errors may occur when people are given statistical information that cannot be easily mapped to the parameters of the causal models they intuitively adopt to describe the situation.  In the above example, they suggested that the notion of a false alarm rate is not intuitive to many people—particularly when the false alarm rate is ten times higher than the base rate of the disease that the test is intended to diagnose!  They showed that “base rate neglect” could be eliminated by reformulating the breast cancer problem in terms of more intuitive causal models.  For example, consider their version of the breast cancer problem (the exact numbers and wording differed slightly):</p>
+
+<blockquote>
+  <p>1% of women at age 40 who participate in a routine screening will have breast cancer.  Of those with breast cancer, 80% will receive a positive mammogram.  20% of women at age 40 who participate in a routine screening will have a benign cyst.  Of those with a benign cyst, 50% will receive a positive mammogram due to unusually dense tissue of the cyst.  All others will receive a negative mammogram.  Suppose that a woman in this age group has a positive mammography in a routine screening. What is the probability that she actually has breast cancer?</p>
+</blockquote>
+
+<p>This question is easy for people to answer—empirically, just as easy as the frequency-based formulation given above.  We may conjecture this is because the relevant frequencies can be computed from a simple inference on the following more intuitive causal model:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var cancerDist = Infer({method: 'enumerate'},
+  function () {
+    var breastCancer = flip(0.01)
+    var benignCyst = flip(0.2)
+    var positiveMammogram = (breastCancer &amp;&amp; flip(0.8)) || (benignCyst &amp;&amp; flip(0.5))
+    condition(positiveMammogram)
+    return {breastCancer: breastCancer}
+});
+viz(cancerDist)
+</code></pre></div></div>
+
+<p>Because this causal model—this WebPPL program—is more intuitive to people, they can imagine the appropriate situations, despite having been given percentages rather than frequencies.
+What makes this causal model more intuitive than the one above with an explicitly specified false alarm rate?  Essentially we have replaced probabilistic dependencies on the “non-occurrence” of events (e.g., the dependence of a positive mammogram on <em>not</em> having breast cancer) with dependencies on explicitly specified alternative causes for observed effects (e.g., the dependence of a positive mammogram on having a benign cyst).</p>
+
+<p>A causal model framed in this way can scale up to significantly more complex situations.  Recall our more elaborate medical diagnosis network from the previous section, which was also framed in this way using noisy-logical functions to describe the dependence of symptoms on disease:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var dist = Infer({method: 'enumerate'},
+  function () {
+    var lungCancer = flip(0.01)
+    var TB = flip(0.005)
+    var cold = flip(0.2)
+    var stomachFlu = flip(0.1)
+    var other = flip(0.1)
+
+    var cough = ((cold &amp;&amp; flip(0.5)) ||
+                 (lungCancer &amp;&amp; flip(0.3)) ||
+                 (TB &amp;&amp; flip(0.7)) ||
+                 (other &amp;&amp; flip(0.01)))
+
+    var fever = ((cold &amp;&amp; flip(0.3)) ||
+                 (stomachFlu &amp;&amp; flip(0.5)) ||
+                 (TB &amp;&amp; flip(0.2)) ||
+                 (other &amp;&amp; flip(0.01)))
+
+    var chestPain = ((lungCancer &amp;&amp; flip(0.4)) ||
+                     (TB &amp;&amp; flip(0.5)) ||
+                     (other &amp;&amp; flip(0.01)))
+
+    var shortnessOfBreath = ((lungCancer &amp;&amp; flip(0.4)) ||
+                             (TB &amp;&amp; flip(0.5)) ||
+                             (other &amp;&amp; flip(0.01)))
+
+    condition(cough &amp;&amp; fever &amp;&amp; chestPain &amp;&amp; shortnessOfBreath)
+    return {lungCancer: lungCancer, TB: TB}
+})
+viz(dist)
+</code></pre></div></div>
+
+<p>You can use this model to infer conditional probabilities for any subset of diseases conditioned on any pattern of symptoms.  Try varying the symptoms in the conditioning set or the diseases in the inference, and see how the model’s inferences compare with your intuitions.  For example, what happens to inferences about lung cancer and TB in the above model if you remove chest pain and shortness of breath as symptoms?  (Why?  Consider the alternative explanations.)  More generally, we can condition on any set of events – any combination of symptoms and diseases – and query any others.  We can also condition on the negation of an event (using the JavaScript negation operator <code class="highlighter-rouge">!</code>): how does the probability of lung cancer (versus TB) change if we observe that the patient does <em>not</em> have a fever (i.e. <code class="highlighter-rouge">condition(!fever)</code>), does <em>not</em> have a cough, or does not have either symptom?</p>
+
+<p>As we discussed above, WebPPL program thus effectively encodes the answers to a very large number of possible questions in a very compact form.  In the program above, there are <script type="math/tex">3^9=19683</script> possible simple conditions corresponding to conjunctions of events or their negations (because the program has 9 stochastic Boolean-valued functions, each of which can be observed true, observed false, or not observed). Then for each of those conditions there are a roughly comparable number of queries, corresponding to all the possible conjunctions of variables that can be in the return value expression. This makes the total number of simple questions encoded on the order of 100 million. We are beginning to see the sense in which probabilistic programming provides the foundations for constructing a <em>language of thought</em>, as described in the Introduction: a finite system of knowledge that compactly and efficiently supports an infinite number of inference and decision tasks.</p>
+
+<p>Expressing our knowledge as a probabilistic program of this form also makes it easy to add in new relevant knowledge we may acquire, without altering or interfering with what we already know.  For instance, suppose we decide to consider behavioral and demographic factors that might contribute causally to whether a patient has a given disease:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var dist = Infer({method: 'enumerate'},
+  function () {
+    var worksInHospital = flip(0.01)
+    var smokes = flip(0.2)
+    var lungCancer = flip(0.01) || (smokes &amp;&amp; flip(0.02))
+    var TB = flip(0.005) || (worksInHospital &amp;&amp; flip(0.01))
+    var cold = flip(0.2) || (worksInHospital &amp;&amp; flip(0.25))
+    var stomachFlu = flip(0.1)
+    var other = flip(0.1)
+    var cough = ((cold &amp;&amp; flip(0.5)) ||
+                 (lungCancer &amp;&amp; flip(0.3)) ||
+                 (TB &amp;&amp; flip(0.7)) ||
+                 (other &amp;&amp; flip(0.01)))
+
+    var fever = ((cold &amp;&amp; flip(0.3)) ||
+                 (stomachFlu &amp;&amp; flip(0.5)) ||
+                 (TB &amp;&amp; flip(0.2)) ||
+                 (other &amp;&amp; flip(0.01)))
+
+    var chestPain = ((lungCancer &amp;&amp; flip(0.4)) ||
+                     (TB &amp;&amp; flip(0.5)) ||
+                     (other &amp;&amp; flip(0.01)))
+
+    var shortnessOfBreath = ((lungCancer &amp;&amp; flip(0.4)) ||
+                             (TB &amp;&amp; flip(0.5)) ||
+                             (other &amp;&amp; flip(0.01)))
+
+    condition(cough &amp;&amp; chestPain &amp;&amp; shortnessOfBreath)
+    return {lungCancer: lungCancer, TB: TB}
+})
+
+viz(dist)
+</code></pre></div></div>
+
+<p>Under this model, a patient with coughing, chest pain and shortness of breath is likely to have either lung cancer or TB.  Modify the above code to see how these conditional inferences shift if you also know that the patient smokes or works in a hospital (where they could be exposed to various infections, including many worse infections than the typical person encounters).  More generally, the causal structure of knowledge representation in a probabilistic program allows us to model intuitive theories that can grow in complexity continually over a lifetime, adding new knowledge without bound.</p>
+
+<p>Reading &amp; Discussion: <a href="../readings/conditioning.html">Readings</a></p>
+
+<p>Test your knowledge: <a href="../exercises/conditioning.html">Exercises</a></p>
+
+
+<!--
+<a href="Further Reading">/readings/conditioning.md</a>
+<a href="Exercises">/exercises/conditioning.md</a>
+-->
+
+
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+		Next chapter: <a href="dependence.html">4. Causal and statistical dependence</a>
+		
+
+<!-- put big scripts at end so we don't block page load -->
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+
+
+    </div>
+
+  </body>
+
+<!-- Mirrored from probmods.org/chapters/conditioning.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2020 14:08:27 GMT -->
+</html>
